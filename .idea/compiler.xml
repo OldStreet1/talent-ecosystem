@@ -11,5 +11,11 @@
         <module name="engineering-api" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="talent-ecosyste-admin-8883" target="8" />
+      <module name="talent-ecosyste-client-8881" target="8" />
+      <module name="talent-ecosyste-enterprise-8882" target="8" />
+      <module name="talent-ecosyste-school-8884" target="8" />
+    </bytecodeTargetLevel>
   </component>
 </project>
