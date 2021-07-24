@@ -9,6 +9,7 @@
         <outputRelativeToContentRoot value="true" />
         <module name="talent-admin9091" />
         <module name="engineering-api" />
+        <module name="talent-client9092" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

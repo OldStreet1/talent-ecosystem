@@ -10,6 +10,7 @@
     <modules>
         <module>engineering-api</module>
         <module>talent-admin9091</module>
+        <module>talent-client9092</module>
     </modules>
 
     <properties>
