@@ -11,11 +11,11 @@ module.exports = {
     assetsSubDirectory: 'static',
     assetsPublicPath: '/',
     proxyTable: {
-      '/client':{
-        target:'http://127.0.0.1:8082/',
+      '/api':{
+        target:'http://127.0.0.1:9092/',
         changeOrigin: true, // 如果接口跨域，需要进行这个参数配置
         pathRewrite:{
-          '^/client':'',
+          '^/api':'',
         }
       },
     },

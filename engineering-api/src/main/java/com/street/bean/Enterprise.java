@@ -27,6 +27,9 @@ public class Enterprise {
     @ApiModelProperty(value = "企业名称")
     private String enterprise_name;
 
+    @ApiModelProperty(value = "企业账号")
+    private String enterprise_acc;
+
     @ApiModelProperty(value = "密码（加密）")
     private String enterprise_pwd;
 

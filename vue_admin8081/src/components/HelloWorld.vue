@@ -1,6 +1,6 @@
 <template>
   <div class="hello">
-
+    <router-link to="/enterprise_login">企业登陆</router-link>
   </div>
 </template>
 

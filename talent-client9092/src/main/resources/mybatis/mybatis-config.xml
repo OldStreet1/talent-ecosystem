@@ -6,6 +6,11 @@
     <settings>
         <!--        开启二级缓存-->
         <setting name="cacheEnabled" value="true"/>
+        <!-- 开启驼峰命名规则 ，可以将数据库中的下划线映射为驼峰命名
+		 	例如：last_name可以映射为lastName
+		 -->
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
+
 </configuration>
 
