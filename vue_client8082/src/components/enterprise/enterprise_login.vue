@@ -31,7 +31,7 @@
       >记住密码</el-checkbox>
       <el-form-item style="width:100%;">
         <el-button type="primary" style="width:40%;" @click="handleSubmit" :loading="logining">登录</el-button>
-        <el-button type="primary" style="width:40%;" @click="handleSubmit" :loading="logining">注册</el-button>
+        <el-button type="primary" style="width:40%;" @click="toregister">注册</el-button>
       </el-form-item>
     </el-form>
   </div>
@@ -61,7 +61,10 @@ export default {
     }
   },
   methods: {
-    handleSubmit:function () {
+    toregister(){
+        this.$router.replace("/enterprise_register")
+    },
+    handleSubmit(){
       if (this.ruleForm2.password === ""){
         this.$message.error('您输入的密码不能为空');
       }
