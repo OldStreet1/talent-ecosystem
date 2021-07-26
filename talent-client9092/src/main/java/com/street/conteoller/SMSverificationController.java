@@ -25,6 +25,8 @@ public class SMSverificationController {
     public String SMSverification(String cellPhoneNum) throws Exception {
         System.err.println("发送验证码");
         System.out.println("发送验证码"+cellPhoneNum);
+        System.out.println(parameterServiceImpl.queryValue("accessKeyID"));
+        System.out.println(parameterServiceImpl.queryValue("accesskeyScret"));
 
 //        com.aliyun.dysmsapi20170525.Client client = createClient(parameterServiceImpl.queryValue("accessKeyID"), parameterServiceImpl.queryValue("accesskeyScret"));
 //        SendSmsRequest sendSmsRequest = new SendSmsRequest()
