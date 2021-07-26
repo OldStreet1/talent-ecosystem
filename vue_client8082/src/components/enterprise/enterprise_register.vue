@@ -1,36 +1,51 @@
 <template>
+  <div style="background-color: #97e6f3;float: left;" >
+    <div style="background:url('../../assets/images/newbg1.jpg');width: 100%;height: 500px;position: absolute;"></div>
+      <div style="background-color: #ffffff;width: 40%;height: 90%;margin: 5% auto;border-radius: 3% " >
 
-  <el-container>
-    <el-header>Header</el-header>
-    <el-main>
+  <el-container style="">
+    <el-main >
       <h3>注册企业账号</h3>
       <el-form
         ref="registerForm"
         :model="data"
-        style="width:500px"
+        style="width:90%;margin: 0 auto"
         label-position="center"
         label-width="80px"
         label-suffix=":"
         :rules="rules"
         status-icon
         hide-required-asterisk
+
       >
-        <el-form-item prop="employerName" :validate-status="status">
-          <el-input clearable v-model="data.employerName" placeholder="用户名（即个性后缀，注册后无法修改）" @blur="validateName"></el-input>
-        </el-form-item>
-        <el-form-item prop="phoneNumber">
-          <el-input clearable v-model="data.phoneNumber" placeholder="手机号" type="text"></el-input>
-        </el-form-item>
-        <el-form-item prop="code">
-          <el-input clearable v-model="data.code" style="width:55%;float: left" placeholder="请输入手机验证码" type="text"></el-input>
+
+          <el-input clearable v-model="data.employerName"   style="margin: 2% 0" placeholder="企业名称" @blur="validateName"></el-input>
+          <el-input clearable v-model="data.employerAddress"  style="margin: 2% 0" placeholder="企业地址" @blur=""></el-input>
+          <el-input clearable v-model="data.enterprise_operation_status" style="margin: 2% 0" placeholder="经营状态" @blur=""></el-input>
+        <div class="block">
+          <el-date-picker
+            v-model="value1"
+            type="date"
+            style="width:100%;float: right;margin: 2% 0"
+            placeholder="成立时间">
+          </el-date-picker>
+        </div>
+          <el-input clearable v-model="data.enterprise_legal_person" style="margin: 2% 0" placeholder="企业法人"></el-input>
+          <el-input clearable v-model="data.enterprise_code" style="margin: 2% 0" placeholder="企业代码"></el-input>
+          <el-select v-model="value" style="width:100%;float: right;margin: 2% 0"  placeholder="企业类型">
+            <el-option
+              v-for="item in options"
+              :key="item.value"
+              :label="item.label"
+              :value="item.value"
+              :disabled="item.disabled">
+            </el-option>
+          </el-select>
+          <el-input clearable v-model="data.phoneNumber"  style="margin: 2% 0" placeholder="手机号" type="text"></el-input>
+          <el-input clearable v-model="data.code"   style="width:55%;float: left" placeholder="请输入手机验证码" type="text"></el-input>
           <el-button type="primary" style="width:40%;float: right" @click="sendCode">获取验证码</el-button>
-        </el-form-item>
-        <el-form-item prop="password">
-          <el-input clearable v-model="data.password" placeholder="请输入密码" type="password"></el-input>
-        </el-form-item>
-        <el-form-item prop="re_password">
-          <el-input clearable v-model="data.re_password" placeholder="请确认密码" type="password"></el-input>
-        </el-form-item>
+          <el-input clearable v-model="data.password"  style="margin: 2% 0" placeholder="请输入密码" type="password"></el-input>
+          <el-input clearable v-model="data.re_password"  style="margin: 2% 0" placeholder="请确认密码" type="password"></el-input>
         请上传法人身份证、公司营业执照
         <el-upload
           class="upload-demo"
@@ -39,7 +54,6 @@
 
           :on-preview="handlePreview"
           :on-remove="handleRemove"
-          :file-list="fileList"
           accept=".jpg,.png"
           :duplicate="false"
           :auto-upload="false">
@@ -53,15 +67,17 @@
         </el-form-item>
       </el-form>
     </el-main>
-    <el-footer>Footer</el-footer>
   </el-container>
-
+      </div>
+  </div>
 </template>
 
 <script>
 export default {
   name: "EmployerReg",
+
   data () {
+
     // 封装一下相似功能的校验器
     const validatorMethod = function (length, message) {
       return (rule, value, callback) => {
@@ -96,8 +112,48 @@ export default {
       }
     }
     return {
+      options: [{
+        value: '选项1',
+        label: '国有'
+      }, {
+        value: '选项2',
+        label: '私营',
+      }, {
+        value: '选项3',
+        label: '合资'
+      }, {
+        value: '选项4',
+        label: '独资'
+      }, {
+        value: '选项5',
+        label: '全民所有制'
+      },{
+        value: '选项6',
+        label: '集体所有制'
+      },{
+        value: '选项7',
+        label: '股份制'
+      },{
+        value: '选项8',
+        label: '有限责任'
+      },{
+        value: '选项9',
+        label: '其他'
+      },
+      ],
+      pickerOptions: {
+        disabledDate(time) {
+          return time.getTime() > Date.now();
+        },
+      },
+      value: '',  //企业类型
+      value1: '',
       status: '',
       data: {
+        enterprise_code:'',
+        enterprise_legal_person:'',
+        enterprise_operation_status:'',
+        employerAddress:'',
         employerName: '',
         password: '',
         re_password: '',
@@ -139,12 +195,13 @@ export default {
       ).then(response=>{
         console.log(response)
         if (response.data == "success"){
+          console.log(response.data)
           this.$message({
             message: '发送成功',
             type: 'success'
           });
         }else {
-          this.$message.error('登陆失败');
+          this.$message.error('发送失败');
         }
       }).catch(err=> {
         console.log(err)
@@ -203,4 +260,8 @@ export default {
 </script>
 
 <style scoped>
+.block{
+  margin-bottom: 4%;
+}
+
 </style>
