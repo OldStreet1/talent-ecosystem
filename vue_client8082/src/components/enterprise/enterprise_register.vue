@@ -1,7 +1,7 @@
 <template>
-  <div style="background-color: #97e6f3;float: left;" >
-    <div style="background:url('../../assets/images/newbg1.jpg');width: 100%;height: 500px;position: absolute;"></div>
-      <div style="background-color: #ffffff;width: 40%;height: 90%;margin: 5% auto;border-radius: 3% " >
+  <div style="background-color: #97e6f3;float: left;width: 100%;height: 100%" >
+
+      <div style="background-color: #ffffff;width: 40%;height: 90%;margin: 2% auto;border-radius: 3% " >
 
   <el-container style="">
     <el-main >
@@ -11,16 +11,16 @@
         :model="data"
         style="width:90%;margin: 0 auto"
         label-position="center"
-        label-width="80px"
         label-suffix=":"
         :rules="rules"
         status-icon
         hide-required-asterisk
 
       >
-
-          <el-input clearable v-model="data.employerName"   style="margin: 2% 0" placeholder="企业名称" @blur="validateName"></el-input>
-          <el-input clearable v-model="data.employerAddress"  style="margin: 2% 0" placeholder="企业地址" @blur=""></el-input>
+        <el-form-item prop="employerName" :validate-status="status">
+          <el-input clearable v-model="data.employerName" placeholder="企业名称" @blur="validateName"></el-input>
+        </el-form-item>
+          <el-input clearable v-model="data.employerAddress"  placeholder="企业地址" @blur=""></el-input>
           <el-input clearable v-model="data.enterprise_operation_status" style="margin: 2% 0" placeholder="经营状态" @blur=""></el-input>
         <div class="block">
           <el-date-picker
@@ -32,7 +32,8 @@
         </div>
           <el-input clearable v-model="data.enterprise_legal_person" style="margin: 2% 0" placeholder="企业法人"></el-input>
           <el-input clearable v-model="data.enterprise_code" style="margin: 2% 0" placeholder="企业代码"></el-input>
-          <el-select v-model="value" style="width:100%;float: right;margin: 2% 0"  placeholder="企业类型">
+        <el-form-item prop="">
+          <el-select v-model="value" style="width:100%;"  placeholder="企业类型">
             <el-option
               v-for="item in options"
               :key="item.value"
@@ -41,30 +42,51 @@
               :disabled="item.disabled">
             </el-option>
           </el-select>
-          <el-input clearable v-model="data.phoneNumber"  style="margin: 2% 0" placeholder="手机号" type="text"></el-input>
+        </el-form-item>
+        <el-form-item prop="phoneNumber">
+          <el-input clearable v-model="data.phoneNumber"  placeholder="手机号" type="text"></el-input>
+        </el-form-item>
+        <el-form-item prop="code">
           <el-input clearable v-model="data.code"   style="width:55%;float: left" placeholder="请输入手机验证码" type="text"></el-input>
           <el-button type="primary" style="width:40%;float: right" @click="sendCode">获取验证码</el-button>
-          <el-input clearable v-model="data.password"  style="margin: 2% 0" placeholder="请输入密码" type="password"></el-input>
-          <el-input clearable v-model="data.re_password"  style="margin: 2% 0" placeholder="请确认密码" type="password"></el-input>
-        请上传法人身份证、公司营业执照
-        <el-upload
-          class="upload-demo"
-          ref="upload"
-          action="https://jsonplaceholder.typicode.com/posts/"
-
-          :on-preview="handlePreview"
-          :on-remove="handleRemove"
-          accept=".jpg,.png"
-          :duplicate="false"
-          :auto-upload="false">
-
-          <el-button slot="trigger" size="small" type="primary">选择文件</el-button>
-          <el-button style="margin-left: 10px;" size="small" type="success" @click="submitUpload">上传到服务器</el-button>
-          <div slot="tip" class="el-upload__tip">只能上传jpg/png文件，且不超过500kb</div>
-        </el-upload>
-        <el-form-item>
-          <el-button type="primary" v-on:click="onSubmit('registerForm')">注册</el-button>
         </el-form-item>
+        <el-form-item prop="password">
+          <el-input clearable v-model="data.password"   placeholder="请输入密码" type="password"></el-input>
+        </el-form-item>
+        <el-form-item prop="re_password">
+          <el-input clearable v-model="data.re_password"  placeholder="请确认密码" type="password"></el-input>
+        </el-form-item>
+        请上传法人身份证、公司营业执照
+        <div>
+
+          <el-upload
+            class="upload-demo"
+            ref="upload"
+            action
+            :on-preview="handlePreview"
+            :on-remove="handleRemove"
+            :file-list="fileList"
+            :auto-upload="false"
+            accept=".jpg,.png"
+            :http-request="UploadSubmit"
+          >
+            <el-button slot="trigger" size="small" type="primary">选取文件</el-button>
+            <el-button
+              style="margin-left: 10px"
+              size="small"
+              type="success"
+              @click="submitUpload"
+            >上传到服务器</el-button
+            >
+            <div slot="tip" class="el-upload__tip">
+              只能上传jpg/png文件，且不超过500kb
+            </div>
+          </el-upload>
+        </div>
+        <el-form-item>
+          <el-button type="primary" v-on:click="register">注册</el-button>
+        </el-form-item>
+
       </el-form>
     </el-main>
   </el-container>
@@ -112,32 +134,33 @@ export default {
       }
     }
     return {
+      fileList: [],
       options: [{
-        value: '选项1',
+        value: '国有',
         label: '国有'
       }, {
-        value: '选项2',
+        value: '私营',
         label: '私营',
       }, {
-        value: '选项3',
+        value: '合资',
         label: '合资'
       }, {
-        value: '选项4',
+        value: '独资',
         label: '独资'
       }, {
-        value: '选项5',
+        value: '全民所有制',
         label: '全民所有制'
       },{
-        value: '选项6',
+        value: '集体所有制',
         label: '集体所有制'
       },{
-        value: '选项7',
+        value: '股份制',
         label: '股份制'
       },{
-        value: '选项8',
+        value: '有限责任',
         label: '有限责任'
       },{
-        value: '选项9',
+        value: '其他',
         label: '其他'
       },
       ],
@@ -149,23 +172,21 @@ export default {
       value: '',  //企业类型
       value1: '',
       status: '',
+      data1:'15759212580',
       data: {
         enterprise_code:'',
         enterprise_legal_person:'',
         enterprise_operation_status:'',
         employerAddress:'',
         employerName: '',
-        password: '',
-        re_password: '',
-        phoneNumber: ''
+        password: '12345678',
+        re_password: '12345678',
+        phoneNumber: '15759212580'
       },
       // 所有校验规则
       rules: {
         employerName: [ // 用户名验证
           { required: true, trigger: 'change', message: '用户名必须填写' },
-          // { min: 3, max: 12, trigger: 'change', message: '用户名长度不能小于3'},
-          // { validator: usernameValidator, trigger: 'blur' },
-          { validator: validatorMethod(3, '用户名长度不能小于3'), trigger: 'change' }
         ],
         password: [ // 密码验证
           { required: true, trigger: 'change', message: '密码不能为空' },
@@ -183,10 +204,82 @@ export default {
       }
     }
   },
-  components: {
+  computed: {
+    // 上传是带的参数
 
   },
   methods: {
+    UploadSubmit(param) {
+      var file = param.file;
+      console.log(param.file);
+      var file_form = new FormData(); //获取上传表单（文件）
+      file_form.append("file", file);
+      console.log(file_form);
+      this.$axios({
+        url: "/img/upload/"+this.data.phoneNumber,
+        method: "POST",
+        data: file_form,
+      })
+        .then((res) => {
+          console.log(res);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    },
+    submitUpload() {
+      this.$refs.upload.submit();
+    },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
+    handlePreview(file) {
+      console.log(file);
+    },
+
+
+
+    register(){
+      if (this.fileList === null){
+        this.$message.error('您还未上传营业执照以及法人身份证，无法注册');
+      }else if (this.data.employerName === "" || this.data.phoneNumber === "" || this.data.password === "" || this.data.re_password === "" || this.data.employerAddress === "" || this.data.enterprise_operation_status === "" || this.data.value1 === "" || this.data.enterprise_legal_person === "" || this.data.code === "" || this.data.value === ""){
+        this.$message.error('您输入的信息有未填写，无法注册');
+      }else {
+        this.onSubmit();
+      }
+    },
+    onSubmit(){
+      this.$axios.post("/enterprise/register",
+        this.$qs.stringify({
+          enterprise_name:this.data.employerName,
+          enterprise_acc:this.data.phoneNumber,
+          enterprise_pwd:this.data.password,
+          enterpriseConfirm_pwd:this.data.re_password,
+          enterprise_address:this.data.employerAddress,
+          enterprise_operation_status:this.data.enterprise_operation_status,
+          enterprise_time_establishment:this.value1,
+          enterprise_legal_person:this.data.enterprise_legal_person,
+          enterprise_code:this.data.code,
+          enterprise_type:this.value,
+        })
+      ).then(response=>{
+        console.log(response)
+        if (response.data == "success"){
+          this.$message({
+            message: '恭喜你，注册成功，请等等审核通知',
+            type: 'success'
+          });
+        }else {
+          this.$message.error('注册失败');
+        }
+      }).catch(err=> {
+        console.log(err)
+      })
+
+
+
+      console.log("123")
+    },
     sendCode(){
       this.$axios.post("/sms/smsverification",
         this.$qs.stringify({
@@ -207,15 +300,6 @@ export default {
         console.log(err)
       })
     },
-    submitUpload() {
-      this.$refs.upload.submit();
-    },
-    handleRemove(file, fileList) {
-      console.log(file, fileList);
-    },
-    handlePreview(file) {
-      console.log(file);
-    },
     validateName (e) {
       if (e.target.value.trim() !== '') { // 输入框为空不校验
         // status的四个值：error(失败)，success(成功)，validating(验证中)，null
@@ -229,32 +313,6 @@ export default {
         }, 1000)
       }
     },
-    onSubmit(formName) {
-      this.$axios.get("/admin/login",{
-        params:{
-          // "action":"login",
-          "employerName":this.form.employerName,
-          "phoneNumber":this.form.phoneNumber,
-          "code":this.form.code,
-          "password":this.form.password
-        }
-
-      }).then(response=>{
-        console.log(response);
-        // 为表单绑定验证功能
-        this.$refs[formName].validate((valid) => {
-          if (valid) {
-            // 使用 vue-router 路由到指定页面，该方式称之为编程式导航
-            this.$router.push("/backman");
-          } else {
-            this.dialogVisible = true;
-            return false;
-          }
-        });
-      }).catch(error=>{
-        console.log(error)
-      });
-    }
   }
 }
 </script>

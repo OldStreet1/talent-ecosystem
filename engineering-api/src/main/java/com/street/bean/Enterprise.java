@@ -33,6 +33,9 @@ public class Enterprise {
     @ApiModelProperty(value = "密码（加密）")
     private String enterprise_pwd;
 
+    @ApiModelProperty(value = "确认密码（加密）")
+    private String enterpriseConfirm_pwd;
+
     @ApiModelProperty(value = "企业地址")
     private String enterprise_address;
 
@@ -65,5 +68,8 @@ public class Enterprise {
 
     @ApiModelProperty(value = "更新时间")
     private String update_time;
+
+    @ApiModelProperty(value = "短信验证码")
+    private String code;
 
 }
