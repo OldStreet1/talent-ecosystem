@@ -1,5 +1,7 @@
 package com.street.service.impl;
-
+import com.street.bean.Enterprise;
+import com.street.bean.Post;
+import com.street.bean.University;
 import com.street.bean.User;
 import com.street.mapper.UserMapper;
 import com.street.service.UserService;
@@ -23,4 +25,86 @@ public class UserServiceImpl implements UserService {
     public List<User> queryall() {
         return userMapper.queryall();
     }
+
+    @Override
+    public List<Post> gwchaxun() {
+        return null;
+    }
+
+    @Override
+    public List<Post> gwcharu() {
+        return null;
+    }
+
+    @Override
+    public List<Post> gwxiugai() {
+        return null;
+    }
+
+    @Override
+    public List<Post> gwshanchu() {
+        return null;
+    }
+
+    @Override
+    public List<User> yhqzchaxun() {
+        return null;
+    }
+
+    @Override
+    public List<User> yhqzcharu() {
+        return null;
+    }
+
+    @Override
+    public List<User> yhqzxiugai() {
+        return null;
+    }
+
+    @Override
+    public List<User> yhqzshanchu() {
+        return null;
+    }
+
+    @Override
+    public List<Enterprise> qyyhcharu() {
+        return null;
+    }
+
+    @Override
+    public List<Enterprise> qyyhshanchu() {
+        return null;
+    }
+
+    @Override
+    public List<Enterprise> qyyhxiugai() {
+        return null;
+    }
+
+    @Override
+    public List<Enterprise> qyyhchaxun() {
+        return null;
+    }
+
+    @Override
+    public List<University> gxyhcharu() {
+        return null;
+    }
+
+    @Override
+    public List<University> gxyhshanchu() {
+        return null;
+    }
+
+    @Override
+    public List<University> gxyhxiugai() {
+        return null;
+    }
+
+    @Override
+    public List<University> gxyhchaxun() {
+        return null;
+    }
+
+
 }
