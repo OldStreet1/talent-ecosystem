@@ -38,6 +38,7 @@ export default new Router({
     {path:'/student_admin',
       name: 'student_admin',
       component: student_admin
+
     }
   ]
 })

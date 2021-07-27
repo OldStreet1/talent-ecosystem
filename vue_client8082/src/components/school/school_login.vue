@@ -9,6 +9,7 @@
         <h3 class="title">高校登录</h3>
         <el-form-item  >
           <el-input type="text"
+
                     placeholder="法人代表身份证"
                     v-model="username"
                     class="name"

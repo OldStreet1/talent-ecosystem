@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.street.mapper.UniversityMapper">
+    <insert id="checkReg" parameterType="com.street.bean.University">
+        insert into t_university (university_name,university_code,university_corporate_ID_number
+        ,university_password,university_profile) values (#{university_name},#{university_code},
+        #{university_corporate_ID_number},#{university_password},#{university_profile})
+    </insert>
+</mapper>
+
