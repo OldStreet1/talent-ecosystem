@@ -11,19 +11,21 @@
     <!--    用户求职表-->
     <!--            用户求职表 插入-->
     <insert id="yhqzcharu" parameterType="com.street.bean.User">
-        insert into t_User (admin_account,admin_password,admin_username,admin_jurisdiction,create_time,update_time)
-            value ({#admin_account},{#admin_password},{#admin_username},{#admin_jurisdiction},{#admin_jurisdiction}
-            {#create_time},{#update_time});
+        insert into t_user (user_name,user_pwd,user_id_card,user_nation,user_sex,user_date_birth,user_telephone,user_mail
+        ,user_school_name,user_major,user_education,user_residence,user_graduation_time,create_time,update_time,user_age)
+            value ({#user_name},{#user_pwd},{#user_id_card},{#user_nation},{#user_sex},{#user_date_birth},{#user_telephone}
+            ,{#user_email},{#user_school_name},{#user_major},{#user_education},{#user_residence},{#user_graduation_time}
+            ,{#create_time},{#update_time},#{#user_age});
     </insert>
     <!--            用户管理【删除】-->
     <!--             or 是同时判断并满足条件-->
     <delete id="yhcxshanchu" parameterType="com.street.bean.User">
-        delete from t_User where user_id_card = {#user_id_card};
+        delete from t_user where user_id_card = {#user_id_card};
     </delete>
     <!--        用户管理【修改】-->
     <update id="yhqzxiugai" parameterType="com.street.bean.User">
-        update t_User set user_name = {#user_name},user_id_card = {#user_id_card}
-        where user_mail = {#user_mail};
+        update t_user set user_name = {#user_name},user_id_card = {#user_id_card}
+        where user_name = {#user_name};
     </update>
 <!--        用户求职表格查询-->
     <select id="yhqzchaxun" parameterType="com.street.bean.User">
@@ -56,13 +58,11 @@
 <!--            【企业用户表】-->
 <!--   企业用户表 【增加】-->
     <insert id="qyyhcharu" parameterType="com.street.bean.Enterprise">
-        insert into t_enterprise (enterprise_name,enterprise_pwd,enterprise_address,enterprise_operation_status
-            ,enterprise_time_establishment,enterprise_legal_person,enterprise_code,enterprise_type
-            ,enterprise_scale,enterprise_recruitment_position,enterprise_financing_stage,create_time,update_time)
-            value ({#enterprise_name},{#enterprise_pwd},{#enterprise_address},{#enterprise_operation_status}
-            ,{#enterprise_time_establishment},{#enterprise_legal_person},{#enterprise_code},{#enterprise_type}
-            ,{#enterprise_scale},{#enterprise_recruitment_position},{#enterprise_financing_stage},{#create_time},
-            {#update_time});
+insert into t_enterprise (enterprise_name,enterprise_acc,enterprise_pwd,enterprise_address,enterprise_operation_status,enterprise_time_of_establishment,enterprise_legal_person,enterprise_code,enterprise_type,enterprise_scale
+        ,enterprise_recruitment_position,enterprise_financing_stage,create_time,update_time)
+        value ({#enterprise_name},{#enterprise_acc},{#enterprise_pwd},{#enterprise_address},{#enterprise_operation_status}
+            ,{#enterprise_time_of_establishment},{#enterprise_legal_person},{#enterprise_code},{#enterprise_type},
+            {#enterprise_scale},{#enterprise_recruitment_position},{#enterprise_financing_stage},{#create_time},{#update_time});
     </insert>
 <!--    企业用户表 删除-->
     <delete id="qyyhshanchu" parameterType="com.street.bean.Enterprise">
@@ -76,32 +76,28 @@
     </update>
     <!--    企业用户表[查询]-->
     <select id="qyyhchaxun" parameterType="com.street.bean.Enterprise">
-        select * from t_enterprise where enterprise_name = {enterprise_name} and enterprise_type = {#enterprise_type}
-                                     and enterprise_recruitment_position = {#enterprise_recruitment_position};
-    </select>
+        select * from t_enterprise where enterprise_name = {#enterprise_name} and enterprise_acc = {#enterprise_acc};
+</select>
 
 <!--————————————————————————————————————————————————————————-->
 <!--    【【【【【高校用户表】】】】】】-->
 
 <!--        高校用户表 添加/增-->
     <insert id="gxyhcharu" parameterType="com.street.bean.University">
-        insert into t_university (enterprise_name,enterprise_pwd,enterprise_address,enterprise_operation_status
-        ,enterprise_time_establishment,enterprise_legal_person,enterprise_code,enterprise_type,enterprise_scale
-        ,enterprise_recruitment_position,enterprise_financing_stage,create_time,update_time)
-        value
-            ({#enterprise_name},{#enterprise_pwd},{#enterprise_address},{#enterprise_operation_status},{#enterprise_time_establishment}
-            ,{#enterprise_legal_person},{#enterprise_code},{#enterprise_type},{#enterprise_scale},{#enterprise_recruitment_position}
-            ,{#enterprise_financing_stage},{#create_time},{#update_time});
+        insert into t_university (university_name,university_code,university_corporate_ID_number,university_password
+        ,university_profile,create_time,update_time)value(
+            {#university_name},{#university_code},{#university_corporate_ID_number},{#university_password}
+            ,{#university_profile},{#create_time},{#update_time});
     </insert>
 
 <!--    高校用户表 删除-->
     <delete id="gxyhshanchu" parameterType="com.street.bean.University">
-        delete from t_university where enterprise_name = {#enterprise_name};
+        delete from t_university where university_name = {#university_name};
     </delete>
 
 <!--    高校用户表 查询-->
     <select id="gxyhchaxun" parameterType="com.street.bean.University">
-        select * from t_university where enterprise_name = {#enterprise_name} and enterprise_code = {#enterprise_code};
+        select * from t_university where university_name = {#university_name} and university_code = {#university_code};
     </select>
 
 <!--    ——————————————————————————————————————————————————————————————&#45;&#45;-->

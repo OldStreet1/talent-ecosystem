@@ -27,6 +27,9 @@ public class Enterprise {
     @ApiModelProperty(value = "企业名称")
     private String enterprise_name;
 
+    @ApiModelProperty(value = "企业账号")
+    private String enterprise_acc;
+
     @ApiModelProperty(value = "密码（加密）")
     private String enterprise_pwd;
 
@@ -37,7 +40,7 @@ public class Enterprise {
     private String enterprise_operation_status;
 
     @ApiModelProperty(value = "成立时间")
-    private String enterprise_time_establishment;
+    private String enterprise_time_of_establishment;
 
     @ApiModelProperty(value = "企业法人")
     private String enterprise_legal_person;
