@@ -2,6 +2,8 @@ package com.street.service;
 
 import com.street.bean.Enterprise;
 
+import java.util.List;
+
 /**
  * @version 1.0
  * @author: OldStreetHong
@@ -11,4 +13,8 @@ import com.street.bean.Enterprise;
 public interface EnterprideService {
     //企业注册
     int addEnterpride(Enterprise enterprise);
+    //查询企业是否存在
+    List<Enterprise> queryEnterpride(String enterprise_acc);
+    //企业登陆
+    List<Enterprise> enterprideLogin(Enterprise enterprise);
 }

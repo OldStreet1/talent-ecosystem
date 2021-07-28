@@ -28,8 +28,12 @@ public class EnterpriseController {
     @PostMapping("/login")
     public String EnterprideLogin(Enterprise enterprise){
         System.err.println("企业请求登陆");
-        System.out.println(enterprise);
-        return "success";
+        if (enterprideServiceImpl.enterprideLogin(enterprise).isEmpty()){
+            return "errrr";
+        }else {
+            return "success";
+        }
+
     }
 
     //企业注册
@@ -40,14 +44,19 @@ public class EnterpriseController {
         System.out.println(sbf.format(d));
         enterprise.setCreate_time(sbf.format(d));
 //       查询企业是否存在
-
-
-        int a = enterprideServiceImpl.addEnterpride(enterprise);
-        if (a == 1){
-            return "success";
-        }else {
-            return "errrrr";
+        if(enterprideServiceImpl.queryEnterpride(enterprise.getEnterprise_acc()).isEmpty()){
+            int a = enterprideServiceImpl.addEnterpride(enterprise);
+            if (a == 1){
+                return "success";
+            }else {
+                return "errrrr";
+            }
+        }else{
+            return "existence";
         }
+
+
+
 
     }
 

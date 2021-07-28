@@ -1,5 +1,5 @@
 <template>
-  <div style="background-color: #97e6f3;float: left;width: 100%;height: 100%" >
+  <div style="background-color: #72ffe5;float: left;width: 100%;height: 100%" >
 
       <div style="background-color: #ffffff;width: 40%;height: 90%;margin: 2% auto;border-radius: 3% " >
 
@@ -264,12 +264,16 @@ export default {
         })
       ).then(response=>{
         console.log(response)
-        if (response.data == "success"){
+        if (response.data === "success"){
           this.$message({
             message: '恭喜你，注册成功，请等等审核通知',
             type: 'success'
           });
-        }else {
+        }else if(response.data === "existence"){
+          this.$message.error('注册的账号已存在');
+        }
+
+        else{
           this.$message.error('注册失败');
         }
       }).catch(err=> {
