@@ -123,5 +123,45 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public List<Recruit> zpxxcharu() {
+        return null;
+    }
+
+    @Override
+    public List<Recruit> zpxxshanchu() {
+        return null;
+    }
+
+    @Override
+    public List<Recruit> zpxxxiugai() {
+        return null;
+    }
+
+    @Override
+    public List<Recruit> zpxxchaxun() {
+        return null;
+    }
+
+    @Override
+    public List<Resume> jlcharu() {
+        return null;
+    }
+
+    @Override
+    public List<Resume> jlshanchu() {
+        return null;
+    }
+
+    @Override
+    public List<Resume> jlxiugai() {
+        return null;
+    }
+
+    @Override
+    public List<Resume> jlchaxun() {
+        return null;
+    }
+
 
 }

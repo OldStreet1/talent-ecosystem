@@ -39,4 +39,17 @@ public interface UserMapper {
     List<Admin> gmusershanchu();
     List<Admin> gmuserxiugai();
     List<Admin> gmuserchaxun();
+
+//    招聘信息表
+    List<Recruit> zpxxcharu();
+    List<Recruit> zpxxshanchu();
+    List<Recruit> zpxxxiugai();
+    List<Recruit> zpxxchaxun();
+
+//        简历表
+    List<Resume> jlcharu();
+    List<Resume> jlshanchu();
+    List<Resume> jlxiugai();
+    List<Resume> jlchaxun();
+
 }

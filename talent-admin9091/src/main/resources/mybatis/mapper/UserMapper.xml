@@ -124,6 +124,54 @@ insert into t_enterprise (enterprise_name,enterprise_acc,enterprise_pwd,enterpri
 --         字段是bean内的，where bean字段对应数据库字段
         select * from t_post where post_name={#post_name} and post_type={#post_type} and post_salary={#post_salary};
     </select>
+<!--————————————————————————————————————————————————————————————————-->
+<!--            【【【【【招聘信息表】】】】】-->
+<!--             zpxxcharu   招聘信息 增加-->
+    <insert id="zpxxcharu" parameterType="com.street.bean.Recruit">
+        insert into t_recruit (recruit_post_id,recruit_enterprise_type,create_time,update_time)
+        value ({#recruit_post_id},{#recruit_enterprise_type},{#create_time},{#update_time});
+    </insert>
+
+<!--    删除-->
+    <delete id="zpxxshanchu" parameterType="com.street.bean.Recruit">
+        delete from t_recruit where recruit_post_id = {#recruit_post_id};
+    </delete>
+
+<!--    修改-->
+    <update id="zpxxxiugai" parameterType="com.street.bean.Recruit">
+        update t_recruit set recruit_post_id = {#recruit_post_id},asrecruit_enterprise_type = {#recruit_enterprise_type}
+        where recruit_post_id = {#recruit_post_id};
+    </update>
+
+<!--    查询-->
+    <select id="zpxinxichaxun" parameterType="com.street.bean.Recruit">
+        select * from t_recruit where recruit_post_id = {#recruit_post_id};
+    </select>
+<!--    ————————————————————————————————————————————————————————————-->
+<!--        简历表-->
+<!--    增加-->
+    <insert id="jlcharu" parameterType="com.street.bean.Resume">
+        insert into t_resume (user_id,user_name,work_exp,job_intention,exp_salary,edu_back
+        ,honor_certify,self_appraisal,hobbies,family_ties,create_time,update_time)
+        value ({#user_id},{#user_name},{#work_exp},{#job_intention},{#exp_salary},{#edu_back}
+            ,{#honor_certify},{#self_appraisal},{#hobbies},{#family_ties},{#create_time},{#update_time});
+    </insert>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

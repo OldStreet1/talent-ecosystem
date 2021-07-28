@@ -36,4 +36,14 @@ public interface UserService {
     public List<Admin> gmusershanchu();
     public List<Admin> gmuserxiugai();
     public List<Admin> gmuserchaxun();
+//    招聘信息表
+    public List<Recruit> zpxxcharu();
+    public List<Recruit> zpxxshanchu();
+    public List<Recruit> zpxxxiugai();
+    public List<Recruit> zpxxchaxun();
+//    简历表
+    public List<Resume> jlcharu();
+    public List<Resume> jlshanchu();
+    public List<Resume> jlxiugai();
+    public List<Resume> jlchaxun();
 }
