@@ -4,7 +4,7 @@
       <el-row>
         <el-button type="primary" plain>查看</el-button>
         <el-button type="success" plain>查询</el-button>
-        <el-button type="info" icon="el-icon-upload" @click="submitFile"   plain>导入</el-button>
+        <el-button type="info" icon="el-icon-upload"  plain>导入</el-button>
         <el-button type="warning" icon="el-icon-down"  plain>导出</el-button>
       </el-row>
     </div></el-col>
@@ -123,55 +123,6 @@ export default {
   methods: {
     handleClick (row) {
       console.log(row)
-    },
-    submitFile() {
-      const _this = this;
-      if (!_this.files.name) {
-        _this.$message.warning("请选择要上传的文件！");
-        return false;
-      }
-      let fileFormData = new FormData();
-      //filename是键，file是值，就是要传的文件
-      fileFormData.append("file", _this.files, _this.files.name);
-      if(_this.OtherParams){
-        const keys=Object.keys(_this.OtherParams);
-        keys.forEach(e=>{
-          fileFormData.append(e, _this.OtherParams[e]);
-        })
-      }
-      let requestConfig = {
-        headers: {
-          "Content-Type": "multipart/form-data"
-        }
-      };
-      AjaxHelper.post(_this.apiURL, fileFormData, requestConfig)
-        .then(res => {
-          console.log(res);
-          if (res.success) {
-            const result = res.result;
-            if (result.errorCount == 0 && result.successCount > 0) {
-              _this.$message({
-                message: `导入成功,成功${result.successCount}条`,
-                type: "success"
-              });
-              _this.closeFileUpload();
-              _this.Refresh();
-            } else if (result.errorCount > 0 && result.successCount >= 0) {
-              _this.Refresh();
-              _this.tableData = result.uploadErrors;
-              _this.successCount = result.successCount;
-              _this.innerVisible = true;
-            } else if (result.errorCount == 0 && result.successCount == 0) {
-              _this.$message({
-                message: `上传文件中数据为空`,
-                type: "error"
-              });
-            }
-          }
-        })
-        .catch(function(error) {
-          console.log(error);
-        });
     },
   }
 }
