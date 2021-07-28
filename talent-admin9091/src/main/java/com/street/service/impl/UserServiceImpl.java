@@ -1,8 +1,5 @@
 package com.street.service.impl;
-import com.street.bean.Enterprise;
-import com.street.bean.Post;
-import com.street.bean.University;
-import com.street.bean.User;
+import com.street.bean.*;
 import com.street.mapper.UserMapper;
 import com.street.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -103,6 +100,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<University> gxyhchaxun() {
+        return null;
+    }
+
+    @Override
+    public List<Admin> gmusercharu() {
+        return null;
+    }
+
+    @Override
+    public List<Admin> gmusershanchu() {
+        return null;
+    }
+
+    @Override
+    public List<Admin> gmuserxiugai() {
+        return null;
+    }
+
+    @Override
+    public List<Admin> gmuserchaxun() {
         return null;
     }
 

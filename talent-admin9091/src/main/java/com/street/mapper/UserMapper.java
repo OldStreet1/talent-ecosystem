@@ -1,9 +1,6 @@
 package com.street.mapper;
 
-import com.street.bean.Count;
-import com.street.bean.Enterprise;
-import com.street.bean.Post;
-import com.street.bean.User;
+import com.street.bean.*;
 import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
@@ -37,4 +34,9 @@ public interface UserMapper {
     List<Enterprise> qyyhxiugai();
     List<Enterprise> qyyhchaxun();
 
+//    管理用户表
+    List<Admin> gmusercharu();
+    List<Admin> gmusershanchu();
+    List<Admin> gmuserxiugai();
+    List<Admin> gmuserchaxun();
 }

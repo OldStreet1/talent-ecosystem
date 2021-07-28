@@ -1,8 +1,5 @@
 package com.street.service;
-import com.street.bean.Enterprise;
-import com.street.bean.Post;
-import com.street.bean.University;
-import com.street.bean.User;
+import com.street.bean.*;
 
 import java.util.List;
 
@@ -34,4 +31,9 @@ public interface UserService {
     public List<University> gxyhshanchu();
     public List<University> gxyhxiugai();
     public List<University> gxyhchaxun();
+//    管理用户表
+    public List<Admin> gmusercharu();
+    public List<Admin> gmusershanchu();
+    public List<Admin> gmuserxiugai();
+    public List<Admin> gmuserchaxun();
 }
