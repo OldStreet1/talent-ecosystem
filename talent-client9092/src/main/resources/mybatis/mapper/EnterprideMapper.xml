@@ -7,4 +7,18 @@
         insert into t_enterprise (enterprise_name, enterprise_acc,enterprise_pwd,enterprise_address,enterprise_operation_status,enterprise_time_of_establishment,enterprise_legal_person,enterprise_code,enterprise_type,create_time)
         VALUE (#{enterprise_name},#{enterprise_acc},#{enterprise_pwd},#{enterprise_address},#{enterprise_operation_status},#{enterprise_time_establishment},#{enterprise_legal_person},#{enterprise_code},#{enterprise_type},#{create_time})
     </insert>
+
+    <select id="queryEnterpride" parameterType="String" resultType="com.street.bean.Enterprise">
+        select *
+        from t_enterprise
+        where enterprise_acc = #{enterprise_acc}
+        ;
+    </select>
+
+    <select id="enterprideLogin" parameterType="com.street.bean.Enterprise" resultType="com.street.bean.Enterprise">
+        select *
+        from t_enterprise
+        where enterprise_acc = #{enterprise_acc} and enterprise_pwd = #{enterprise_pwd}
+        ;
+    </select>
 </mapper>
