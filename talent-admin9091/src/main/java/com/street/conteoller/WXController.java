@@ -41,8 +41,8 @@ public class WXController {
         // 调用接口
         String url = "https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={secret}&js_code={code}&grant_type=authorization_code";
         Map<String, String> paramMap = new HashMap<>();
-        paramMap.put("appid", "wxcbc8787aa1ad7f6d");
-        paramMap.put("secret", "1aa5318303dccfdb90f8b25eb48d6b57");
+        paramMap.put("appid", "+");
+        paramMap.put("secret", "+");
         paramMap.put("code",code);
         System.err.println(code);
         System.err.println(paramMap);
