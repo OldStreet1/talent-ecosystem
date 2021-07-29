@@ -14,7 +14,6 @@ import lombok.experimental.Accessors;
  * @desc:
  */
 @Data
-
 @ApiModel(value = "用户实体类")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -22,52 +21,52 @@ import lombok.experimental.Accessors;
 public class User {
 
     @ApiModelProperty(value = "主键Id")
-    private int userid;
+    private int user_id;
 
     @ApiModelProperty(value = "用户名")
-    private String username;
+    private String user_name;
 
     @ApiModelProperty(value = "密码（加密）")
-    private String userpwd;
+    private String user_pwd;
 
     @ApiModelProperty(value = "身份证号")
-    private String useridcard;
+    private String user_id_card;
 
     @ApiModelProperty(value = "民族")
-    private String usernation;
+    private String user_nation;
 
     @ApiModelProperty(value = "性别（身份证导入）")
-    private String usersex;
+    private String user_sex;
 
     @ApiModelProperty(value = "出生年月（身份证导入）")
-    private String userdatebirth;
+    private String user_date_birth;
 
     @ApiModelProperty(value = "联系电话")
-    private String usertelephone;
+    private String user_telephone;
 
     @ApiModelProperty(value = "邮箱")
-    private String usermail;
+    private String user_email;
 
     @ApiModelProperty(value = "学校名称")
-    private String userschoolname;
+    private String user_school_name;
 
     @ApiModelProperty(value = "专业")
-    private String usermajor;
+    private String user_major;
 
     @ApiModelProperty(value = "学历")
-    private String usereducation;
+    private String user_education;
 
     @ApiModelProperty(value = "居住地")
-    private String userresidence;
+    private String user_residence;
 
     @ApiModelProperty(value = "毕业时间")
-    private String usergraduationtime;
+    private String user_graduation_time;
 
     @ApiModelProperty(value = "导入时间")
-    private String createtime;
+    private String create_time;
 
     @ApiModelProperty(value = "更新时间")
-    private String updatetime;
+    private String update_time;
 
     @ApiModelProperty(value = "年龄")
     private String userage;
