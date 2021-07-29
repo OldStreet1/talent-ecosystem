@@ -14,7 +14,6 @@ import lombok.experimental.Accessors;
  * @desc:
  */
 @Data
-
 @ApiModel(value = "用户实体类")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -46,7 +45,7 @@ public class User {
     private String user_telephone;
 
     @ApiModelProperty(value = "邮箱")
-    private String user_mail;
+    private String user_email;
 
     @ApiModelProperty(value = "学校名称")
     private String user_school_name;
@@ -70,7 +69,13 @@ public class User {
     private String update_time;
 
     @ApiModelProperty(value = "年龄")
-    private String user_age;
+    private String userage;
+
+    @ApiModelProperty(value = "openid")
+    private String openid;
+
+    @ApiModelProperty(value = "userimg")
+    private String userimg;
 
 
 }
