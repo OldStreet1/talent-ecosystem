@@ -6,4 +6,5 @@ import java.util.List;
 
 public interface AdminService {
     public List<Admin> queryall();
+    public List<Admin> allchaxun();
 }

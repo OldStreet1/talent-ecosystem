@@ -83,6 +83,11 @@
 <script>
 import Menu from'./Menu'
 export default {
+  methods:{
+    chaxun(){
+
+    }
+  },
   name: "AdminUser",
   components:{
     Menu

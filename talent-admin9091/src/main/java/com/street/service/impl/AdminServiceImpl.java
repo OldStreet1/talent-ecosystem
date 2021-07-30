@@ -17,4 +17,9 @@ public class AdminServiceImpl implements AdminService {
     public List<Admin> queryall() {
         return adminMapper.queryall();
     }
+
+    @Override
+    public List<Admin> allchaxun() {
+        return adminMapper.allchaxun();
+    }
 }

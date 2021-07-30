@@ -1,5 +1,6 @@
 package com.street.conteoller;
 
+
 import com.street.bean.User;
 import com.street.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,4 +29,5 @@ public class UserController {
         System.out.println(queryall.size());
         return queryall.get(0);
     }
+
 }

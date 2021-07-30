@@ -9,16 +9,16 @@ import 'element-ui/lib/theme-chalk/index.css'
 // 导入路由
 import router from './router'
 // 导入axios
-import Axios from 'axios'
+import axios from 'axios'
 import AdminUser from "./components/admin/AdminUser";
 // 程序主路口
 Vue.config.productionTip = true
 // 使用elementsui
 Vue.use(ElementUI)
 // 全局变量属性设置
-Vue.prototype.$axios = Axios
+Vue.prototype.$axios = axios
 // 定义基本路径
-Axios.defaults.baseURI='api'
+axios.defaults.baseURL='api'
 
 /* eslint-disable no-new */
 // new Vue({
