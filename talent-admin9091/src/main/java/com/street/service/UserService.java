@@ -12,4 +12,6 @@ import java.util.List;
  */
 public interface UserService {
     public List<User> queryall();
+    //通过openid进行查找用户
+    List<User> queryUser(String opendid);
 }

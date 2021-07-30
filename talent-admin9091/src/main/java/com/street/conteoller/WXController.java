@@ -3,6 +3,7 @@ package com.street.conteoller;
 import com.alibaba.fastjson.JSONObject;
 import com.street.bean.User;
 import com.street.bean.WeChatConfig;
+import com.street.service.impl.ParameterServiceImpl;
 import com.street.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -27,6 +28,8 @@ public class WXController {
     private RestTemplate restTemplate;
     @Autowired
     private UserServiceImpl userServiceImpl;
+    @Autowired
+    private ParameterServiceImpl parameterService;
 
     @PostMapping("/test")
     public String user(){
@@ -41,8 +44,10 @@ public class WXController {
         // 调用接口
         String url = "https://api.weixin.qq.com/sns/jscode2session?appid={appid}&secret={secret}&js_code={code}&grant_type=authorization_code";
         Map<String, String> paramMap = new HashMap<>();
-        paramMap.put("appid", "+");
-        paramMap.put("secret", "+");
+        System.out.println(parameterService.queryValue("AppID")+"+++++++");
+        System.out.println(parameterService.queryValue("AppSecret")+"+++++++");
+        paramMap.put("appid", parameterService.queryValue("AppID"));
+        paramMap.put("secret", parameterService.queryValue("AppSecret"));
         paramMap.put("code",code);
         System.err.println(code);
         System.err.println(paramMap);
@@ -56,9 +61,10 @@ public class WXController {
     @ResponseBody
     public String getByUserId(@RequestBody Map<String, String> req){
         System.out.println(req.get("openid"));
-        List<User> queryall = userServiceImpl.queryall();
+        List<User> queryall = userServiceImpl.queryUser(req.get("openid"));
         System.err.println(queryall);
-        return "123";
+        String userInfo = JSONObject.toJSONString(queryall);
+        return userInfo;
     }
 
 

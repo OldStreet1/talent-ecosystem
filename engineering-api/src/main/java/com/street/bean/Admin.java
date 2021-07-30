@@ -21,13 +21,13 @@ public class Admin {
     @ApiModelProperty(value = "主键Id")
     private int admin_id;
 
-    @ApiModelProperty(value = "账号")
+    @ApiModelProperty(value = "暂无")
     private String university_name;
 
-    @ApiModelProperty(value = "密码（加密）")
+    @ApiModelProperty(value = "账号")
     private String admin_account;
 
-    @ApiModelProperty(value = "用户名")
+    @ApiModelProperty(value = "密码（加密）")
     private String admin_password;
 
     @ApiModelProperty(value = "用户名")
