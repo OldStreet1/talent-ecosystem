@@ -163,5 +163,25 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public List<Chat> ltjlcharu() {
+        return null;
+    }
+
+    @Override
+    public List<Chat> ltjlshanchu() {
+        return null;
+    }
+
+    @Override
+    public List<Chat> ltjlxiugai() {
+        return null;
+    }
+
+    @Override
+    public List<Chat> ltjlchaxun() {
+        return null;
+    }
+
 
 }

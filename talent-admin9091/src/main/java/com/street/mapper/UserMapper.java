@@ -34,11 +34,7 @@ public interface UserMapper {
     List<Enterprise> qyyhxiugai();
     List<Enterprise> qyyhchaxun();
 
-//    管理用户表
-    List<Admin> gmusercharu();
-    List<Admin> gmusershanchu();
-    List<Admin> gmuserxiugai();
-    List<Admin> gmuserchaxun();
+
 
 //    招聘信息表
     List<Recruit> zpxxcharu();
@@ -52,4 +48,9 @@ public interface UserMapper {
     List<Resume> jlxiugai();
     List<Resume> jlchaxun();
 
+//    聊天记录表
+    List<Chat> ltjlcharu();
+    List<Chat> ltjlshanchu();
+    List<Chat> ltjlxiugai();
+    List<Chat> ltjlchaxun();
 }

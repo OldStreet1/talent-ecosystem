@@ -46,4 +46,9 @@ public interface UserService {
     public List<Resume> jlshanchu();
     public List<Resume> jlxiugai();
     public List<Resume> jlchaxun();
+//    聊天记录表
+    public List<Chat> ltjlcharu();
+    public List<Chat> ltjlshanchu();
+    public List<Chat> ltjlxiugai();
+    public List<Chat> ltjlchaxun();
 }

@@ -27,6 +27,5 @@ public class UserController {
         List<User> queryall = userServiceImpl.queryall();
         System.out.println(queryall.size());
         return queryall.get(0);
-
     }
 }

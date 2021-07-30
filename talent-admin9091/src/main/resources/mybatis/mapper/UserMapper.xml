@@ -148,7 +148,7 @@ insert into t_enterprise (enterprise_name,enterprise_acc,enterprise_pwd,enterpri
         select * from t_recruit where recruit_post_id = {#recruit_post_id};
     </select>
 <!--    ————————————————————————————————————————————————————————————-->
-<!--        简历表-->
+<!--        【【【【【简历表】】】】】-->
 <!--    增加-->
     <insert id="jlcharu" parameterType="com.street.bean.Resume">
         insert into t_resume (user_id,user_name,work_exp,job_intention,exp_salary,edu_back
@@ -157,16 +157,27 @@ insert into t_enterprise (enterprise_name,enterprise_acc,enterprise_pwd,enterpri
             ,{#honor_certify},{#self_appraisal},{#hobbies},{#family_ties},{#create_time},{#update_time});
     </insert>
 
+<!--    删除-->
+    <delete id="jlshanchu" parameterType="com.street.bean.Resume">
+        delete from t_resume where user_id = {#user_id};
+    </delete>
 
+<!--    修改-->
+    <update id="jlxiugai" parameterType="com.street.bean.Resume">
+        update t_resume set job_intention = {#job_intention},exp_salary = {#exp_salary} where user_id = {user_id};
+    </update>
 
+<!--    查询-->
+    <select id="jlchaxun" parameterType="com.street.bean.Resume">
+        select * from t_resume where job_intention = {#job_intention} and exp_salary = {#exp_salary};
+    </select>
 
-
-
-
-
-
-
-
+<!--    ——————————————————————————————————————————————————————————-->
+<!--    【【【【【聊天记录表】】】】】】-->
+<!--    增加、插入-->
+    <insert id="ltjlcharu" parameterType="com.street.bean.Chat">
+        insert into t_chat (chat_sender,chat_receiver,) value ();
+    </insert>
 
 
 

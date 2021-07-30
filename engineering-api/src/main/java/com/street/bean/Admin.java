@@ -24,10 +24,10 @@ public class Admin {
     @ApiModelProperty(value = "账号")
     private String university_name;
 
-    @ApiModelProperty(value = "密码（加密）")
+    @ApiModelProperty(value = "用户名")
     private String admin_account;
 
-    @ApiModelProperty(value = "用户名")
+    @ApiModelProperty(value = "密码（加密）")
     private String admin_password;
 
     @ApiModelProperty(value = "用户名")

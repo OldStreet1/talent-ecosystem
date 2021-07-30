@@ -66,4 +66,7 @@ public class Enterprise {
     @ApiModelProperty(value = "更新时间")
     private String update_time;
 
+    @ApiModelProperty(value = "审核状态")
+    private String enterprise_status;
+
 }

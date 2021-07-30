@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.street.mapper.UserMapper">
+        <update id="queryall" parameterType="com.street.bean.Admin">
+            update t_admin set admin_account = {#admin_account} and  where ;
+        </update>
+<!--    <select id="queryall" resultType="com.street.bean.Admin">-->
+<!--        select * From t_admin;-->
+<!--    </select>-->
+</mapper>
