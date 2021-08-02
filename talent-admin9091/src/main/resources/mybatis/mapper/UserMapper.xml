@@ -31,54 +31,6 @@
     <select id="yhqzchaxun" parameterType="com.street.bean.User">
         select * from t_user where user_name = {#user_name} and user_id_card = {#user_id_card};
     </select>
-
-<!--————————————————————————————————————————————————————————-->
-<!--    【【【【管理用户表格】】】】】-->
-    <!--    【【【————【【管理用户 相关】】————】】】-->
-    <!--                管理用户 添加-->
-    <insert id="gmusercharu" parameterType="com.street.bean.Admin">
-        insert into t_admin (admin_account,admin_password,admin_username,admin_jurisdiction,create_time,update_time)
-            value ({#admin_account},{#admin_password},{#admin_username},{#admin_jurisdiction},{#create_time},{#update_time});
-    </insert>
-    <!--            管理用户 删除-->
-    <delete id="gmusdershanchu" parameterType="com.street.bean.Admin">
-        delete from t_admin where admin_account = {#admin_account};
-    </delete>
-    <!--            管理用户 修改-->
-    <update id="gmuserxiugai" parameterType="com.street.bean.Admin">
-        update t_admin set admin_account = {#admin_account},admin_password = {#admin_password, admin_username = {#admin_username}
-        where admin_account = {#admin_account};
-    </update>
-<!--                    管理用户 查询-->
-    <select id="gmuserchaxun" parameterType="com.street.bean.Admin">
-        select * from t_admin where admin_account = {#admin_account} and admin_username = {#admin_username};
-    </select>
-
-<!--    ——————————————————————————————————————————————- -->
-<!--            【企业用户表】-->
-<!--   企业用户表 【增加】-->
-    <insert id="qyyhcharu" parameterType="com.street.bean.Enterprise">
-insert into t_enterprise (enterprise_name,enterprise_acc,enterprise_pwd,enterprise_address,enterprise_operation_status,enterprise_time_of_establishment,enterprise_legal_person,enterprise_code,enterprise_type,enterprise_scale
-        ,enterprise_recruitment_position,enterprise_financing_stage,create_time,update_time)
-        value ({#enterprise_name},{#enterprise_acc},{#enterprise_pwd},{#enterprise_address},{#enterprise_operation_status}
-            ,{#enterprise_time_of_establishment},{#enterprise_legal_person},{#enterprise_code},{#enterprise_type},
-            {#enterprise_scale},{#enterprise_recruitment_position},{#enterprise_financing_stage},{#create_time},{#update_time});
-    </insert>
-<!--    企业用户表 删除-->
-    <delete id="qyyhshanchu" parameterType="com.street.bean.Enterprise">
-        delete from t_enterprise where enterprise_name = {#enterprise_name};
-    </delete>
-
-<!--        企业用户表 修改-->
-    <update id="qyyhxiugai" parameterType="com.street.bean.Enterprise">
-        update t_enterprise set enterprise_name = {#enterprise_name},enterprise_address = {#enterprise_address}
-            where enterprise_name = {#enterprise_name};
-    </update>
-    <!--    企业用户表[查询]-->
-    <select id="qyyhchaxun" parameterType="com.street.bean.Enterprise">
-        select * from t_enterprise where enterprise_name = {#enterprise_name} and enterprise_acc = {#enterprise_acc};
-</select>
-
 <!--————————————————————————————————————————————————————————-->
 <!--    【【【【【高校用户表】】】】】】-->
 
@@ -96,7 +48,7 @@ insert into t_enterprise (enterprise_name,enterprise_acc,enterprise_pwd,enterpri
     </delete>
 
 <!--    高校用户表 查询-->
-    <select id="gxyhchaxun" parameterType="com.street.bean.University">
+    <select id="gxyhchaxun" resultType="com.street.bean.University">
         select * from t_university where university_name = {#university_name} and university_code = {#university_code};
     </select>
 
@@ -144,7 +96,7 @@ insert into t_enterprise (enterprise_name,enterprise_acc,enterprise_pwd,enterpri
     </update>
 
 <!--    查询-->
-    <select id="zpxinxichaxun" parameterType="com.street.bean.Recruit">
+    <select id="zpxinxichaxun" resultType="com.street.bean.Recruit">
         select * from t_recruit where recruit_post_id = {#recruit_post_id};
     </select>
 <!--    ————————————————————————————————————————————————————————————-->
@@ -168,7 +120,7 @@ insert into t_enterprise (enterprise_name,enterprise_acc,enterprise_pwd,enterpri
     </update>
 
 <!--    查询-->
-    <select id="jlchaxun" parameterType="com.street.bean.Resume">
+    <select id="jlchaxun" resultType="com.street.bean.Resume">
         select * from t_resume where job_intention = {#job_intention} and exp_salary = {#exp_salary};
     </select>
 

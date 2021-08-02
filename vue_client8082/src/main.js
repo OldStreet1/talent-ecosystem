@@ -20,19 +20,6 @@ Vue.prototype.$axios = axios
 // 定义基本路径
 axios.defaults.baseURL='api'
 
-/* eslint-disable no-new */
-// new Vue({
-//   el: '#app',
-//   router,
-//   components: { App },
-//   template: '<App/>'
-// })
-//
-// new Vue({
-//   el: '#adminUser',
-//   render: h => h(AdminUser)
-// });
-
 new Vue({
   el: '#adminUser',
   router:router,

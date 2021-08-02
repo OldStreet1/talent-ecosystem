@@ -4,10 +4,8 @@ import com.street.bean.Admin;
 import com.street.service.impl.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
@@ -19,13 +17,11 @@ public class AdminController {
     private AdminServiceImpl adminService;
 
     @ResponseBody
-    @RequestMapping("/chaxun")
+    @RequestMapping("/adminchaxun")
     public Admin admin(){
-        System.out.println("0000");
-//        Admin admin = new Admin();
-//        List<Admin> allchaxun = adminService.allchaxun();
-//        System.out.println(allchaxun.size());
-//        return allchaxun.get(0);
-        return null;
+        Admin admin = new Admin();
+        List<Admin> allchaxun = adminService.allchaxun();
+        System.out.println(allchaxun.size());
+        return allchaxun.get(0);
     }
 }

@@ -84,10 +84,11 @@
 import Menu from'./Menu'
 export default {
   methods:{
-    chaxun(){
-
+    adminchaxun(){
     }
   },
+
+
   name: "AdminUser",
   components:{
     Menu
