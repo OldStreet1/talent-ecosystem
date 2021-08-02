@@ -2,7 +2,6 @@ package com.street.conteoller;
 
 import com.street.bean.Enterprise;
 import com.street.service.EnterpriseService;
-import com.street.service.impl.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,6 +25,6 @@ public class EnterpriseCountroller {
 //        输出长度
         System.out.println(epallchaxun.size());
 //        拿到第0个==第一行数据
-        return epallchaxun.get(0);
+        return enterprise;
     }
 }

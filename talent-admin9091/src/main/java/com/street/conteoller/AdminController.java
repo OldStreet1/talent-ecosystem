@@ -18,10 +18,23 @@ public class AdminController {
 
     @ResponseBody
     @RequestMapping("/adminchaxun")
-    public Admin admin(){
+    public List<Admin> admin(){
+        System.out.println("0000");
+        Admin admin = new Admin();
+        List<Admin> allchaxun = adminService.allchaxun();
+//        System.out.println(allchaxun.size());
+//        System.out.println(allchaxun);
+        return allchaxun;
+    }
+
+    @ResponseBody
+    @RequestMapping("/adminxiugai")
+    public List<Admin> xiugai(){
+//        System.out.println("0000");
         Admin admin = new Admin();
         List<Admin> allchaxun = adminService.allchaxun();
         System.out.println(allchaxun.size());
-        return allchaxun.get(0);
+        System.out.println(allchaxun);
+        return allchaxun;
     }
 }

@@ -1,10 +1,10 @@
 <template>
   <div>
     <el-main>
-      <el-button @click="epallchaxun">查询</el-button>
+<!--      <el-button @click="epallchaxun">查询</el-button>-->
       <!--            表格弹出-->
       <el-table
-          :data="[tableData.slice()]"
+          :data="this.tableData"
           border
           style="width: 200%">
         <el-table-column
@@ -51,7 +51,7 @@
             <el-row>
               <!--              ,@click="open2"-->
               <el-button icon="el-icon-search" circle></el-button>
-              <el-button type="primary" icon="el-icon-edit" circle></el-button>
+              <el-button circle icon="el-icon-edit" type="primary" @click="enterchaxun()"></el-button>
               <el-button type="success" icon="el-icon-check" circle></el-button>
               <el-button type="info" icon="el-icon-message" circle></el-button>
               <el-button type="warning" icon="el-icon-star-off" circle></el-button>
@@ -60,18 +60,18 @@
           </template>
         </el-table-column>
       </el-table>
-      <div class="block">
-        <span class="demonstration"></span>
-        <el-pagination
-            @size-change="handleSizeChange"
-            @current-change="handleCurrentChange"
-            :current-page="currentPage4"
-            :page-sizes="[100, 200, 300, 400]"
-            :page-size="10"
-            layout="total, sizes, prev, pager, next, jumper"
-            :total="10">
-        </el-pagination>
-      </div>
+<!--      <div class="block">-->
+<!--        <span class="demonstration"></span>-->
+<!--        <el-pagination-->
+<!--            @size-change="handleSizeChange"-->
+<!--            @current-change="handleCurrentChange"-->
+<!--            :current-page="currentPage4"-->
+<!--            :page-sizes="[100, 200, 300, 400]"-->
+<!--            :page-size="10"-->
+<!--            layout="total, sizes, prev, pager, next, jumper"-->
+<!--            :total="10">-->
+<!--        </el-pagination>-->
+<!--      </div>-->
     </el-main>
 
   </div>
@@ -82,7 +82,47 @@ export default {
   name: "Menu",
   methods: {
     enterchaxun() {
-      console.log("已经拿到数据——————————————————————————")
+      // console.log("已经拿到数据——————————————————————————");
+      const h = this.$createElement;
+      this.$msgbox({
+        title: '消息',
+        message: h('p', null, [
+          h('span', null, '内容可以是 '),
+          h('i', { style: 'color: teal' }, 'VNode')
+        ]),
+        showCancelButton: true,
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        beforeClose: (action, instance, done) => {
+          if (action === 'confirm') {
+            this.$axios.get("enter/enterchaxun",{
+              params:{
+                actiondata:"1",
+              }
+            }).then(response => {
+              console.log(response);
+              this.tableData = response.data
+            }).catch(error => {
+              console.log(error)
+            })
+            instance.confirmButtonLoading = true;
+            instance.confirmButtonText = '执行中...';
+            setTimeout(() => {
+              done();
+              setTimeout(() => {
+                instance.confirmButtonLoading = false;
+              }, 300);
+            }, 3000);
+          } else {
+            done();
+          }
+        }
+      }).then(action => {
+        this.$message({
+          type: 'info',
+          message: 'action: ' + action
+        });
+      });
     }
   },
   data() {
@@ -108,7 +148,7 @@ export default {
   mounted() {
     // console.log("--------");
     console.log(this.$axios)
-    this.$axios.get("admin/enterchaxun").then(response => {
+    this.$axios.get("admin/adminchaxun").then(response => {
       console.log(response);
       this.tableData = response.data
     }).catch(error => {
