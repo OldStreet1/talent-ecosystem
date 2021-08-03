@@ -7,19 +7,18 @@
         label-width="0px"
         class="demo-ruleForm login-page">
         <h3 class="title">高校登录</h3>
-        <el-form-item  >
+        <el-form-item>
           <el-input type="text"
-
-                    placeholder="法人代表身份证"
-                    v-model="username"
+                    placeholder="请输入法人代表身份证"
+                    v-model="corporate_ID_number"
                     class="name"
           ></el-input>
         </el-form-item>
-        <el-form-item >
+        <el-form-item>
           <el-input type="password"
                     auto-complete="off"
-                    placeholder="密码"
-                    v-model="password"
+                    placeholder="请输入密码"
+                    v-model="university_password"
                     class="pwd"
           ></el-input>
         </el-form-item>
@@ -34,30 +33,48 @@
 </template>
 
 <script>
+import student_admin from "./student_admin";
+import school_reg from "./school_reg";
+
 export default {
   name: 'school_login',
-  data  () {
+  data() {
     return {
-      username: '',
-      password: ''
+      corporate_ID_number: '',
+      university_password: ''
     }
   },
   methods: {
+    handleReg: function () {
+      this.$router.replace(school_reg)
+    },
     handleLogin: function () {
       // eslint-disable-next-line eqeqeq
-      if (this.username != '' && this.password != '') {
-        alert('登录成功')
-        this.$router.replace('/student_admin')
-      } else if (this.username === '') {
-        alert('请输入法定代表身份证')
-      } else if (this.password === '') {
-        alert('请输入密码')
+      if (this.corporate_ID_number != '' && this.university_password != '') {
+        this.$axios.post("/school/getLogin",
+          this.$qs.stringify({
+            corporate_ID_number: this.corporate_ID_number,
+            university_password: this.university_password,
+          })
+        ).then(response => {
+          console.log(response.data)
+          if (response.data == "success") {
+            this.$message({
+              message: '登录成功',
+              type: 'success',
+            });
+            this.$router.replace(student_admin)
+          } else {
+            this.$message.error('登陆失败');
+          }
+        }).catch(err => {
+          console.log(err)
+        })
+      } else {
+        alert("请输入信息")
       }
     },
-    handleReg: function () {
-      this.$router.replace('/school_reg')
-    }
-  }
+  },
 }
 </script>
 

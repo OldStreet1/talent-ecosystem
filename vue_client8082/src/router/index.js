@@ -31,14 +31,20 @@ export default new Router({
       name: 'school_login',
       component: school_login
     },
+    {path:'/school_login',
+      name: 'school_login',
+      component: school_login
+    },
     {path:'/school_reg',
       name: 'school_reg',
       component: school_reg
     },
     {path:'/student_admin',
       name: 'student_admin',
-      component: student_admin
-
-    }
+      component: student_admin,
+      children:[
+        {path:'/sAdmin_Message',name:'sAdmin_Message',component:()=>import ('../components/school/sAdmin_Message')},
+      ]
+    },
   ]
 })
