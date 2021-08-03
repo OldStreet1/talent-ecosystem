@@ -48,7 +48,7 @@
         </el-form-item>
         <el-form-item prop="code">
           <el-input clearable v-model="data.code"   style="width:55%;float: left" placeholder="请输入手机验证码" type="text"></el-input>
-          <el-button type="primary" style="width:40%;float: right" @click="sendCode">获取验证码</el-button>
+          <el-button type="primary" style="width:40%;float: right" :disabled="disabled" @click="sendCode">{{valiBtn}}</el-button>
         </el-form-item>
         <el-form-item prop="password">
           <el-input clearable v-model="data.password"   placeholder="请输入密码" type="password"></el-input>
@@ -97,7 +97,6 @@
 <script>
 export default {
   name: "EmployerReg",
-
   data () {
 
     // 封装一下相似功能的校验器
@@ -201,7 +200,9 @@ export default {
           { min: 11, max: 11, trigger: 'change', message: '请输入11位手机号码' },
           { validator: phoneValidator, trigger: 'blur' }
         ]
-      }
+      },
+      valiBtn:'获取验证码',
+      disabled:false,
     }
   },
   computed: {
@@ -297,8 +298,9 @@ export default {
             message: '发送成功',
             type: 'success'
           });
+          this.tackBtn();
         }else {
-          this.$message.error('发送失败');
+          this.$message.error('发送失败，请'+response.data+"再进行发送");
         }
       }).catch(err=> {
         console.log(err)
@@ -317,6 +319,26 @@ export default {
         }, 1000)
       }
     },
+    // 验证码倒数60秒
+    tackBtn(){
+      let time = 60;
+      let timer = setInterval(() => {
+        window.sessionStorage.setItem("X_no_time",this.time);//存入本地
+        if(window.sessionStorage.getItem("X_no_time")<="0"){//等于0时清空
+          window.sessionStorage.removeItem('X_no_time');
+        }
+        if(time == 0){
+          clearInterval(timer);
+          this.valiBtn = '获取验证码';
+          this.disabled = false;
+        }else{
+          this.disabled = true;
+          this.valiBtn = time + '秒后重试';
+          time--;
+        }
+      }, 1000);
+
+    }
   }
 }
 </script>

@@ -3,6 +3,7 @@ package com.street.conteoller;
 import com.alibaba.fastjson.JSONObject;
 import com.street.bean.User;
 import com.street.bean.WeChatConfig;
+import com.street.mapper.RecruitMapper;
 import com.street.service.impl.ParameterServiceImpl;
 import com.street.service.impl.UserServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,6 +31,8 @@ public class WXController {
     private UserServiceImpl userServiceImpl;
     @Autowired
     private ParameterServiceImpl parameterService;
+    @Autowired
+    private RecruitMapper recruitMapper;
 
     @PostMapping("/test")
     public String user(){
@@ -65,6 +68,16 @@ public class WXController {
         System.err.println(queryall);
         String userInfo = JSONObject.toJSONString(queryall);
         return userInfo;
+    }
+
+    //首页页面的招聘信息显示
+    @PostMapping("/recruitInfo")
+    @ResponseBody
+    public String recruitInfo(@RequestBody Map<String, String> req){
+        System.out.println(req.get("position"));
+        List<RuntimeException> recruitMappers = recruitMapper.queryRecruit("123");
+        String s = JSONObject.toJSONString(recruitMappers);
+        return s;
     }
 
 
