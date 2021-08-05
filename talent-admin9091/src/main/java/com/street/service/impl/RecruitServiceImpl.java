@@ -1,5 +1,6 @@
 package com.street.service.impl;
 
+import com.street.bean.RecuitEnterprise;
 import com.street.mapper.RecruitMapper;
 import com.street.service.RecruitService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,5 +22,15 @@ public class RecruitServiceImpl implements RecruitService {
     @Override
     public List<RuntimeException> queryRecruit(String info) {
         return recruitMapper.queryRecruit(info);
+    }
+
+    @Override
+    public List<RuntimeException> queryRecruitID(String recruit_id) {
+        return recruitMapper.queryRecruitID(recruit_id);
+    }
+
+    @Override
+    public List<RecuitEnterprise> querysearchall(RecuitEnterprise runtimeException) {
+        return recruitMapper.querysearchall(runtimeException);
     }
 }

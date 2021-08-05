@@ -5,6 +5,7 @@ import io.swagger.annotations.ApiModelProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.stereotype.Component;
 
 /**
  * @version 1.0
@@ -16,6 +17,7 @@ import lombok.NoArgsConstructor;
 @ApiModel(value = "招聘实与企业体类")
 @AllArgsConstructor
 @NoArgsConstructor
+@Component
 public class RecuitEnterprise {
     @ApiModelProperty(value = "主键Id")
     private int recruit_id;

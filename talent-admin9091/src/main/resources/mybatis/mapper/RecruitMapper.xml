@@ -7,5 +7,16 @@
         select * from t_recruit,t_enterprise where recruit_post_id = enterprise_id
     </select>
 
+    <select id="queryRecruitID" parameterType="String" resultType="com.street.bean.RecuitEnterprise">
+        select * from t_recruit,t_enterprise where recruit_post_id = enterprise_id and recruit_id = #{recruit_id}
+    </select>
+
+    <select id="querysearchall" parameterType="com.street.bean.RecuitEnterprise" resultType="com.street.bean.RecuitEnterprise">
+
+        select DISTINCT * from
+        t_recruit t1,t_enterprise t2
+        where recruit_post_id = enterprise_id
+        and (t2.enterprise_name like concat('%',#{enterprise_name},'%') or t1.position like concat('%',#{position},'%'))
+    </select>
 
 </mapper>

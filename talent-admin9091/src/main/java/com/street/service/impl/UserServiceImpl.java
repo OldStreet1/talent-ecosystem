@@ -28,4 +28,14 @@ public class UserServiceImpl implements UserService {
     public List<User> queryUser(String opendid) {
         return userMapper.queryUser(opendid);
     }
+
+    @Override
+    public List<User> queryphoneUser(String phone) {
+        return userMapper.queryphoneUser(phone);
+    }
+
+    @Override
+    public int updeteopenid(User user) {
+        return userMapper.updeteopenid(user);
+    }
 }

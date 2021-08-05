@@ -10,5 +10,12 @@
     <select id="queryUser" parameterType="String" resultType="com.street.bean.User">
         select * From t_user where openid = #{openid}
     </select>
+    <select id="queryphoneUser" resultType="com.street.bean.User">
+        select * From t_user where user_telephone = #{phone}
+    </select>
+
+    <update id="updeteopenid" parameterType="com.street.bean.User">
+        update t_user set openid = #{openid},userimg = #{userimg} where user_id = #{user_id}
+    </update>
 </mapper>
 
