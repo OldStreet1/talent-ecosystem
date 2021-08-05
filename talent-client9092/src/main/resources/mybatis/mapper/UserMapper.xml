@@ -6,12 +6,5 @@
     <select id="queryall" resultType="com.street.bean.User">
         select * From t_user
     </select>
-<!--    解析文件添加学生信息到用户表-->
-    <insert id="checkAdd" parameterType="java.util.List">
-        insert ignore into t_user () values
-        <foreach collection="list" item="item" separator=",">
-            ()
-        </foreach>
-    </insert>
 </mapper>
 

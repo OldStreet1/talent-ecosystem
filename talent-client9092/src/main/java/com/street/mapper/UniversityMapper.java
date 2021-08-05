@@ -25,4 +25,13 @@ public interface UniversityMapper {
 
     //    添加
     int checkAdd(ArrayList<User> users);
+
+    //查询用户
+    ArrayList<User> queryUser(User user);
+
+    //查询学生用户专业
+    ArrayList<User> queryMajor(User user);
+
+    //按专业查询学生
+    ArrayList<User> screenUser(User user);
 }

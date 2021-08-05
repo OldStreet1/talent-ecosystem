@@ -2,7 +2,9 @@ package com.street.conteoller;
 
 import com.street.bean.University;
 import com.street.bean.User;
+import com.street.service.UniversityService;
 import com.street.service.impl.UniversityImpl;
+import com.street.service.impl.UserServiceImpl;
 import jxl.Cell;
 import jxl.Sheet;
 import jxl.Workbook;
@@ -32,10 +34,12 @@ import java.util.Map;
 public class SchoolController {
     @Autowired
     private UniversityImpl UniversityService;
+    @Autowired
+    private UserServiceImpl userService;
 
     University university = new University();
+    User user=new User();
 
-    String luj = "";
 
     //    注册
     @RequestMapping("/getReg")
@@ -123,14 +127,17 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
             //如果文件父目录不存在，就创建这样一个目录
             file_server.getParentFile().mkdirs();
             System.out.println("创建目录" + file);
-            luj=pathname+filename;
-            System.out.println(">>>>"+luj);
+            System.out.println("文件路径"+pathname+filename);
         } else {  //如果父文件夹已经存在
 
         }
         file.transferTo(file_server);
         map.put("status", true);
         map.put("msg", "上传文件成功");
+        HttpSession session = request.getSession();
+        session.setAttribute("luj", pathname+filename);
+
+
     } else {   //如果获取到的文件为空
         map.put("status", false);
         map.put("msg", "上传文件失败");
@@ -141,7 +148,10 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
 
 //解析
     @RequestMapping("/jiex")
-    public ArrayList<User> jiex() throws IOException, BiffException {
+    public ArrayList<User> jiex(HttpServletRequest request) throws IOException, BiffException {
+        HttpSession session = request.getSession();
+        String luj = (String) session.getAttribute("luj");
+        System.out.println("拿到"+luj);
         ArrayList<User> users = new ArrayList<User>();
         //获取excel文件
         File file = new File(luj);
@@ -202,8 +212,44 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
             }
             users.add(user);
             System.out.println(user);
+            int j = UniversityService.checkAdd(users);
         }
 
         return users;
+    }
+    //查询学生用户
+    @RequestMapping("/queryUser")
+    public List queryUser(HttpServletRequest request){
+        HttpSession session1 = request.getSession();
+        String school = (String) session1.getAttribute("school");
+        System.out.println(school);
+        List list=UniversityService.queryUser(user.setUser_school_name(school));
+        return list;
+    }
+    //查询专业
+    @RequestMapping("/queryMajor")
+    public List queryMajor(String user_school_name,HttpServletRequest request){
+        HttpSession session1 = request.getSession();
+        String school = (String) session1.getAttribute("school");
+        user_school_name=school;
+        System.out.println(">>>>>>>"+user_school_name);
+        List list1=UniversityService.queryMajor(user.setUser_school_name(user_school_name));
+        System.out.println("专业集合"+list1.size());
+        return list1;
+    }
+
+    //根据专业查学生
+    @RequestMapping("/screenUser")
+    public List screenUser(String user_major,String user_school_name,HttpServletRequest request ){
+        HttpSession session1 = request.getSession();
+        String school = (String) session1.getAttribute("school");
+        System.out.println(school);
+        if (user_major!="全部"){
+            user.setUser_major(user_major);
+            user.setUser_school_name(school);
+            List list2 = UniversityService.screenUser(user);
+            return list2;
+        }
+        return null;
     }
 }

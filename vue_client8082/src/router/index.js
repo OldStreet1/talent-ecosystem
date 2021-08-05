@@ -44,6 +44,7 @@ export default new Router({
       component: student_admin,
       children:[
         {path:'/sAdmin_Message',name:'sAdmin_Message',component:()=>import ('../components/school/sAdmin_Message')},
+        {path:'/sAdmin_Export',name:'sAdmin_Export',component:()=>import ('../components/school/sAdmin_Export')},
       ]
     },
   ]

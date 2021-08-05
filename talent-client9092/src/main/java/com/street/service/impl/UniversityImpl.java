@@ -41,9 +41,26 @@ public class UniversityImpl implements UniversityService {
 //添加学生信息
     @Override
     public int checkAdd(ArrayList<User> users) {
-        int i=universityMapper.checkAdd(users);
-        return i;
+        int j=universityMapper.checkAdd(users);
+        return j;
     }
 
-
+    //查询用户
+    @Override
+    public ArrayList<User> queryUser(User user) {
+        ArrayList<User>users=universityMapper.queryUser(user);
+        return users;
+    }
+//查询专业
+    @Override
+    public ArrayList<User> queryMajor(User user) {
+        ArrayList<User>majors=universityMapper.queryMajor(user);
+        return majors;
+    }
+//按专业查询学生
+    @Override
+    public ArrayList<User> screenUser(User user) {
+        ArrayList<User>screenUser=universityMapper.screenUser(user);
+        return screenUser;
+    }
 }

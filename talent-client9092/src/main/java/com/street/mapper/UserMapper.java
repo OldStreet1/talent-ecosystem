@@ -3,6 +3,7 @@ package com.street.mapper;
 import com.street.bean.User;
 import org.springframework.stereotype.Repository;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -14,4 +15,5 @@ import java.util.List;
 @Repository
 public interface UserMapper {
     List<User> queryall();
+
 }

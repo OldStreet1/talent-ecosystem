@@ -1,5 +1,7 @@
 <template>
   <div>
+    <el-button type="primary" @click="show=!show" style="float: left;height: 55px;width: 100px">上传文件</el-button>
+    <div class="divUp" v-if="show">
     <el-upload
       style="float: left"
       class="upload-demo"
@@ -18,13 +20,15 @@
         @click="submitUpload"
       >上传到服务器</el-button>
     </el-upload>
-    <el-button type="primary"  @click="daoru">导入</el-button>
-  <el-button type="primary" @click="downExcel" >下载模板</el-button>
+    </div>
+    <el-button type="primary"  @click="daoru" style="float: left;margin-left: 50px;height: 55px;width: 80px">导入</el-button>
+    <el-button type="primary"  style="height: 55px;width: 80px;margin-left: 400px" @click="query">刷新</el-button>
+  <el-button type="primary" @click="downExcel" style="float: right;height: 55px;width: 100px">下载模板</el-button>
 
     <el-table
       id="example"
-      :data="tableData"
-      style="width: 100%">
+      :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)"
+      style="width: 100%;z-index: 0">
       <el-table-column
         prop="user_id"
         label="序号">
@@ -90,6 +94,15 @@
         label="导入时间">
       </el-table-column>
     </el-table>
+    <div class="block" style="margin-top:15px;">
+      <el-pagination align='center' @size-change="handleSizeChange" @current-change="handleCurrentChange"
+                     :current-page="currentPage"
+                     :page-sizes="[5]"
+                     :page-size="pageSize"
+                     layout="total, sizes, prev, pager, next, jumper"
+                     :total="tableData.length">
+      </el-pagination>
+    </div>
   </div>
 </template>
 
@@ -101,11 +114,24 @@ export default {
   name: "sAdmin_Message",
   data() {
     return {
-      tableData: [
-      ],
+      show:false,
+      tableData: [],
+      currentPage: 1, // 当前页码
+      pageSize: 5 ,// 每页的数据条数
     }
   },
   methods: {
+    //每页条数改变时触发 选择一页显示多少行
+    handleSizeChange(val) {
+      console.log(`每页 ${val} 条`);
+      this.currentPage = 1;
+      this.pageSize = val;
+    },
+    //当前页改变时触发 跳转其他页
+    handleCurrentChange(val) {
+      console.log(`当前页: ${val}`);
+      this.currentPage = val;
+    },
     //上传
     UploadSubmit(param) {
       var file = param.file;
@@ -172,11 +198,25 @@ export default {
       }).catch(err =>{
         console.log(err)
       })
+    },
+    query:function (){
+      this.$axios.post("/school/queryUser"
+      ).then(response =>{
+        console.log(response)
+        this.tableData=response.data
+      }).catch(err =>{
+        console.log(err)
+      })
     }
   }
 }
 </script>
 
 <style scoped>
-
+.divUp{
+  position: absolute;
+  top: 150px;
+  left: 650px;
+  z-index: 2;
+}
 </style>

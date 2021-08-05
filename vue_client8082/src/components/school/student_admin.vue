@@ -12,9 +12,9 @@
         background-color="#545c64"
         text-color="#fff"
         active-text-color="#ffd04b">
-        <el-menu-item-group>
-          <el-menu-item index="/sAdmin_Message">用户列表</el-menu-item>
-        </el-menu-item-group>
+          <el-menu-item index="/sAdmin_Message" @click="chaxun">导入人才信息</el-menu-item>
+        <el-menu-item index="/sAdmin_Export">导出人才信息</el-menu-item>
+        <el-menu-item index="">高校简介</el-menu-item>
       </el-menu>
     </div></el-col>
 <!--    右边显示内容-->
@@ -38,6 +38,14 @@ export default {
     }
   },
   methods: {
+    chaxun:function (){
+      this.$axios.post("/school/schoolname"
+      ).then(response => {
+        console.log(response.config)
+      }).catch(err => {
+        console.log(err)
+      })
+    },
   }
 }
 </script>
