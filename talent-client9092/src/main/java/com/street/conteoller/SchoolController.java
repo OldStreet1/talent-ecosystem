@@ -136,8 +136,6 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
         map.put("msg", "上传文件成功");
         HttpSession session = request.getSession();
         session.setAttribute("luj", pathname+filename);
-
-
     } else {   //如果获取到的文件为空
         map.put("status", false);
         map.put("msg", "上传文件失败");

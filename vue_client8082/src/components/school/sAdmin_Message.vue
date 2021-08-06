@@ -153,11 +153,12 @@ export default {
     },
     submitUpload() {
       this.$refs.upload.submit();
-      alert("上传成功")
+        alert("上传成功")
+      this.show=false;
     },
-    // handleRemove(file, fileList) {
-    //   console.log(file, fileList);
-    // },
+    handleRemove(file, fileList) {
+      console.log(file, fileList);
+    },
     handlePreview(file) {
       console.log(file);
     },
@@ -196,7 +197,9 @@ export default {
       this.$axios.post("/school/jiex"
       ).then(response =>{
         console.log(response)
-        alert("成功导入")
+        if (response.data!==''){
+          alert("成功导入")
+        }
       }).catch(err =>{
         console.log(err)
       })
