@@ -72,4 +72,6 @@ public class Enterprise {
     @ApiModelProperty(value = "短信验证码")
     private String code;
 
+
+
 }

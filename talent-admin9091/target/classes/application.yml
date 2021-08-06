@@ -3,6 +3,7 @@ server:
 
 #mybatis配置
 mybatis:
+  map-underscore-to-camel-case: true
   type-aliases-package: com.street.bean
   config-location: classpath:mybatis/mybatis-config.xml
   mapper-locations: classpath:mybatis/mapper/*.xml
