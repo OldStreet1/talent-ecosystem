@@ -15,6 +15,8 @@
       <router-link class="recruit" to="Recruit">我要招聘</router-link>
       <router-link class="register" to="enterprise_register">注册</router-link>
       <router-link class="elogin" to="enterprise_login">登录</router-link>
+      <router-link class="elogin" to="school_login">高校入口</router-link>
+      <router-link class="elogin" to="adminUser">后台管理</router-link>
       <router-link class="my" to="My">个人中心</router-link>
     </div>
 

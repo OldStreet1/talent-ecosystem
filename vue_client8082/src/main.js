@@ -8,9 +8,7 @@ import ElementUI from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 // 导入路由
 import router from './router'
-import ElementUI from 'element-ui';
 import 'element-ui/lib/theme-chalk/index.css';
-import axios from 'axios'
 import VueAxios from "vue-axios";
 import qs from 'qs';
 import VueCookies from 'vue-cookies'
