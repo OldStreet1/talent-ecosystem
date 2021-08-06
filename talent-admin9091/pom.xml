@@ -17,6 +17,20 @@
     </properties>
 
     <dependencies>
+<!--&lt;!&ndash;        文件上传跟下载&ndash;&gt;-->
+<!--&lt;!&ndash;         https://mvnrepository.com/artifact/commons-io/commons-io &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>commons-io</groupId>-->
+<!--            <artifactId>commons-io</artifactId>-->
+<!--            <version>1.4</version>-->
+<!--        </dependency>-->
+<!--        &lt;!&ndash; https://mvnrepository.com/artifact/commons-fileupload/commons-fileupload &ndash;&gt;-->
+<!--        <dependency>-->
+<!--            <groupId>commons-fileupload</groupId>-->
+<!--            <artifactId>commons-fileupload</artifactId>-->
+<!--            <version>1.2.1</version>-->
+<!--        </dependency>-->
+
         <!--        需拿到实体类所以配置api module-->
         <dependency>
             <groupId>com.street</groupId>

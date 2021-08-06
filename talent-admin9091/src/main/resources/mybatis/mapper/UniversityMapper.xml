@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.street.mapper.UniversityMapper">
+    <select id="xyallchaxun" resultType="com.street.bean.University">
+        select * from t_university;
+    </select>
+    <!--    【【【【【高校用户表】】】】】】-->
+    <!--        高校用户表 添加/增-->
+    <insert id="gxyhcharu" parameterType="com.street.bean.University">
+        insert into t_university (university_name,university_code,university_corporate_ID_number,university_password
+                                 ,university_profile,create_time,update_time)value(
+            {#university_name},{#university_code},{#university_corporate_ID_number},{#university_password}
+            ,{#university_profile},{#create_time},{#update_time});
+    </insert>
+
+    <!--    高校用户表 删除-->
+    <delete id="gxyhshanchu" parameterType="com.street.bean.University">
+        delete from t_university where university_name = {#university_name};
+    </delete>
+
+    <!--    高校用户表 查询-->
+    <select id="gxyhchaxun" resultType="com.street.bean.University">
+        select * from t_university where university_name = {#university_name} and university_code = {#university_code};
+    </select>
+
+</mapper>

@@ -23,4 +23,28 @@ public interface UserMapper {
     List<User> queryphoneUser(String phone);
     //修改openid
     int updeteopenid(User user);
+
+//    用户求职表相关
+    List<User> yhqzchaxun();
+    List<User> yhqzcharu();
+    List<User> yhqzxiugai();
+    List<User> yhqzshanchu();
+
+//    招聘信息表
+    List<Recruit> zpxxcharu();
+    List<Recruit> zpxxshanchu();
+    List<Recruit> zpxxxiugai();
+    List<Recruit> zpxxchaxun();
+
+//        简历表
+    List<Resume> jlcharu();
+    List<Resume> jlshanchu();
+    List<Resume> jlxiugai();
+    List<Resume> jlchaxun();
+
+//    聊天记录表
+    List<Chat> ltjlcharu();
+    List<Chat> ltjlshanchu();
+    List<Chat> ltjlxiugai();
+    List<Chat> ltjlchaxun();
 }

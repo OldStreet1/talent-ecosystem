@@ -69,7 +69,4 @@ public class Enterprise {
     @ApiModelProperty(value = "更新时间")
     private String update_time;
 
-    @ApiModelProperty(value = "短信验证码")
-    private String code;
-
 }

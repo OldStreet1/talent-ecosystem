@@ -4,7 +4,32 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.street.mapper.UserMapper">
     <select id="queryall" resultType="com.street.bean.User">
-        select * From t_user
+        select * From t_user;
+    </select>
+<!--————————————————————————————————————————————————————-->
+<!--    【【【【【【用户求职相关】】】】】】-->
+    <!--    用户求职表-->
+    <!--            用户求职表 插入-->
+    <insert id="yhqzcharu" parameterType="com.street.bean.User">
+        insert into t_user (user_name,user_pwd,user_id_card,user_nation,user_sex,user_date_birth,user_telephone,user_mail
+        ,user_school_name,user_major,user_education,user_residence,user_graduation_time,create_time,update_time,user_age)
+            value ({#user_name},{#user_pwd},{#user_id_card},{#user_nation},{#user_sex},{#user_date_birth},{#user_telephone}
+            ,{#user_email},{#user_school_name},{#user_major},{#user_education},{#user_residence},{#user_graduation_time}
+            ,{#create_time},{#update_time},#{#user_age});
+    </insert>
+    <!--            用户管理【删除】-->
+    <!--             or 是同时判断并满足条件-->
+    <delete id="yhcxshanchu" parameterType="com.street.bean.User">
+        delete from t_user where user_id_card = {#user_id_card};
+    </delete>
+    <!--        用户管理【修改】-->
+    <update id="yhqzxiugai" parameterType="com.street.bean.User">
+        update t_user set user_name = {#user_name},user_id_card = {#user_id_card}
+        where user_name = {#user_name};
+    </update>
+<!--        用户求职表格查询-->
+    <select id="yhqzchaxun" parameterType="com.street.bean.User">
+        select * from t_user where user_name = {#user_name} and user_id_card = {#user_id_card};
     </select>
 
     <select id="queryUser" parameterType="String" resultType="com.street.bean.User">
@@ -17,5 +42,67 @@
     <update id="updeteopenid" parameterType="com.street.bean.User">
         update t_user set openid = #{openid},userimg = #{userimg} where user_id = #{user_id}
     </update>
+<!--————————————————————————————————————————————————————————-->
+
+<!--            【【【【【招聘信息表】】】】】-->
+<!--             zpxxcharu   招聘信息 增加-->
+    <insert id="zpxxcharu" parameterType="com.street.bean.Recruit">
+        insert into t_recruit (recruit_post_id,recruit_enterprise_type,create_time,update_time)
+        value ({#recruit_post_id},{#recruit_enterprise_type},{#create_time},{#update_time});
+    </insert>
+<!--    删除-->
+    <delete id="zpxxshanchu" parameterType="com.street.bean.Recruit">
+        delete from t_recruit where recruit_post_id = {#recruit_post_id};
+    </delete>
+
+<!--    修改-->
+    <update id="zpxxxiugai" parameterType="com.street.bean.Recruit">
+        update t_recruit set recruit_post_id = {#recruit_post_id},asrecruit_enterprise_type = {#recruit_enterprise_type}
+        where recruit_post_id = {#recruit_post_id};
+    </update>
+
+<!--    查询-->
+    <select id="zpxinxichaxun" resultType="com.street.bean.Recruit">
+        select * from t_recruit where recruit_post_id = {#recruit_post_id};
+    </select>
+<!--    ————————————————————————————————————————————————————————————-->
+<!--        【【【【【简历表】】】】】-->
+<!--    增加-->
+    <insert id="jlcharu" parameterType="com.street.bean.Resume">
+        insert into t_resume (user_id,user_name,work_exp,job_intention,exp_salary,edu_back
+        ,honor_certify,self_appraisal,hobbies,family_ties,create_time,update_time)
+        value ({#user_id},{#user_name},{#work_exp},{#job_intention},{#exp_salary},{#edu_back}
+            ,{#honor_certify},{#self_appraisal},{#hobbies},{#family_ties},{#create_time},{#update_time});
+    </insert>
+
+<!--    删除-->
+    <delete id="jlshanchu" parameterType="com.street.bean.Resume">
+        delete from t_resume where user_id = {#user_id};
+    </delete>
+
+<!--    修改-->
+    <update id="jlxiugai" parameterType="com.street.bean.Resume">
+        update t_resume set job_intention = {#job_intention},exp_salary = {#exp_salary} where user_id = {user_id};
+    </update>
+
+<!--    查询-->
+    <select id="jlchaxun" resultType="com.street.bean.Resume">
+        select * from t_resume where job_intention = {#job_intention} and exp_salary = {#exp_salary};
+    </select>
+
+<!--    ——————————————————————————————————————————————————————————-->
+<!--    【【【【【聊天记录表】】】】】】-->
+<!--    增加、插入-->
+    <insert id="ltjlcharu" parameterType="com.street.bean.Chat">
+        insert into t_chat (chat_sender,chat_receiver,) value ();
+    </insert>
+
+
+
+
+
+
+
+
 </mapper>
 

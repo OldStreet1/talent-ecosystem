@@ -12,7 +12,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  */
 
 @SpringBootApplication
-
 @MapperScan("com.street.mapper")
 public class AdminProvider9091 {
     public static void main(String[] args) {

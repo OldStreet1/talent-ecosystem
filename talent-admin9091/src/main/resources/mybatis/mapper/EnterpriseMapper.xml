@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.street.mapper.EnterpriseMapper">
+    <select id="epallchaxun" resultType="com.street.bean.Enterprise">
+        select * from t_enterprise;
+    </select>
+    <!--    ——————————————————————————————————————————————- -->
+    <!--            【企业用户表】-->
+    <!--   企业用户表 【增加】-->
+    <insert id="qyyhcharu" parameterType="com.street.bean.Enterprise">
+        insert into t_enterprise (enterprise_name,enterprise_acc,enterprise_pwd,enterprise_address,enterprise_operation_status,enterprise_time_of_establishment,enterprise_legal_person,enterprise_code,enterprise_type,enterprise_scale
+                                 ,enterprise_recruitment_position,enterprise_financing_stage,create_time,update_time)
+            value ({#enterprise_name},{#enterprise_acc},{#enterprise_pwd},{#enterprise_address},{#enterprise_operation_status}
+            ,{#enterprise_time_of_establishment},{#enterprise_legal_person},{#enterprise_code},{#enterprise_type},
+            {#enterprise_scale},{#enterprise_recruitment_position},{#enterprise_financing_stage},{#create_time},{#update_time});
+    </insert>
+    <!--    企业用户表 删除-->
+    <delete id="qyyhshanchu" parameterType="com.street.bean.Enterprise">
+        delete from t_enterprise where enterprise_name = {#enterprise_name};
+    </delete>
+
+    <!--        企业用户表 修改-->
+    <update id="qyyhxiugai" parameterType="com.street.bean.Enterprise">
+        update t_enterprise set enterprise_name = {#enterprise_name},enterprise_address = {#enterprise_address}
+        where enterprise_name = {#enterprise_name};
+    </update>
+    <!--    企业用户表[查询]-->
+    <select id="qyyhchaxun" resultType="com.street.bean.Enterprise">
+        select * from t_enterprise where enterprise_name = {#enterprise_name} and enterprise_status = {#enterprise_status};
+    </select>
+</mapper>
