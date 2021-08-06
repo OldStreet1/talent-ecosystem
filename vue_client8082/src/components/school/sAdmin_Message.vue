@@ -153,6 +153,7 @@ export default {
     },
     submitUpload() {
       this.$refs.upload.submit();
+      alert("上传成功")
     },
     // handleRemove(file, fileList) {
     //   console.log(file, fileList);
@@ -195,6 +196,7 @@ export default {
       this.$axios.post("/school/jiex"
       ).then(response =>{
         console.log(response)
+        alert("成功导入")
       }).catch(err =>{
         console.log(err)
       })
