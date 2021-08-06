@@ -13,7 +13,7 @@ export default new Router({
   mode:"history",  //不带#号
   routes: [
     {
-      path: '/HelloWorld',
+      path: '/',
       name: 'HelloWorld',
       component: HelloWorld
     },
@@ -27,10 +27,10 @@ export default new Router({
       name: 'enterprise_register',
       component: enterprise_register
     },
-    {path:'/',
-      name: 'school_login',
-      component: school_login
-    },
+    // {path:'/',
+    //   name: 'school_login',
+    //   component: school_login
+    // },
     {path:'/school_login',
       name: 'school_login',
       component: school_login
