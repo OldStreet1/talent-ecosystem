@@ -1,14 +1,14 @@
 <template>
 <div>
+
   <el-container style="height: 900px; border: 1px solid #eee">
     <el-aside width="200px" style="background-color: rgb(238, 241, 246)">
 <!--      获取路由路劲代码：router :default-active="this.$route.path-->
       <el-menu :default-openeds="['1', '3']" router :default-active="this.$route.path">
+
         <el-submenu index="1">
           <template slot="title">岗位管理</template>
-          <el-menu-item-group>
             <el-menu-item index="/adminGwgl">岗位类型管理</el-menu-item>
-          </el-menu-item-group>
         </el-submenu>
 
         <el-submenu index="2">
@@ -42,10 +42,10 @@
         <el-submenu index="6">
           <template slot="title">区域管理</template>
           <el-menu-item-group>
-            <el-menu-item index="6-1">选项1</el-menu-item>
-            <el-menu-item index="6-2">选项2</el-menu-item>
+            <el-menu-item index="6-1">区级</el-menu-item>
+            <el-menu-item index="6-2">市级</el-menu-item>
           </el-menu-item-group>
-          <el-menu-item index="6-3">选项3</el-menu-item>
+          <el-menu-item index="6-3">省份</el-menu-item>
         </el-submenu>
       </el-menu>
     </el-aside>
@@ -73,6 +73,7 @@
 <!--        弹出企业管理 adminQiye.vue-->
 <!--        弹出moc 高校管理认证界面-->
 <!--        弹出sta 后台统计列表-->
+<!--          弹出咨询-->
       </el-main>
     </el-container>
   </el-container>
@@ -81,13 +82,13 @@
 </template>
 
 <script>
-import Menu from'./Menu'
+import Menu from './Menu'
+
 export default {
   methods:{
     adminchaxun(){
     }
   },
-
 
   name: "AdminUser",
   components:{
@@ -97,7 +98,7 @@ export default {
     return {
 
     };
-  }
+  },
 }
 </script>
 

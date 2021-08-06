@@ -32,58 +32,13 @@
         select * from t_user where user_name = {#user_name} and user_id_card = {#user_id_card};
     </select>
 <!--————————————————————————————————————————————————————————-->
-<!--    【【【【【高校用户表】】】】】】-->
 
-<!--        高校用户表 添加/增-->
-    <insert id="gxyhcharu" parameterType="com.street.bean.University">
-        insert into t_university (university_name,university_code,university_corporate_ID_number,university_password
-        ,university_profile,create_time,update_time)value(
-            {#university_name},{#university_code},{#university_corporate_ID_number},{#university_password}
-            ,{#university_profile},{#create_time},{#update_time});
-    </insert>
-
-<!--    高校用户表 删除-->
-    <delete id="gxyhshanchu" parameterType="com.street.bean.University">
-        delete from t_university where university_name = {#university_name};
-    </delete>
-
-<!--    高校用户表 查询-->
-    <select id="gxyhchaxun" resultType="com.street.bean.University">
-        select * from t_university where university_name = {#university_name} and university_code = {#university_code};
-    </select>
-
-<!--    ——————————————————————————————————————————————————————————————&#45;&#45;-->
-<!--    【【【【【岗位相关】】】】】-->
-    <!--        岗位表格的插入【添加】-->
-    <insert id="gwcharu" parameterType="com.street.bean.Post">
-        --         into 表格 bean字段 对应 数据库字段
-        insert into t_post (post_name,post_type,post_salary) values ({#post_name},{#post_type},{#post_salary});
-    </insert>
-    <!--                岗位表格删除-->
-    <delete id="gwshanchu" parameterType="com.street.bean.Post">
-        --         or 是同时判断并满足条件
-        delete from t_post where post_name = {#post_name};
-    </delete>
-    <!--            岗位表格修改-->
-    <update id="gwxiugai" parameterType="com.street.bean.Post">
-        --         where 是写数据库内的元数据，set 后面字段是需要改成什么样的数据
-        update t_post set post_name = {#post_name},post_type = {#post_type},
-            post_salary = {#post_salary} where post_salary = {#post_salary} and
-            post_education_requirements = {#post_education_requirements};
-    </update>
-<!--    岗位表格的查询-->
-    <select id="gwchaxun" resultType="com.street.bean.Post">
---         字段是bean内的，where bean字段对应数据库字段
-        select * from t_post where post_name={#post_name} and post_type={#post_type} and post_salary={#post_salary};
-    </select>
-<!--————————————————————————————————————————————————————————————————-->
 <!--            【【【【【招聘信息表】】】】】-->
 <!--             zpxxcharu   招聘信息 增加-->
     <insert id="zpxxcharu" parameterType="com.street.bean.Recruit">
         insert into t_recruit (recruit_post_id,recruit_enterprise_type,create_time,update_time)
         value ({#recruit_post_id},{#recruit_enterprise_type},{#create_time},{#update_time});
     </insert>
-
 <!--    删除-->
     <delete id="zpxxshanchu" parameterType="com.street.bean.Recruit">
         delete from t_recruit where recruit_post_id = {#recruit_post_id};

@@ -22,8 +22,6 @@ public class AdminController {
         System.out.println("0000");
         Admin admin = new Admin();
         List<Admin> allchaxun = adminService.allchaxun();
-//        System.out.println(allchaxun.size());
-//        System.out.println(allchaxun);
         return allchaxun;
     }
 
@@ -33,8 +31,6 @@ public class AdminController {
 //        System.out.println("0000");
         Admin admin = new Admin();
         List<Admin> allchaxun = adminService.allchaxun();
-        System.out.println(allchaxun.size());
-        System.out.println(allchaxun);
         return allchaxun;
     }
 }

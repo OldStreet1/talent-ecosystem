@@ -2,7 +2,7 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.street.bean.Enterprise">
+<mapper namespace="com.street.mapper.EnterpriseMapper">
     <select id="epallchaxun" resultType="com.street.bean.Enterprise">
         select * from t_enterprise;
     </select>
@@ -30,5 +30,4 @@
     <select id="qyyhchaxun" resultType="com.street.bean.Enterprise">
         select * from t_enterprise where enterprise_name = {#enterprise_name} and enterprise_status = {#enterprise_status};
     </select>
-
 </mapper>

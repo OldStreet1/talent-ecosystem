@@ -10,45 +10,30 @@ import java.util.List;
  * @desc:
  */
 public interface UserService {
-    public List<User> queryall();
-//    Post 岗位相关
-    public List<Post> gwchaxun();
-    public List<Post> gwcharu();
-    public List<Post> gwxiugai();
-    public List<Post> gwshanchu();
+    List<User> queryall();
 //        User 求职用户表
-    public List<User> yhqzchaxun();
-    public List<User> yhqzcharu();
-    public List<User> yhqzxiugai();
-    public List<User> yhqzshanchu();
-//    企业用户表 enterprise
-    public List<Enterprise> qyyhcharu();
-    public List<Enterprise> qyyhshanchu();
-    public List<Enterprise> qyyhxiugai();
-    public List<Enterprise> qyyhchaxun();
+List<User> yhqzchaxun();
+    List<User> yhqzcharu();
+    List<User> yhqzxiugai();
+    List<User> yhqzshanchu();
 //    高校用户表
-    public List<University> gxyhcharu();
-    public List<University> gxyhshanchu();
-    public List<University> gxyhxiugai();
-    public List<University> gxyhchaxun();
-//    管理用户表
-    public List<Admin> gmusercharu();
-    public List<Admin> gmusershanchu();
-    public List<Admin> gmuserxiugai();
-    public List<Admin> gmuserchaxun();
+List<University> gxyhcharu();
+    List<University> gxyhshanchu();
+    List<University> gxyhxiugai();
+    List<University> gxyhchaxun();
 //    招聘信息表
-    public List<Recruit> zpxxcharu();
-    public List<Recruit> zpxxshanchu();
-    public List<Recruit> zpxxxiugai();
-    public List<Recruit> zpxxchaxun();
+List<Recruit> zpxxcharu();
+    List<Recruit> zpxxshanchu();
+    List<Recruit> zpxxxiugai();
+    List<Recruit> zpxxchaxun();
 //    简历表
-    public List<Resume> jlcharu();
-    public List<Resume> jlshanchu();
-    public List<Resume> jlxiugai();
-    public List<Resume> jlchaxun();
+List<Resume> jlcharu();
+    List<Resume> jlshanchu();
+    List<Resume> jlxiugai();
+    List<Resume> jlchaxun();
 //    聊天记录表
-    public List<Chat> ltjlcharu();
-    public List<Chat> ltjlshanchu();
-    public List<Chat> ltjlxiugai();
-    public List<Chat> ltjlchaxun();
+List<Chat> ltjlcharu();
+    List<Chat> ltjlshanchu();
+    List<Chat> ltjlxiugai();
+    List<Chat> ltjlchaxun();
 }

@@ -24,4 +24,26 @@ public class AdminServiceImpl implements AdminService {
     public List<Admin> allchaxun() {
         return adminMapper.allchaxun();
     }
+
+    @Override
+    public List<Admin> gmusercharu() {
+        return null;
+    }
+
+    @Override
+    public List<Admin> gmusershanchu() {
+        return null;
+    }
+
+    @Override
+    public List<Admin> gmuserxiugai() {
+        return null;
+    }
+
+    @Override
+    public List<Admin> gmuserchaxun() {
+        return null;
+    }
+
+
 }

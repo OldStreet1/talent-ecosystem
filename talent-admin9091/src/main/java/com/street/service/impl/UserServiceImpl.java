@@ -24,26 +24,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Post> gwchaxun() {
-        return null;
-    }
-
-    @Override
-    public List<Post> gwcharu() {
-        return null;
-    }
-
-    @Override
-    public List<Post> gwxiugai() {
-        return null;
-    }
-
-    @Override
-    public List<Post> gwshanchu() {
-        return null;
-    }
-
-    @Override
     public List<User> yhqzchaxun() {
         return null;
     }
@@ -64,26 +44,6 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<Enterprise> qyyhcharu() {
-        return null;
-    }
-
-    @Override
-    public List<Enterprise> qyyhshanchu() {
-        return null;
-    }
-
-    @Override
-    public List<Enterprise> qyyhxiugai() {
-        return null;
-    }
-
-    @Override
-    public List<Enterprise> qyyhchaxun() {
-        return null;
-    }
-
-    @Override
     public List<University> gxyhcharu() {
         return null;
     }
@@ -100,26 +60,6 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public List<University> gxyhchaxun() {
-        return null;
-    }
-
-    @Override
-    public List<Admin> gmusercharu() {
-        return null;
-    }
-
-    @Override
-    public List<Admin> gmusershanchu() {
-        return null;
-    }
-
-    @Override
-    public List<Admin> gmuserxiugai() {
-        return null;
-    }
-
-    @Override
-    public List<Admin> gmuserchaxun() {
         return null;
     }
 
