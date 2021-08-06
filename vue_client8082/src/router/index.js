@@ -65,14 +65,6 @@ export default new Router({
       name: 'My',
       component: My
     },
-    {path:'/adminUser',name:'adminUser',component:() => import('../components/admin/AdminUser')},
-    {path:"/adminUser",name:'AdminUser',component: AdminUser,children:[
-        {path:"/adminGwgl",name:'adminGwgl',component:() => import('../components/admin/Menu') },
-        {path:"/adminqiyegl",name:'adminqiyegl',component:() => import('../components/admin/AdminQiye')},
-        {path:"/adminmoc",name:'adminmoc',component:() => import('../components/admin/AdminMoc')},
-        {path:"/adminsta",name:'adminsta',component:() => import('../components/admin/AdmimSta')},
-        {path:"/adminalluser",name:'adminalluser',component:() => import('../components/admin/AdminAlluser')},
-        {path:"/adminjobw",name:'adminjobw',component:() => import('../components/admin/AdminJobwant')},
-      ]},
+
   ]
 })

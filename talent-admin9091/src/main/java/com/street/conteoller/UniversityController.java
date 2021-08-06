@@ -16,7 +16,7 @@ public class UniversityController {
     private UniversityServiceImpl universityService;
 
     @ResponseBody
-    @RequestMapping("unitychauxn")
+    @RequestMapping("/unitychauxn")
     public List<University> universities(){
         System.out.println(">>>>>高校查询>>>>>>");
         University university = new University();
