@@ -12,5 +12,4 @@ import java.util.List;
  */
 public interface UserService {
     public List<User> queryall();
-    //通过手机号查找用户是否存在
 }

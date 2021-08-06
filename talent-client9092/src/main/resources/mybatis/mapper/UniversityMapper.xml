@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.street.mapper.UniversityMapper">
+<!--    注册-->
+    <insert id="checkReg" parameterType="com.street.bean.University">
+        insert into t_university (university_name,university_code,university_corporate_ID_number
+        ,university_password,university_profile) values (#{university_name},#{university_code},
+        #{university_corporate_ID_number},#{university_password},#{university_profile})
+    </insert>
+<!--    登录-->
+<select id="checkLogin" resultType="com.street.bean.University">
+    select * from t_university where university_corporate_ID_number=#{university_corporate_ID_number}
+and university_password=#{university_password}
+</select>
+<!--    查询学校名字（作为上传文件的父文件夹）-->
+    <select id="fileName" resultType="com.street.bean.University">
+        select university_name from t_university where university_corporate_ID_number=#{university_corporate_ID_number}
+    </select>
+
+    <!--    解析文件添加学生信息到用户表-->
+    <insert id="checkAdd" parameterType="java.util.List">
+        insert  into t_user (user_name,user_pwd,user_id_card,user_nation,
+        user_sex,userage,user_date_birth,user_telephone,user_email,user_school_name,
+        user_major,user_education,user_residence,user_graduation_time) values
+        <foreach collection="list" item="item" separator=",">
+            (#{item.user_name},#{item.user_pwd},#{item.user_id_card},#{item.user_nation},
+            #{item.user_sex},#{item.userage},#{item.user_date_birth},#{item.user_telephone},#{item.user_email},
+            #{item.user_school_name},#{item.user_major}, #{item.user_education},#{item.user_residence},
+            #{item.user_graduation_time})
+        </foreach>
+    </insert>
+
+    <!--    //查询用户-->
+    <select id="queryUser" resultType="com.street.bean.User">
+        select * from t_user where user_school_name=#{user_school_name}
+    </select>
+    <!--    查学生专业-->
+    <select id="queryMajor" resultType="com.street.bean.User">
+        select distinct user_major  from t_user where user_school_name=#{user_school_name}
+    </select>
+
+    <!--    根据专业筛选学生-->
+    <select id="screenUser" resultType="com.street.bean.User">
+        select *  from t_user where user_major=#{user_major} and user_school_name=#{user_school_name}
+    </select>
+</mapper>
+

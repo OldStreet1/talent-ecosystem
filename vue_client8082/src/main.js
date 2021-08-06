@@ -8,8 +8,11 @@ import 'element-ui/lib/theme-chalk/index.css';
 import axios from 'axios'
 import VueAxios from "vue-axios";
 import qs from 'qs';
+import VueCookies from 'vue-cookies'
 
 Vue.use(ElementUI);
+
+Vue.use(VueCookies)
 
 Vue.config.productionTip = false
 Vue.prototype.$qs = qs;
