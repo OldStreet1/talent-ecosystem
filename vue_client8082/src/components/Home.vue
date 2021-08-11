@@ -16,7 +16,7 @@
       <router-link class="register" to="enterprise_register">注册</router-link>
       <router-link class="elogin" to="enterprise_login">登录</router-link>
       <router-link class="elogin" to="school_login">高校入口</router-link>
-      <router-link class="elogin" to="adminUser">后台管理</router-link>
+      <router-link class="elogin" to="AdminUser">后台管理</router-link>
       <router-link class="my" to="My">个人中心</router-link>
     </div>
 
@@ -131,10 +131,10 @@ export default {
   data () {
     return {
       list_img: [
-        {url: require('../assets/1.jpg')},
-        {url: require('../assets/2.jpg')},
-        {url: require('../assets/3.jpg')},
-        {url: require('../assets/4.jpg')},
+        {url: require('../assets/images/1.jpg')},
+        {url: require('../assets/images/2.jpg')},
+        {url: require('../assets/images/3.jpg')},
+        {url: require('../assets/images/4.jpg')},
       ],
 
       isCollapse: true,
@@ -353,15 +353,11 @@ export default {
 </script>
 
 <style scoped>
-html, body {
-  margin: 0;
-  padding: 0;
-}
-
 .index {
   width: 100%;
   height: 1800px;
   background-color: #40E0D0;
+  margin: 0 auto;
   /*background-image: url("../assets/back.jpg");*/
 }
 
@@ -575,7 +571,7 @@ el-carousel__container {
   margin-top: -35px;
   width: 50px;
   height: 50px;
-  background-image: url("../assets/wechat.png");
+  background-image: url("../assets/images/wechat.png");
 }
 
 .weibo {
@@ -583,7 +579,7 @@ el-carousel__container {
   margin-top: -50px;
   width: 50px;
   height: 50px;
-  background-image: url("../assets/weibo.png");
+  background-image: url("../assets/images/weibo.png");
 }
 
 .apps {
@@ -591,7 +587,7 @@ el-carousel__container {
   margin-top: -50px;
   width: 50px;
   height: 50px;
-  background-image: url("../assets/apps.png");
+  background-image: url("../assets/images/apps.png");
 }
 
 .toup{
@@ -600,6 +596,6 @@ el-carousel__container {
   position: fixed;
   margin-left: 1800px;
   margin-top: 850px;
-  background-image: url("../assets/toup.png");
+  background-image: url("../assets/images/toup.png");
 }
 </style>

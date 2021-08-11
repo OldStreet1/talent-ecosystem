@@ -11,7 +11,9 @@
       </el-carousel>
     </div>
     <div class="main">
-      <div class="head"><img src="../assets/qq.png" class="headimg" alt=""></div>
+      <div class="head">
+        <img src="../assets/images/qq.png" class="headimg" alt="">
+      </div>
       <div class="menus">
         <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
           <el-submenu index="1">
@@ -57,10 +59,10 @@ export default {
   data () {
     return {
       list_img: [
-        {url: require('../assets/1.jpg')},
-        {url: require('../assets/2.jpg')},
-        {url: require('../assets/3.jpg')},
-        {url: require('../assets/4.jpg')},
+        {url: require('../assets/images/1.jpg')},
+        {url: require('../assets/images/2.jpg')},
+        {url: require('../assets/images/3.jpg')},
+        {url: require('../assets/images/4.jpg')},
       ],
       isCollapse: false
     }
