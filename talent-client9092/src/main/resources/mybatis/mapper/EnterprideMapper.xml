@@ -21,4 +21,10 @@
         where enterprise_acc = #{enterprise_acc} and enterprise_pwd = #{enterprise_pwd}
         ;
     </select>
+    <select id="queryEnterpriseCoordinate" parameterType="String" resultType="string">
+        select enterprise_coordinate
+        from t_enterprise
+        where enterprise_name = #{enterprise_name}
+        ;
+    </select>
 </mapper>

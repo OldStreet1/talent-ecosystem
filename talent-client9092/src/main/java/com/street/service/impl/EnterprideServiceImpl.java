@@ -33,4 +33,9 @@ public class EnterprideServiceImpl implements EnterprideService {
     public List<Enterprise> enterprideLogin(Enterprise enterprise) {
         return enterprideMapper.enterprideLogin(enterprise);
     }
+
+    @Override
+    public String queryEnterpriseCoordinate(String enterprise_name) {
+        return enterprideMapper.queryEnterpriseCoordinate(enterprise_name);
+    }
 }

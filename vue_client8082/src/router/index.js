@@ -1,29 +1,39 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import enterprise_login from "../components/enterprise/enterprise_login";
-import enterprise_register from "../components/enterprise/enterprise_register";
+import Amap from "../components/enterprise/Amap";
+import BMap from "../components/enterprise/BMap";
+import AInfo from "../components/enterprise/AInfo";
+import Recharge from "../components/enterprise/Recharge";
 
 Vue.use(Router)
 
 export default new Router({
-  mode:"history",  //不带#号
   routes: [
     {
       path: '/',
       name: 'HelloWorld',
       component: HelloWorld
     },
-    {
-      path: '/enterprise_login',
-      name: 'enterprise_login',
-      component: enterprise_login
+    {//地图组件
+      path: '/Amap',
+      name: 'Amap',
+      component: Amap
     },
-    {
-      path: '/enterprise_register',
-      name: 'enterprise_register',
-      component: enterprise_register
+    {//地图组件
+      path: '/BMap',
+      name: 'BMap',
+      component: BMap
     },
-
+    {//账户信息
+      path: '/AInfo',
+      name: 'AInfo',
+      component: AInfo
+    },
+    {//支付页面
+      path: '/Recharge',
+      name: 'Recharge',
+      component: Recharge
+    },
   ]
 })

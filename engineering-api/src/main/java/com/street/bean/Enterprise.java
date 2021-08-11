@@ -72,4 +72,7 @@ public class Enterprise {
     @ApiModelProperty(value = "短信验证码")
     private String code;
 
+    @ApiModelProperty(value = "企业坐标")
+    private String enterprise_coordinate;
+
 }

@@ -54,11 +54,18 @@ public class EnterpriseController {
         }else{
             return "existence";
         }
-
-
-
-
     }
+
+    //企业坐标
+    @PostMapping("/center")
+    public String EnterprideCenter(Enterprise enterprise){
+        String name = "美柚";
+        enterprise.setEnterprise_name(name);
+        String enterprise_coordinate = enterprideServiceImpl.queryEnterpriseCoordinate(name);
+        System.out.println(enterprise_coordinate);
+        return enterprise_coordinate;
+    }
+
 
 
 
