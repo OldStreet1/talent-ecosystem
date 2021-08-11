@@ -6,7 +6,6 @@ import enterprise_register from "../components/enterprise/enterprise_register";
 import school_login from "../components/school/school_login";
 import school_reg from "../components/school/school_reg";
 import student_admin from "../components/school/student_admin";
-
 Vue.use(Router)
 
 export default new Router({
@@ -45,6 +44,7 @@ export default new Router({
       children:[
         {path:'/sAdmin_Message',name:'sAdmin_Message',component:()=>import ('../components/school/sAdmin_Message')},
         {path:'/sAdmin_Export',name:'sAdmin_Export',component:()=>import ('../components/school/sAdmin_Export')},
+        {path:'/sAdmin_Introduction',name:'sAdmin_Introduction',component:()=>import ('../components/school/sAdmin_Introduction')},
       ]
     },
   ]

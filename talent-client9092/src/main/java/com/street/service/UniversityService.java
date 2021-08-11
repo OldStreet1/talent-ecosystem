@@ -31,4 +31,7 @@ public interface UniversityService {
 
     //按专业查询学生
     ArrayList<User> screenUser(User user);
+
+    //查询高校简介
+    ArrayList<University>queryProfile(University university);
 }

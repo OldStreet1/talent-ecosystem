@@ -17,10 +17,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.*;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 
 /**
@@ -146,7 +144,7 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
 
 //解析
     @RequestMapping("/jiex")
-    public ArrayList<User> jiex(HttpServletRequest request) throws IOException, BiffException {
+    public ArrayList<User> jiex( HttpServletRequest request) throws IOException, BiffException {
         HttpSession session = request.getSession();
         String luj = (String) session.getAttribute("luj");
         System.out.println("拿到"+luj);
@@ -207,6 +205,12 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
                 } else if (j == 14) {
                     user.setUser_graduation_time(str);
                 }
+                    System.out.println("获取时间" + new Date());
+                    Date d = new Date();
+                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
+                    System.out.println("格式化输出：" + sdf.format(d));
+                    sdf.format(d);
+                    user.setCreate_time(sdf.format(d));
             }
             users.add(user);
             System.out.println(user);
@@ -235,7 +239,6 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
         System.out.println("专业集合"+list1.size());
         return list1;
     }
-
     //根据专业查学生
     @RequestMapping("/screenUser")
     public List screenUser(String user_major,String user_school_name,HttpServletRequest request ){
@@ -249,5 +252,16 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
             return list2;
         }
         return null;
+    }
+    //高校简介
+    @RequestMapping("/queryProfile")
+    public List queryProfile(HttpServletRequest request){
+        HttpSession session2 = request.getSession();
+        String school = (String) session2.getAttribute("school");
+        System.out.println(school);
+        university.setUniversity_name(school);
+        List listProfile=UniversityService.queryProfile(university);
+        System.out.println(school+"简介，集合"+listProfile);
+        return listProfile;
     }
 }

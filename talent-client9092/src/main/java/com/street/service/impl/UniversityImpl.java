@@ -63,4 +63,10 @@ public class UniversityImpl implements UniversityService {
         ArrayList<User>screenUser=universityMapper.screenUser(user);
         return screenUser;
     }
+//查询高校简介
+    @Override
+    public ArrayList<University> queryProfile(University university) {
+        ArrayList<University>queryProfile=universityMapper.queryProfile(university);
+        return queryProfile;
+    }
 }

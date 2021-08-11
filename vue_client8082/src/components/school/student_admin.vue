@@ -13,8 +13,8 @@
         text-color="#fff"
         active-text-color="#ffd04b">
           <el-menu-item index="/sAdmin_Message" @click="chaxun">导入人才信息</el-menu-item>
-        <el-menu-item index="/sAdmin_Export">导出人才信息</el-menu-item>
-        <el-menu-item index="">高校简介</el-menu-item>
+        <el-menu-item index="/sAdmin_Export" @click="chaxun">导出人才信息</el-menu-item>
+        <el-menu-item index="/sAdmin_Introduction" @click="chaxun">高校简介</el-menu-item>
       </el-menu>
     </div></el-col>
 <!--    右边显示内容-->
@@ -41,7 +41,7 @@ export default {
     chaxun:function (){
       this.$axios.post("/school/schoolname"
       ).then(response => {
-        console.log(response.config)
+        console.log(response.data)
       }).catch(err => {
         console.log(err)
       })
