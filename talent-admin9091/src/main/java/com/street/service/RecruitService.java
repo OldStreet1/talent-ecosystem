@@ -4,6 +4,7 @@ import com.street.bean.RecuitEnterprise;
 import com.street.mapper.RecruitMapper;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @version 1.0
@@ -18,4 +19,6 @@ public interface RecruitService {
     public List<RuntimeException> queryRecruitID(String recruit_id);
     //搜索框搜索
     public List<RecuitEnterprise> querysearchall(RecuitEnterprise runtimeException);
+    //查询通过的企业
+    List<RecuitEnterprise> selectEnterpriseAdopt(Map<String,String> info);
 }

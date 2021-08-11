@@ -98,6 +98,10 @@
     </insert>
 
 
+<!--    用户密码修改-->
+    <update id="updetepwd" parameterType="com.street.bean.User">
+        update t_user set user_pwd = #{user_pwd} where user_id = #{user_id}
+    </update>
 
 
 

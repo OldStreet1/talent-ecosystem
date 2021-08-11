@@ -18,4 +18,6 @@ public interface UserService {
     List<User> queryphoneUser(String phone);
     //修改openid
     int updeteopenid(User user);
+    //修改密码
+    int updetepwd(User user);
 }

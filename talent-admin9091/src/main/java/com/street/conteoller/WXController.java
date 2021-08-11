@@ -1,10 +1,12 @@
 package com.street.conteoller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.street.bean.Delivery;
 import com.street.bean.RecuitEnterprise;
 import com.street.bean.User;
 import com.street.bean.WeChatConfig;
 import com.street.mapper.RecruitMapper;
+import com.street.service.impl.DeliveryServiceImpl;
 import com.street.service.impl.ParameterServiceImpl;
 import com.street.service.impl.RecruitServiceImpl;
 import com.street.service.impl.UserServiceImpl;
@@ -50,6 +52,10 @@ public class WXController {
     // 注入redis操作模板
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
+    @Autowired
+    private Delivery delivery;
+    @Autowired
+    private DeliveryServiceImpl deliveryServiceImpl;
 
     @PostMapping("/test")
     public String user(){
@@ -178,6 +184,80 @@ public class WXController {
 
 
     //简历投递
+    @PostMapping("/delivery")
+    @ResponseBody
+    public String delivery(@RequestBody Map<String, String> req){
+        String enid = req.get("enid");
+        String reid = req.get("reid");
+        String userid = req.get("userid");
+        delivery.setEnid(enid);
+        delivery.setReid(reid);
+        delivery.setUserid(userid);
+        //判断这个用户是否已经有提交过了
+        Delivery delivery1 = deliveryServiceImpl.selectDelivery(this.delivery);
+        if (delivery1 == null){
+            int i = deliveryServiceImpl.addDelivery(delivery);
+            System.out.println(i);
+            if (i == 1){
+                return "success";
+            }else{
+                return "fail";
+            }
+        }else {
+            return "inreview";
+        }
+    }
+
+    //密码修改
+    @PostMapping("/changePassword")
+    @ResponseBody
+    public String changePassword(@RequestBody Map<String, String> req){
+        // 获取到操作String的对象验证码
+        String code  = redisTemplate.opsForValue().get(req.get("phone"));
+        //手机号
+        String phone = req.get("phone");
+        //用户输入验证码
+        String sms = req.get("sms");
+        //oppenid
+        String userid = req.get("userid");
+        if (code.equals(sms)){
+            return "";
+        }else {
+            return "fail";
+        }
+    }
+
+    @PostMapping("/changePassword2")
+    @ResponseBody
+    public String changePassword2(@RequestBody Map<String, String> req){
+        //密码
+        String pwd = req.get("pwd");
+        //oppenid
+        String userid = req.get("userid");
+        User user = new User();
+        user.setUser_pwd(pwd);
+        user.setUser_id(Integer.valueOf(userid));
+        userServiceImpl.updetepwd(user);
+        return "acc";
+    }
+
+
+    //消息界面数据请求
+    //查询是否有企业通过投递的简历
+    @PostMapping("/enterpriseAdopt")
+    @ResponseBody
+    public String enterpriseAdopt(@RequestBody Map<String, String> req){
+
+        //查询当前用户有通过的企业
+        String userID = req.get("userID");
+        System.out.println(userID);
+
+
+
+        return "";
+    }
+
+
 
 
 

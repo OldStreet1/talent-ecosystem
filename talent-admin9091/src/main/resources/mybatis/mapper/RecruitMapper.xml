@@ -19,4 +19,8 @@
         and (t2.enterprise_name like concat('%',#{enterprise_name},'%') or t1.position like concat('%',#{position},'%'))
     </select>
 
+    <select id="selectEnterpriseAdopt" parameterType="map" resultType="com.street.bean.RecuitEnterprise">
+
+    </select>
+
 </mapper>

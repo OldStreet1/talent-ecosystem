@@ -26,4 +26,7 @@ public interface UserMapper {
 
     //修改openid
     int updeteopenid(User user);
+
+    //修改密码
+    int updetepwd(User user);
 }

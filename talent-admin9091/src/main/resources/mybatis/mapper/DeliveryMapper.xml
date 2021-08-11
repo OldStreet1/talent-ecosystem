@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.street.mapper.DeliveryMapper">
+
+    <insert id="addDelivery" parameterType="com.street.bean.Delivery">
+        insert into delivery (enid, reid, userid, state) value (#{enid},#{reid},#{userid},'inreview')
+    </insert>
+
+    <select id="selectDelivery" parameterType="com.street.bean.Delivery" resultType="com.street.bean.Delivery">
+        select * from delivery where enid=#{enid} and reid=#{reid} and userid=#{userid}
+    </select>
+</mapper>
