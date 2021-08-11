@@ -15,17 +15,19 @@ import org.springframework.stereotype.Component;
  */
 @Component
 public class SendSms {
+    @Autowired
+    private ParameterServiceImpl parameterServiceImpl;
 
 
     public boolean sendSmsCode(String cellPhoneNum,String code) throws Exception {
-//        System.out.println("执行发送验证码");
-//        com.aliyun.dysmsapi20170525.Client client = createClient(parameterServiceImpl.queryValue("accessKeyID"), parameterServiceImpl.queryValue("accesskeyScret"));
-//        SendSmsRequest sendSmsRequest = new SendSmsRequest()
-//                .setPhoneNumbers(cellPhoneNum)
-//                .setSignName(parameterServiceImpl.queryValue("SignName"))
-//                .setTemplateCode(parameterServiceImpl.queryValue("TemplateCode"))
-//                .setTemplateParam("{\"code\":\""+code+"\"}");
-//        client.sendSms(sendSmsRequest);
+        System.out.println("执行发送验证码");
+        com.aliyun.dysmsapi20170525.Client client = createClient(parameterServiceImpl.queryValue("accessKeyID"), parameterServiceImpl.queryValue("accesskeyScret"));
+        SendSmsRequest sendSmsRequest = new SendSmsRequest()
+                .setPhoneNumbers(cellPhoneNum)
+                .setSignName(parameterServiceImpl.queryValue("SignName"))
+                .setTemplateCode(parameterServiceImpl.queryValue("TemplateCode"))
+                .setTemplateParam("{\"code\":\""+code+"\"}");
+        client.sendSms(sendSmsRequest);
         return true;
     }
 

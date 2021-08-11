@@ -1,6 +1,7 @@
 <template>
   <div className="hello">
     <router-link to="/enterprise_login">企业登陆</router-link>
+    <router-link to="/school_login">高校</router-link>
   </div>
 </template>
 

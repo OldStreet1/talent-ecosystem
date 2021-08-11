@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="talent-ecosystem@39.108.185.226" uuid="d4cdcb1b-c7ec-4b4a-9e9b-5748dc30845d">
+    <data-source source="LOCAL" name="talent-ecosystem@39.108.185.226" uuid="d395c53e-4afa-4e9a-9c91-b8152accaa8f">
       <driver-ref>mysql.8</driver-ref>
       <synchronize>true</synchronize>
-      <jdbc-driver>com.mysql.cj.jdbc.Driver</jdbc-driver>
+      <jdbc-driver>com.mysql.jdbc.Driver</jdbc-driver>
       <jdbc-url>jdbc:mysql://39.108.185.226:3306/talent-ecosystem</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
     </data-source>
