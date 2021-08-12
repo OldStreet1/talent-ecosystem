@@ -29,7 +29,7 @@
           :options="options"
           :props="{ expandTrigger: 'hover' }"
           @change="handleChange"></el-cascader>
-        <input class="search" type="text" aria-valuetext="123456" placeholder="搜索简历、企业、高校"></input>
+        <input class="search" type="text" aria-valuetext="123456" placeholder="搜索职位、简历、企业、高校"></input>
         <el-button class="searchbtn" type="primary" icon="el-icon-search">搜索</el-button>
         <div class="hotdiv">
           <span class="hot">*热门职位：</span>
@@ -119,7 +119,7 @@
       <span class="come-us">联系地址：厦门市思明区望海路25-2软件园2期</span>
       <a href="#"><div class="wechat"></div></a>
       <a href="#"><div class="weibo"></div></a>
-        <a href="#"><div class="apps"></div></a>
+      <a href="#"><div class="apps"></div></a>
     </div>
   </div>
 

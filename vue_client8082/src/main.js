@@ -38,4 +38,4 @@ new Vue({
   router:router,
   // 渲染到
   render: h => h(App)
-}).$mount("#adminUser")
+}).$mount("#app")

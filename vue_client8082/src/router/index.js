@@ -16,7 +16,11 @@ export default new Router({
   routes: [
     {path: '/', name: 'Home', component: Home},
     {path: '/Home', name: 'Home', component: Home},
-    {path: '/My', name: 'My', component: My},
+    {path: '/My', name: 'My', component: My,
+      children:[
+        {path:'/AInfo',name:'AInfo',component:()=>import ('../components/enterprise/AInfo')},
+      ]
+    },
     {path: '/enterprise_login', name: 'enterprise_login', component: enterprise_login},
     {path: '/enterprise_register', name: 'enterprise_register', component: enterprise_register},
     {path:'/school_login', name: 'school_login', component: school_login},
@@ -34,6 +38,7 @@ export default new Router({
         {path:'/AdminAllUser',name:'AdminAllUser',component:()=>import ('../components/admin/AdminAllUser')},
         {path:'/AdminJobWant',name:'AdminJobWant',component:()=>import ('../components/admin/AdminJobWant')},
         {path:'/AdminSta',name:'AdminSta',component:()=>import ('../components/admin/AdminSta')},
-      ]},
+      ]
+    },
   ]
 })

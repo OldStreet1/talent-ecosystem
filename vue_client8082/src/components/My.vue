@@ -15,13 +15,13 @@
         <img src="../assets/images/qq.png" class="headimg" alt="">
       </div>
       <div class="menus">
-        <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse">
+        <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" router :default-active="this.$route.path">
           <el-submenu index="1">
             <template slot="title">
               <i class="el-icon-location"></i>
               <span slot="title">个人操作</span>
             </template>
-              <el-menu-item index="1-1">个人信息</el-menu-item>
+              <el-menu-item index="/AInfo">个人信息</el-menu-item>
               <el-menu-item index="1-2">找工作</el-menu-item>
               <el-menu-item index="1-3">查找工作</el-menu-item>
               <el-menu-item index="1-4">投递简历</el-menu-item>
