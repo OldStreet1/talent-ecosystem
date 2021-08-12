@@ -1,6 +1,9 @@
 package com.street.conteoller;
 
+import com.street.bean.Chat;
+import com.street.service.impl.ChatServiceImpl;
 import okhttp3.WebSocket;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.stereotype.Component;
 
@@ -23,6 +26,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Component //加入web容器
 @ServerEndpoint("/Websocket/{num}")
 public class WebSocketServerEndpoint {
+
 
     //此处是解决无法注入的关键
     private static ApplicationContext applicationContext;
@@ -85,8 +89,7 @@ public class WebSocketServerEndpoint {
     //收到客户端信息
     @OnMessage
     public void onMessage(String message) throws IOException{
-        message = "客户端：" + message + ",已收到";
-        System.out.println(message);
+//        message = "客户端：" + message + ",已收到";
 
 
 

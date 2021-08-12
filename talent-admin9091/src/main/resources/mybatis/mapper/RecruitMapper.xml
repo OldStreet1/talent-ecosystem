@@ -24,7 +24,8 @@
     </select>
 
     <select id="selectEnterpriseAdoptid" parameterType="map" resultType="com.street.bean.RecuitEnterprise">
-        SELECT * from delivery t1,t_user t2,t_enterprise t3,t_recruit t4 WHERE t1.userid = t2.user_id and t1.enid = t3.enterprise_id and t1.reid = t4.recruit_id and t1.id=#{id}
+        SELECT * from delivery t1,t_user t2,t_enterprise t3,t_recruit t4
+        WHERE t1.userid = t2.user_id and t1.enid = t3.enterprise_id and t1.reid = t4.recruit_id and t1.id=#{id}
     </select>
 
 </mapper>
