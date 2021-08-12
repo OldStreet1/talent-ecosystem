@@ -53,6 +53,7 @@ public class WXController {
     @Autowired
     private ChatServiceImpl chatServiceImpl;
 
+
     @PostMapping("/test")
     public String user(){
         System.out.println("");
@@ -272,7 +273,19 @@ public class WXController {
     @PostMapping("/addChat")
     @ResponseBody
     public String addChat(@RequestBody Map<String, String> req){
+        String message = req.get("message");
+        String[] data = message.split("&&");
+        System.out.println(data[0]);
+        System.out.println(data[1]);
+        System.out.println(data[2]);
 
+        //将聊天记录存在数据库
+        Chat chat = new Chat();
+        chat.setChat_sender(data[0]);
+        chat.setChat_receiver(data[1]);
+        chat.setChat_record(data[2]);
+//        System.out.println(chat);
+        chatServiceImpl.addChat(chat);
 
         return "";
     }
