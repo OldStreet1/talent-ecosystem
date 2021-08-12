@@ -90,17 +90,22 @@ public class WebSocketServerEndpoint {
     @OnMessage
     public void onMessage(String message) throws IOException{
 //        message = "客户端：" + message + ",已收到";
+        String[] data = message.split("&&");
+        if (sessionPools.get(data[1]) == null){
 
-
-
-        for (Session session: sessionPools.values()) {
-            try {
-                sendMessage(session, message);
-            } catch(Exception e){
-                e.printStackTrace();
-                continue;
-            }
+        }else {
+            sendMessage(sessionPools.get(data[1]),data[0]+"&&"+data[2]);
         }
+
+
+//        for (Session session: sessionPools.values()) {
+//            try {
+//                sendMessage(session, message);
+//            } catch(Exception e){
+//                e.printStackTrace();
+//                continue;
+//            }
+//        }
     }
 
     //错误时调用
