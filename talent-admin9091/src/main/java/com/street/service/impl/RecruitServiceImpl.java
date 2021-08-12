@@ -39,4 +39,9 @@ public class RecruitServiceImpl implements RecruitService {
     public List<RecuitEnterprise> selectEnterpriseAdopt(Map<String, String> info) {
         return recruitMapper.selectEnterpriseAdopt(info);
     }
+
+    @Override
+    public List<RecuitEnterprise> selectEnterpriseAdoptid(Map<String, String> info) {
+        return recruitMapper.selectEnterpriseAdoptid(info);
+    }
 }

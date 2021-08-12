@@ -1,15 +1,9 @@
 package com.street.conteoller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.street.bean.Delivery;
-import com.street.bean.RecuitEnterprise;
-import com.street.bean.User;
-import com.street.bean.WeChatConfig;
+import com.street.bean.*;
 import com.street.mapper.RecruitMapper;
-import com.street.service.impl.DeliveryServiceImpl;
-import com.street.service.impl.ParameterServiceImpl;
-import com.street.service.impl.RecruitServiceImpl;
-import com.street.service.impl.UserServiceImpl;
+import com.street.service.impl.*;
 import com.street.util.SendSms;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -56,6 +50,8 @@ public class WXController {
     private Delivery delivery;
     @Autowired
     private DeliveryServiceImpl deliveryServiceImpl;
+    @Autowired
+    private ChatServiceImpl chatServiceImpl;
 
     @PostMapping("/test")
     public String user(){
@@ -250,14 +246,49 @@ public class WXController {
 
         //查询当前用户有通过的企业
         String userID = req.get("userID");
-        System.out.println(userID);
+        Map<String,String> info = new HashMap<>();
+        info.put("userid",userID);
+        List<RecuitEnterprise> recuitEnterprises = recruitService.selectEnterpriseAdopt(info);
+        for (int i = 0;i < recuitEnterprises.size();i++){
+            recuitEnterprises.get(i).setEnenen(recuitEnterprises.get(i).getContacts().substring(0,1));
+        }
+        String s = JSONObject.toJSONString(recuitEnterprises);
 
+        return s;
+    }
+
+    //通过id查找企业
+    @PostMapping("/enterpriseAdoptid")
+    @ResponseBody
+    public String enterpriseAdoptid(@RequestBody Map<String, String> req){
+        String id = req.get("id");
+        Map<String,String> info = new HashMap<>();
+        info.put("id",id);
+        String s = JSONObject.toJSONString(recruitService.selectEnterpriseAdoptid(info));
+        return s;
+    }
+
+    //聊天记录写入数据库
+    @PostMapping("/addChat")
+    @ResponseBody
+    public String addChat(@RequestBody Map<String, String> req){
 
 
         return "";
     }
 
 
+    //获取聊天记录
+    @PostMapping("/queryChat")
+    @ResponseBody
+    public String queryChat(@RequestBody Map<String, String> req){
+        Chat chat = new Chat();
+        chat.setChat_receiver(req.get("receiver"));
+        chat.setChat_sender(req.get("sender"));
+        List<Chat> chats = chatServiceImpl.queryChat(chat);
+        String s = JSONObject.toJSONString(chats);
+        return s;
+    }
 
 
 
