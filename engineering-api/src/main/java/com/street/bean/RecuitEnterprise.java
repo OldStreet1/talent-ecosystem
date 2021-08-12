@@ -145,4 +145,8 @@ public class RecuitEnterprise {
     @ApiModelProperty(value = "userimg")
     private String userimg;
 
+    private String enenen;
+
+    private String id;
+
 }
