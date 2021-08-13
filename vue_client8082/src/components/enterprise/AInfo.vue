@@ -1,5 +1,7 @@
 <template>
   <div style="width: 800px;height: 700px;">
+    <h3>个人信息</h3>
+    <hr>
     <el-form :model="form" status-icon :rules="rules" label-width="100px" class="demo-ruleForm">
       <el-form-item label="企业名称" prop="eName" style="width: 550px">
         <label >{{ form.eName }}</label>

@@ -14,7 +14,7 @@ Vue.use(Router)
 export default new Router({
   mode:"history",  //不带#号
   routes: [
-    {path: '/', name: 'Home', component: Home},
+    {path: '/', name: 'Home', component: Home,},
     {path: '/Home', name: 'Home', component: Home},
     {path: '/My', name: 'My', component: My,
       children:[
