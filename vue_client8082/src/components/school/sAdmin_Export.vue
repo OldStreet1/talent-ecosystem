@@ -11,7 +11,7 @@
 </el-select>
 
 <el-button @click="screen">查询</el-button>
-    <el-button>导出</el-button>
+    <el-button @click="downloadExcel">导出</el-button>
   <el-table
     id="example"
     :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)"
@@ -100,21 +100,7 @@
   </div>
     <el-dialog title="学生个人简历" :visible.sync="resumeTableVisible">
       <el-table :data="resumeData" id="resume">
-        <el-table-column prop="user_id" label="序号"></el-table-column>
-        <el-table-column prop="user_name" label="用户名"></el-table-column>
-        <el-table-column prop="user_pwd" label="密码"></el-table-column>
-        <el-table-column prop="user_id_card" label="身份证号"></el-table-column>
-        <el-table-column prop="user_nation" label="民族"></el-table-column>
-        <el-table-column prop="user_sex" label="性别"></el-table-column>
-        <el-table-column prop="userage" label="年龄"></el-table-column>
-        <el-table-column prop="user_date_birth" label="出生年月"></el-table-column>
-        <el-table-column prop="user_telephone" label="联系电话"></el-table-column>
-        <el-table-column prop="user_email" label="邮箱"></el-table-column>
-        <el-table-column prop="user_school_name" label="学校名称"></el-table-column>
-        <el-table-column prop="user_major" label="专业"></el-table-column>
-        <el-table-column prop="user_education" label="学历"></el-table-column>
-        <el-table-column prop="user_residence" label="居住地"></el-table-column>
-        <el-table-column prop="user_graduation_time" label="毕业时间"></el-table-column>
+
       </el-table>
     </el-dialog>
   </div>
@@ -127,6 +113,7 @@ export default {
   name: "sAdmin_Export",
   data(){
     return{
+      luj:'',
       majors:[],//装下拉框请求的值
       user_major:'',
       user_id:'',
@@ -136,7 +123,7 @@ export default {
 
       //简历
       resumeTableVisible:false,
-      resumeData:[]
+      resumeData:[],
     }
   },
   methods: {
@@ -189,6 +176,18 @@ export default {
         })
       }
     },
+    //导出
+    downloadExcel:function (){
+      this.$axios.post("/school/downloadExcel",
+      this.$qs.stringify({
+        user_major: this.user_major
+      })
+      ).then(response => {
+        console.log(response)
+      }).catch(err =>{
+        console.log(err)
+      })
+    }
   },
   //下拉框的值
   mounted () {

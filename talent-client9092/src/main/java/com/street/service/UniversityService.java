@@ -1,5 +1,6 @@
 package com.street.service;
 
+import com.street.bean.Resume;
 import com.street.bean.University;
 import com.street.bean.User;
 
@@ -34,4 +35,7 @@ public interface UniversityService {
 
     //查询高校简介
     ArrayList<University>queryProfile(University university);
+
+    //添加简历
+    int resume(ArrayList<Resume> resumes);
 }

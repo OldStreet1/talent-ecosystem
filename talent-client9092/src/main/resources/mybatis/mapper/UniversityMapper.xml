@@ -50,5 +50,15 @@ and university_password=#{university_password}
     <select id="queryProfile" resultType="com.street.bean.University">
         select university_profile from t_university where university_name=#{university_name}
     </select>
+
+    <!--    //添加简历信息-->
+    <insert id="resume" parameterType="java.util.List">
+        insert into t_resume (user_id,user_name,work_exp,job_intention,exp_salary,edu_back,honor_certify,
+        self_appraisal,hobbies,family_ties,create_time)values
+        <foreach collection="list" item="item" separator=",">
+            (#{user_id},#{user_name},#{work_exp},#{job_intention},#{exp_salary},#{edu_back},
+            #{honor_certify},#{self_appraisal},#{hobbies},#{family_ties},#{create_time})
+        </foreach>
+    </insert>
 </mapper>
 
