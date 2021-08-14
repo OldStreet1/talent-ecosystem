@@ -1,6 +1,6 @@
 <template>
   <div>
-
+    <p ></p>
   </div>
 </template>
 
@@ -16,6 +16,7 @@ export default {
     this.$axios.post("/school/queryProfile"
     ).then(response =>{
       console.log(response.data)
+
     }).catch(err =>{
       console.log(err)
     })

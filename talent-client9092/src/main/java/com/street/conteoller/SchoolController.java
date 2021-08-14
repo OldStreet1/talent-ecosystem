@@ -155,7 +155,7 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
     public ArrayList<User> jiex( HttpServletRequest request) throws IOException, BiffException {
         HttpSession session = request.getSession();
         String luj = (String) session.getAttribute("luj");
-        System.out.println("拿到"+luj);
+        System.out.println("拿到" + luj);
         ArrayList<User> users = new ArrayList<User>();
         //获取excel文件
         File file = new File(luj);
@@ -175,16 +175,16 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
         //创建集合把单元格中的数据存储起来
         ArrayList<String> list = new ArrayList<String>();//创建两个集合是希望按照行数进行存储
         ArrayList<String> list1 = new ArrayList<String>();//
-        for (int i=1;i<rsRows;i++){
-            User user =new User();
-            for (int j=0;j<rsColumns;j++){
-                Cell cell=readsheet.getCell(j,i);
-                String str=cell.getContents();
+        for (int i = 1; i < rsRows; i++) {
+            User user = new User();
+            for (int j = 0; j < rsColumns; j++) {
+                Cell cell = readsheet.getCell(j, i);
+                String str = cell.getContents();
                 list.add(str);
                 System.out.println("第" + (i + 1) + "行" + "第" + (j + 1) + "列的值是：" + str);
-                if(j==0){
+                if (j == 0) {
                     user.setUser_id(Integer.parseInt(str));
-                }else if (j == 1) {
+                } else if (j == 1) {
                     user.setUser_name(str);
                 } else if (j == 2) {
                     user.setUser_pwd(str);
@@ -194,7 +194,7 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
                     user.setUser_nation(str);
                 } else if (j == 5) {
                     user.setUser_sex(str);
-                }else if (j == 6) {
+                } else if (j == 6) {
                     user.setUserage(str);
                 } else if (j == 7) {
                     user.setUser_date_birth(str);
@@ -202,9 +202,9 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
                     user.setUser_telephone(str);
                 } else if (j == 9) {
                     user.setUser_email(str);
-                }else if (j == 10) {
+                } else if (j == 10) {
                     user.setUser_school_name(str);
-                }else if (j == 11) {
+                } else if (j == 11) {
                     user.setUser_major(str);
                 } else if (j == 12) {
                     user.setUser_education(str);
@@ -213,20 +213,27 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
                 } else if (j == 14) {
                     user.setUser_graduation_time(str);
                 }
-                    System.out.println("获取时间" + new Date());
-                    Date d = new Date();
-                    SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
-                    System.out.println("格式化输出：" + sdf.format(d));
-                    sdf.format(d);
-                    user.setCreate_time(sdf.format(d));
+                System.out.println("获取时间" + new Date());
+                Date d = new Date();
+                SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd kk:mm:ss ");
+                System.out.println("格式化输出：" + sdf.format(d));
+                sdf.format(d);
+                user.setCreate_time(sdf.format(d));
             }
             users.add(user);
             System.out.println(user);
-            int j = UniversityService.checkAdd(users);
-        }
+           List<User> k=UniversityService.selectIDcard(user.getUser_id_card());
+            if (k.isEmpty()) {
+                int j = UniversityService.checkAdd(users);
+                return users;
+            } else {
 
+            }
+        }
         return users;
     }
+
+
     //查询学生用户
     @RequestMapping("/queryUser")
     public List queryUser(HttpServletRequest request){
