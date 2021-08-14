@@ -43,7 +43,7 @@ export default {
   name: "Recharge",
   data() {
     return {
-      dialogVisible: true,
+      dialogVisible: false,
       amountVal: "",
       disabled: false,
       //充值参数
@@ -59,7 +59,7 @@ export default {
 
   methods: {
     init() {
-      this.initData();
+      // this.initData();
       // 展示弹窗
       this.dialogVisible = true;
     },
@@ -80,7 +80,7 @@ export default {
         this.$message.warning("请输入金额");
         return;
       }else {
-        this.$axios.post('alipay',{
+        this.$axios.post('alipay?enterprise_acc=mylike',{
           out_trade_no:Math.round(Math.random()*1000000),
           subject:"代币",
           total_amount:this.total_amount,

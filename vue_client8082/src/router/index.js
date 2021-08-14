@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Router from 'vue-router'
 import HelloWorld from '@/components/HelloWorld'
-import Amap from "../components/enterprise/Amap";
 import BMap from "../components/enterprise/BMap";
 import AInfo from "../components/enterprise/AInfo";
 import Recharge from "../components/enterprise/Recharge";
@@ -13,6 +12,8 @@ import student_admin from "../components/school/student_admin";
 import Home from "../components/Home"
 import My from "../components/My"
 import AdminUser from "../components/admin/AdminUser";
+import Chat from "../components/enterprise/Chat";
+import enterprise_intro from "../components/enterprise/enterprise_intro";
 
 Vue.use(Router)
 
@@ -25,20 +26,10 @@ export default new Router({
       component: HelloWorld
     },
     {//地图组件
-      path: '/Amap',
-      name: 'Amap',
-      component: Amap
-    },
-    {//地图组件
       path: '/BMap',
       name: 'BMap',
       component: BMap
     },
-    // {
-    //   path: '/',
-    //   name: 'HelloWorld',
-    //   component: HelloWorld
-    // },
     {
       path: '/enterprise_login',
       name: 'enterprise_login',
@@ -49,11 +40,8 @@ export default new Router({
       name: 'AInfo',
       component: AInfo
     },
-    // {path:'/',
-    //   name: 'school_login',
-    //   component: school_login
-    // },
-    {path:'/school_login',
+    {
+      path:'/school_login',
       name: 'school_login',
       component: school_login
     },
@@ -75,11 +63,6 @@ export default new Router({
       ]
     },
     {
-      path: '/',
-      name: 'Home',
-      component: Home
-    },
-    {
       path: '/Home',
       name: 'Home',
       component: Home
@@ -89,11 +72,23 @@ export default new Router({
       name: 'My',
       component: My
     },
-
-    {//支付页面
+    //支付页面
+    {
       path: '/Recharge',
       name: 'Recharge',
       component: Recharge
+    },
+    //聊天页面
+    {
+      path: '/Chat',
+      name: 'Chat',
+      component: Chat
+    },
+    //聊天页面
+    {
+      path: '/intro',
+      name: 'intro',
+      component: enterprise_intro
     },
   ]
 })
