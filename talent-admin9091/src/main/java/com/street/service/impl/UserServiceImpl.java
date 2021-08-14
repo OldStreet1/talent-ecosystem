@@ -38,4 +38,14 @@ public class UserServiceImpl implements UserService {
     public int updeteopenid(User user) {
         return userMapper.updeteopenid(user);
     }
+
+    @Override
+    public int updetepwd(User user) {
+        return userMapper.updetepwd(user);
+    }
+
+    @Override
+    public int updateuserinfo(User user) {
+        return userMapper.updateuserinfo(user);
+    }
 }

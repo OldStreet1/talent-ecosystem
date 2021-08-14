@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 /**
  * @version 1.0
@@ -32,5 +33,15 @@ public class RecruitServiceImpl implements RecruitService {
     @Override
     public List<RecuitEnterprise> querysearchall(RecuitEnterprise runtimeException) {
         return recruitMapper.querysearchall(runtimeException);
+    }
+
+    @Override
+    public List<RecuitEnterprise> selectEnterpriseAdopt(Map<String, String> info) {
+        return recruitMapper.selectEnterpriseAdopt(info);
+    }
+
+    @Override
+    public List<RecuitEnterprise> selectEnterpriseAdoptid(Map<String, String> info) {
+        return recruitMapper.selectEnterpriseAdoptid(info);
     }
 }

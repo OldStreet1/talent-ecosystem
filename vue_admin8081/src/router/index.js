@@ -1,8 +1,12 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HelloWorld from '@/components/HelloWorld'
+
 import enterprise_login from "../components/enterprise/enterprise_login";
 import AdminUser from "../../../vue_client8082/src/components/admin/AdminUser";
+import admin_login from "../components/admin/admin_login";
+import Sidentify from "../components/admin/Sidentify";
+import Register from "../components/admin/Register";
+import AdminUser from "../components/admin/AdminUser";
 Vue.use(Router)
 
 export default new Router({
@@ -27,5 +31,23 @@ export default new Router({
         {path:"/adminalluser",name:'adminalluser',component:() => import('../components/admin/AdminAlluser')},
         {path:"/adminjobw",name:'adminjobw',component:() => import('../components/admin/AdminJobwant')},
       ]},
+    {
+      path: '/',
+      name: 'admin_login',
+      component: admin_login
+    },
+    {
+      path: '/enterprise_login',
+      name: 'enterprise_login',
+      component: enterprise_login
+    },
+    {
+      path: '/admin_login',
+      name: 'admin_login',
+      component: admin_login
+    },
+    {path:"/Sidentify", name: 'Sidentify', component :Sidentify} ,
+    {path:"/Register", name: 'Register', component :Register} ,
+    {path:"/AdminUser", name: 'Register', component :AdminUser} ,
   ]
 })

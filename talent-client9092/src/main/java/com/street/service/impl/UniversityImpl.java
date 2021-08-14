@@ -1,5 +1,6 @@
 package com.street.service.impl;
 
+import com.street.bean.Resume;
 import com.street.bean.University;
 import com.street.bean.User;
 import com.street.mapper.UniversityMapper;
@@ -62,5 +63,17 @@ public class UniversityImpl implements UniversityService {
     public ArrayList<User> screenUser(User user) {
         ArrayList<User>screenUser=universityMapper.screenUser(user);
         return screenUser;
+    }
+//查询高校简介
+    @Override
+    public ArrayList<University> queryProfile(University university) {
+        ArrayList<University>queryProfile=universityMapper.queryProfile(university);
+        return queryProfile;
+    }
+
+    @Override
+    public int resume(ArrayList<Resume> resumes) {
+        int i=universityMapper.resume(resumes);
+        return i;
     }
 }

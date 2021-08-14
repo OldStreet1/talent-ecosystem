@@ -98,7 +98,20 @@
     </insert>
 
 
+<!--    用户密码修改-->
+    <update id="updetepwd" parameterType="com.street.bean.User">
+        update t_user set user_pwd = #{user_pwd} where user_id = #{user_id}
+    </update>
 
+
+<!--    //用户信息修改-->
+    <update id="updateuserinfo" parameterType="com.street.bean.User">
+        update  t_user set user_name = #{user_name},user_school_name = #{user_school_name},user_major = #{user_major}
+        ,user_date_birth = #{user_date_birth},userage = #{userage},user_education = #{user_education}
+        where user_id = #{user_id}
+
+
+    </update>
 
 
 

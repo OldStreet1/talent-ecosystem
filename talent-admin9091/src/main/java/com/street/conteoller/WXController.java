@@ -1,13 +1,9 @@
 package com.street.conteoller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.street.bean.RecuitEnterprise;
-import com.street.bean.User;
-import com.street.bean.WeChatConfig;
+import com.street.bean.*;
 import com.street.mapper.RecruitMapper;
-import com.street.service.impl.ParameterServiceImpl;
-import com.street.service.impl.RecruitServiceImpl;
-import com.street.service.impl.UserServiceImpl;
+import com.street.service.impl.*;
 import com.street.util.SendSms;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.core.RedisTemplate;
@@ -50,6 +46,13 @@ public class WXController {
     // 注入redis操作模板
     @Autowired
     private RedisTemplate<String, String> redisTemplate;
+    @Autowired
+    private Delivery delivery;
+    @Autowired
+    private DeliveryServiceImpl deliveryServiceImpl;
+    @Autowired
+    private ChatServiceImpl chatServiceImpl;
+
 
     @PostMapping("/test")
     public String user(){
@@ -135,23 +138,17 @@ public class WXController {
     @PostMapping("/sendSms")
     @ResponseBody
     public String sendSms(@RequestBody Map<String, String> req) throws Exception {
-//        // 获取到操作String的对象
-//        String code  = redisTemplate.opsForValue().get(req.get("phone"));
-//        if (StringUtils.isEmpty(code)) {
             // 生成6位随机数
-             String code = String.valueOf(Math.random()).substring(3, 9);
+            String code = String.valueOf(Math.random()).substring(3, 9);
             System.out.println(code);
             // 将redisTemplate模板对象的key的序列化方式修改为new StringRedisSerializer
             redisTemplate.setKeySerializer(new StringRedisSerializer());
             // 将phone当做key，将code当做value存进redis中，时间为5分钟
             redisTemplate.opsForValue().set(req.get("phone"), code, 5, TimeUnit.MINUTES);
             // 调用业务层接口 发送验证码
-//            boolean sendSmsFlag = sendSms.sendSmsCode(req.get("phone"), code);
+            boolean sendSmsFlag = sendSms.sendSmsCode(req.get("phone"), code);
             return "success";
-//        }else {
-//            System.out.println(redisTemplate.getExpire(req.get("phone")));
-//            return ""+redisTemplate.getExpire(req.get("phone"));
-//        }
+
     }
 
 
@@ -178,7 +175,146 @@ public class WXController {
 
 
     //简历投递
+    @PostMapping("/delivery")
+    @ResponseBody
+    public String delivery(@RequestBody Map<String, String> req){
+        String enid = req.get("enid");
+        String reid = req.get("reid");
+        String userid = req.get("userid");
+        delivery.setEnid(enid);
+        delivery.setReid(reid);
+        delivery.setUserid(userid);
+        //判断这个用户是否已经有提交过了
+        Delivery delivery1 = deliveryServiceImpl.selectDelivery(this.delivery);
+        if (delivery1 == null){
+            int i = deliveryServiceImpl.addDelivery(delivery);
+            System.out.println(i);
+            if (i == 1){
+                return "success";
+            }else{
+                return "fail";
+            }
+        }else {
+            return "inreview";
+        }
+    }
 
+    //密码修改
+    @PostMapping("/changePassword")
+    @ResponseBody
+    public String changePassword(@RequestBody Map<String, String> req){
+        // 获取到操作String的对象验证码
+        String code  = redisTemplate.opsForValue().get(req.get("phone"));
+        //手机号
+        String phone = req.get("phone");
+        //用户输入验证码
+        String sms = req.get("sms");
+        //oppenid
+        String userid = req.get("userid");
+        if (code.equals(sms)){
+            return "";
+        }else {
+            return "fail";
+        }
+    }
+
+    @PostMapping("/changePassword2")
+    @ResponseBody
+    public String changePassword2(@RequestBody Map<String, String> req){
+        //密码
+        String pwd = req.get("pwd");
+        //oppenid
+        String userid = req.get("userid");
+        User user = new User();
+        user.setUser_pwd(pwd);
+        user.setUser_id(Integer.valueOf(userid));
+        userServiceImpl.updetepwd(user);
+        return "acc";
+    }
+
+
+    //消息界面数据请求
+    //查询是否有企业通过投递的简历
+    @PostMapping("/enterpriseAdopt")
+    @ResponseBody
+    public String enterpriseAdopt(@RequestBody Map<String, String> req){
+
+        //查询当前用户有通过的企业
+        String userID = req.get("userID");
+        Map<String,String> info = new HashMap<>();
+        info.put("userid",userID);
+        List<RecuitEnterprise> recuitEnterprises = recruitService.selectEnterpriseAdopt(info);
+        for (int i = 0;i < recuitEnterprises.size();i++){
+            recuitEnterprises.get(i).setEnenen(recuitEnterprises.get(i).getContacts().substring(0,1));
+        }
+        String s = JSONObject.toJSONString(recuitEnterprises);
+
+        return s;
+    }
+
+    //通过id查找企业
+    @PostMapping("/enterpriseAdoptid")
+    @ResponseBody
+    public String enterpriseAdoptid(@RequestBody Map<String, String> req){
+        String id = req.get("id");
+        Map<String,String> info = new HashMap<>();
+        info.put("id",id);
+        String s = JSONObject.toJSONString(recruitService.selectEnterpriseAdoptid(info));
+        return s;
+    }
+
+    //聊天记录写入数据库
+    @PostMapping("/addChat")
+    @ResponseBody
+    public String addChat(@RequestBody Map<String, String> req){
+        String message = req.get("message");
+        String[] data = message.split("&&");
+        System.out.println(data[0]);
+        System.out.println(data[1]);
+        System.out.println(data[2]);
+
+        //将聊天记录存在数据库
+        Chat chat = new Chat();
+        chat.setChat_sender(data[0]);
+        chat.setChat_receiver(data[1]);
+        chat.setChat_record(data[2]);
+//        System.out.println(chat);
+        chatServiceImpl.addChat(chat);
+
+        return "";
+    }
+
+
+    //获取聊天记录
+    @PostMapping("/queryChat")
+    @ResponseBody
+    public String queryChat(@RequestBody Map<String, String> req){
+        Chat chat = new Chat();
+        chat.setChat_receiver(req.get("receiver"));
+        chat.setChat_sender(req.get("sender"));
+        List<Chat> chats = chatServiceImpl.queryChat(chat);
+        String s = JSONObject.toJSONString(chats);
+        return s;
+    }
+
+    //用户信息修改
+
+    @PostMapping("/updateuserinfo")
+    @ResponseBody
+    public String updateuserinfo(@RequestBody Map<String, String> req){
+        User user = new User();
+        user.setUser_name(req.get("username"));
+        user.setUser_school_name(req.get("user_school_name"));
+        user.setUser_major(req.get("user_major"));
+        user.setUser_date_birth(req.get("user_date_birth"));
+        user.setUserage(req.get("userage"));
+        user.setUser_education(req.get("user_education"));
+        user.setUser_id(Integer.valueOf(req.get("userid")));
+        System.out.println(user);
+        int updateuserinfo = userServiceImpl.updateuserinfo(user);
+
+        return "acc";
+    }
 
 
 }

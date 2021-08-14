@@ -46,4 +46,22 @@ public class AdminServiceImpl implements AdminService {
         return null;
     }
 
+    @Override //后台登录方法
+    public Admin AdminLogin(Admin admin) {
+        return adminMapper.AdminLogin(admin);
+    }
+
+    @Override
+    public int AdminAdd(Admin admin) {
+        return adminMapper.AdminAdd(admin);
+    }
+    @Override
+    public List<Admin> UserSelect(String admin_account) {
+        return adminMapper.UserSelect(admin_account);
+    }
+    @Override
+    public List<Menu> MenuSelect(Menu menu) {
+        return adminMapper.MenuSelect(menu);
+    }
+
 }

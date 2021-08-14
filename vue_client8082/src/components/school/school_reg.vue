@@ -94,7 +94,7 @@ export default {
               type: 'success'
             });
           }else {
-            this.$message.error('登陆失败');
+            this.$message.error('注册失败');
           }
         }).catch(err=> {
           console.log(err)
