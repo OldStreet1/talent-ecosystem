@@ -19,6 +19,10 @@ export default new Router({
     {path: '/My', name: 'My', component: My,
       children:[
         {path:'/AInfo',name:'AInfo',component:()=>import ('../components/enterprise/AInfo')},
+        {path:'/Chat',name:'Chat',component:()=>import ('../components/enterprise/Chat')},
+        {path:'/BMap',name:'BMap',component:()=>import ('../components/enterprise/BMap')},
+        {path:'/Recharge',name:'Recharge',component:()=>import ('../components/enterprise/Recharge')},
+        {path:'/enterprise_intro',name:'enterprise_intro',component:()=>import ('../components/enterprise/enterprise_intro')},
       ]
     },
     {path: '/enterprise_login', name: 'enterprise_login', component: enterprise_login},

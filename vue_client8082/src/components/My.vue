@@ -44,24 +44,24 @@
                   <span slot="title">个人操作</span>
                 </template>
                 <el-menu-item index="/AInfo">个人信息</el-menu-item>
-                <el-menu-item index="1-2">找工作</el-menu-item>
-                <el-menu-item index="1-3">查找工作</el-menu-item>
+                <el-menu-item index="/enterprise_intro">企业信息</el-menu-item>
+                <el-menu-item index="/BMap">查找地址</el-menu-item>
                 <el-menu-item index="1-4">投递简历</el-menu-item>
                 <el-menu-item index="1-5">查看已投简历</el-menu-item>
               </el-submenu>
-              <el-menu-item index="2">
+              <el-menu-item index="/Chat">
                 <i class="el-icon-chat-dot-round"></i>
                 <span slot="title">即时通讯</span>
               </el-menu-item>
-              <el-menu-item index="3">
-                <i class="el-icon-chat-line-round"></i>
-                <span slot="title">消息提醒</span>
+              <el-menu-item index="/Recharge">
+                <i class="el-icon-coin"></i>
+                <span slot="title">充值中心</span>
               </el-menu-item>
               <el-menu-item index="4">
                 <i class="el-icon-edit"></i>
                 <span slot="title">修改密码</span>
               </el-menu-item>
-              <el-menu-item index="5">
+              <el-menu-item @click="logout()">
                 <i class="el-icon-close"></i>
                 <span slot="title">退出登录</span>
               </el-menu-item>
@@ -111,6 +111,13 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath);
+    },
+    logout(){
+      console.log("退出登录")
+      this.$message({
+        message:"退出登录成功！"
+      })
+      this.$router.push({path: "/Home"})
     }
   }
 }

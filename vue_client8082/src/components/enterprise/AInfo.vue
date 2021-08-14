@@ -31,7 +31,7 @@
       </el-form-item>
       <el-form-item label="账户余额" prop="aBalance" style="width: 350px">
         <label  >{{ form.aBalance }}<i class="el-icon-coin"></i></label>
-        <el-button style="margin-left: 20px"  icon="el-icon-sell" @click="Recharge" circle></el-button>
+        <el-button style="margin-left: 20px"  icon="el-icon-sell" @click="Recharge()" circle></el-button>
       </el-form-item>
       <el-form-item>
         <el-button type="primary" @click="keep">保存</el-button>
