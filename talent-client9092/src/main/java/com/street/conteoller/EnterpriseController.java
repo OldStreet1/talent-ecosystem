@@ -3,6 +3,7 @@ package com.street.conteoller;
 import com.aliyun.dysmsapi20170525.models.SendSmsRequest;
 import com.aliyun.teaopenapi.models.Config;
 import com.street.bean.Enterprise;
+import com.street.bean.Recruit;
 import com.street.service.impl.EnterprideServiceImpl;
 import javafx.scene.chart.PieChart;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @version 1.0
@@ -57,12 +59,15 @@ public class EnterpriseController {
         }else{
             return "existence";
         }
-
-
-
-
     }
 
-
+    // 热门企业查询
+    @PostMapping("/hotEnterprise")
+    public List<Enterprise> HotEnterpriseQuery(){
+        System.err.println("2>>>>>>>>>>>>>>>热门企业查询");
+        List<Enterprise> enterprises = enterprideServiceImpl.HotEnterprise();
+        System.out.println(enterprises.size());
+        return enterprises;
+    }
 
 }

@@ -31,8 +31,8 @@
             :options="options"
             :props="{ expandTrigger: 'hover' }"
             @change="handleChange"></el-cascader>
-          <input class="search" type="text" aria-valuetext="123456" placeholder="搜索职位、简历、企业、高校"></input>
-          <el-button class="searchbtn" type="primary" icon="el-icon-search">搜索</el-button>
+          <el-input v-model="input" class="search" type="text" aria-valuetext="123456" placeholder="搜索职位、简历、企业、高校"></el-input>
+          <el-button class="searchbtn" type="primary" icon="el-icon-search" @click="query()">搜索</el-button>
           <div class="hotdiv">
             <span class="hot">*热门职位：</span>
             <span class="hots">
@@ -60,16 +60,34 @@
 
         <div class="hot-recruit">
           <h2>——热招职位——</h2>
-          <div class="recruit"
-               :data="tableData">
-            <el-link prop="position" label="招聘职位"></el-link>
-          </div>
+          <a href="#">
+            <div class="recruit">
+<!--              <h2>Java开发工程师</h2>-->
+<!--              <el-button prop="position"></el-button>-->
+<!--              <span>薪资：6000-8000</span>-->
+              <el-table :data="hotRecruitData">
+                <el-table-column prop="position" label="职位"></el-table-column>
+                <el-table-column prop="salary" label="薪资"></el-table-column>
+                <el-table-column prop="education" label="学历要求"></el-table-column>
+              </el-table>
+            </div>
+          </a>
         </div>
 
         <div class="hot-enterprise">
           <h2>——热门企业——</h2>
-          <div class="enterprise">
-          </div>
+          <a href="#">
+            <div class="enterprise">
+              <!--              <h2>Java开发工程师</h2>-->
+              <!--              <el-button prop="position"></el-button>-->
+              <!--              <span>薪资：6000-8000</span>-->
+              <el-table :data="hotEnterpriseData">
+                <el-table-column prop="enterprise_name" label="企业名称"></el-table-column>
+                <el-table-column prop="enterprise_financing_stage" label="融资状态"></el-table-column>
+                <el-table-column prop="enterprise_address" label="地址"></el-table-column>
+              </el-table>
+            </div>
+          </a>
         </div>
       </div>
     </div>
@@ -92,37 +110,43 @@
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: 'Home',
   data() {
     return {
+      input:'',
       list_img: [
         {url: require('../assets/images/p1.png')},
         {url: require('../assets/images/p2.png')},
         {url: require('../assets/images/p3.png')},
         {url: require('../assets/images/p4.png')},
       ],
-      tableData: [],
+      hotRecruitData: [],
+      hotEnterpriseData: [],
+
 
       isCollapse: true,
       tabPosition: 'left',
       value: [],
-      options: [{
-        value: 'resume', label: '简历',
-        children: [
-          {
-            value: 'education', label: '学历',
-            children: [
-              {value: 'ben', label: '本科'},
-              {value: 'zhuan', label: '专科'}]
-          },
-          {
-            value: 'work-exp', label: '工作经验',
-            children: [
-              {value: 'one-year', label: '1年'},
-              {value: 'three-year', label: '3年'}]
-          }]
-      },
+      options: [
+        {
+          value: 'resume', label: '简历',
+          children: [
+            {
+              value: 'education', label: '学历',
+              children: [
+                {value: 'ben', label: '本科'},
+                {value: 'zhuan', label: '专科'}]
+            },
+            {
+              value: 'work-exp', label: '工作经验',
+              children: [
+                {value: 'one-year', label: '1年'},
+                {value: 'three-year', label: '3年'}]
+            }]
+        },
         {
           value: 'enterprise', label: '企业',
           children: [
@@ -201,6 +225,10 @@ export default {
         }]
     }
   },
+  created() {
+    this.getHotRecruit()
+    this.getHotEnterprise()
+  },
   methods: {
     handleChange(value) {
       console.log(value)
@@ -210,6 +238,28 @@ export default {
     },
     handleClose(key, keyPath) {
       console.log(key, keyPath)
+    },
+    query: function (){
+      console.log(this.input)
+      // this.$axios.post("/recruit/queryRecruit")
+    },
+    getHotRecruit: function () {
+      this.$axios.post("/recruit/hotRecruit"
+      ).then(response => {
+        console.log(response)
+        this.hotRecruitData = response.data
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    getHotEnterprise: function () {
+      this.$axios.post("/enterprise/hotEnterprise"
+      ).then(response => {
+        console.log(response)
+        this.hotEnterpriseData = response.data
+      }).catch(error => {
+        console.log(error)
+      })
     }
   }
 }
@@ -324,14 +374,14 @@ el-carousel__container {
 }
 
 .select {
-  width: 120px;
+  width: 160px;
   margin-right: -2px;
 }
 
 .search {
   width: 600px;
   height: 40px;
-  line-height: 80px;
+  /*line-height: 80px;*/
   font-size: 16px;
   margin-top: 20px;
   border: none;
@@ -382,6 +432,7 @@ el-carousel__container {
   height: 250px;
   margin: 0 0 20px 20px;
   background-color: white;
+  color: #40E0D0;
   /*background-color: #40E0D0;*/
   float: left;
 }

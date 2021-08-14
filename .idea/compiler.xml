@@ -7,9 +7,9 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="talent-admin9091" />
         <module name="engineering-api" />
         <module name="talent-client9092" />
+        <module name="talent-admin9091" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>

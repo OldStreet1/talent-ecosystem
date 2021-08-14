@@ -21,4 +21,8 @@
         where enterprise_acc = #{enterprise_acc} and enterprise_pwd = #{enterprise_pwd}
         ;
     </select>
+
+    <select id="HotEnterprise" parameterType="com.street.bean.Enterprise" resultType="com.street.bean.Enterprise">
+        select * from t_enterprise limit 5,6;
+    </select>
 </mapper>
