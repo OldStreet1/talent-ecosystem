@@ -1,5 +1,6 @@
 package com.street.mapper;
 
+import com.street.bean.Resume;
 import com.street.bean.University;
 import com.street.bean.User;
 import org.springframework.stereotype.Repository;
@@ -34,4 +35,10 @@ public interface UniversityMapper {
 
     //按专业查询学生
     ArrayList<User> screenUser(User user);
+
+    //查询高校简介
+    ArrayList<University>queryProfile(University university);
+
+    //添加简历
+    int resume(ArrayList<Resume> resumes);
 }
