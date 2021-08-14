@@ -5,8 +5,12 @@
 </template>
 
 <script>
+  import admin_login from "./components/admin/admin_login"
+  import Register from "./components/admin/Register"
+  import AdminUser from "./components/admin/AdminUser"
 export default {
-  name: 'App'
+  name: 'App',
+  components:{admin_login:admin_login,Register:Register,AdminUser:AdminUser}
 }
 </script>
 

@@ -9,6 +9,11 @@
         <el-submenu index="1">
           <template slot="title">岗位管理</template>
             <el-menu-item index="/adminGwgl">岗位类型管理</el-menu-item>
+        <el-submenu index="1">
+          <template slot="title">岗位管理</template>
+          <el-menu-item-group>
+            <el-menu-item index="/adminGwgl">岗位类型管理</el-menu-item>
+          </el-menu-item-group>
         </el-submenu>
 
         <el-submenu index="2">
@@ -42,10 +47,17 @@
         <el-submenu index="6">
           <template slot="title">区域管理</template>
           <el-menu-item-group>
+<<<<<<< HEAD
             <el-menu-item index="6-1">区级</el-menu-item>
             <el-menu-item index="6-2">市级</el-menu-item>
           </el-menu-item-group>
           <el-menu-item index="6-3">省份</el-menu-item>
+=======
+            <el-menu-item index="6-1">选项1</el-menu-item>
+            <el-menu-item index="6-2">选项2</el-menu-item>
+          </el-menu-item-group>
+          <el-menu-item index="6-3">选项3</el-menu-item>
+>>>>>>> origin/fwj
         </el-submenu>
       </el-menu>
     </el-aside>
@@ -73,7 +85,10 @@
 <!--        弹出企业管理 adminQiye.vue-->
 <!--        弹出moc 高校管理认证界面-->
 <!--        弹出sta 后台统计列表-->
+<<<<<<< HEAD
 <!--          弹出咨询-->
+=======
+>>>>>>> origin/fwj
       </el-main>
     </el-container>
   </el-container>
@@ -82,6 +97,7 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import Menu from './Menu'
 
 export default {
@@ -93,12 +109,36 @@ export default {
   name: "AdminUser",
   components:{
     Menu
+=======
+// import Menu from'./Menu'
+export default {
+  methods:{
+    // adminchaxun(){
+    //   this.$axios.post("/Admin/Menu",
+    //     this.$qs.stringify({
+    //
+    //     })
+    //   ).then(response => {
+    //     console.log(response)
+    // })
+
+  },
+
+
+  name: "AdminUser",
+  components:{
+    // Menu
+>>>>>>> origin/fwj
   },
   data() {
     return {
 
     };
+<<<<<<< HEAD
   },
+=======
+  }
+>>>>>>> origin/fwj
 }
 </script>
 
