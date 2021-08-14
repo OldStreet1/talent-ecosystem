@@ -20,4 +20,6 @@ public interface UserService {
     int updeteopenid(User user);
     //修改密码
     int updetepwd(User user);
+    //修改信息
+    int updateuserinfo(User user);
 }
