@@ -26,6 +26,7 @@
   <el-button type="primary" @click="dialogTableVisible = true" style="float: right;height: 55px;width: 100px">下载模板</el-button>
 
     <el-table
+      v-if="showTable"
       id="example"
       :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)"
       style="width: 100%;z-index: 0">
@@ -94,7 +95,7 @@
         label="导入时间">
       </el-table-column>
     </el-table>
-    <div class="block" style="margin-top:15px;">
+    <div class="block" style="margin-top:15px;"v-if="showTable">
       <el-pagination align='center' @size-change="handleSizeChange" @current-change="handleCurrentChange"
                      :current-page="currentPage"
                      :page-sizes="[5]"
@@ -145,6 +146,7 @@ export default {
   data() {
     return {
       show:false,
+      showTable:false,
       tableData: [],
       currentPage: 1, // 当前页码
       pageSize: 5 ,// 每页的数据条数
@@ -256,6 +258,7 @@ export default {
       this.$axios.post("/school/queryUser"
       ).then(response =>{
         console.log(response)
+        this.showTable=true
         this.tableData=response.data
       }).catch(err =>{
         console.log(err)

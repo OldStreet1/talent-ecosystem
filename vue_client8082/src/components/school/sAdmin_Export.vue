@@ -128,8 +128,6 @@ export default {
   },
   methods: {
     handleClick(row) {
-      alert(JSON.stringify(row))
-      alert(row.user_id)
       console.log(row);
       this.resumeTableVisible=true
     },
