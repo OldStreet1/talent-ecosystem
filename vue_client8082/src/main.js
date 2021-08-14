@@ -18,7 +18,7 @@ Vue.use(ElementUI);
 Vue.use(VueCookies)
 // 导入axios
 import axios from 'axios'
-import AdminUser from "./components/admin/AdminUser";
+// import AdminUser from "./components/admin/AdminUser";
 // 程序主路口
 Vue.config.productionTip = true
 // 使用elementsui
@@ -38,4 +38,4 @@ new Vue({
   router:router,
   // 渲染到
   render: h => h(App)
-}).$mount("#adminUser")
+}).$mount("#app")

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.street.mapper.RecruitMapper">
+    <select id="HotRecruit" parameterType="com.street.bean.Recruit" resultType="com.street.bean.Recruit">
+        select * from t_recruit order by recruit_id desc limit 0,6;
+    </select>
+    <select id="QueryRecruit" parameterType="com.street.bean.Recruit" resultType="com.street.bean.Recruit">
+        select * from t_recruit where position like '%#{position}%';
+    </select>
+</mapper>

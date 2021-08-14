@@ -17,4 +17,6 @@ public interface EnterprideService {
     List<Enterprise> queryEnterpride(String enterprise_acc);
     //企业登陆
     List<Enterprise> enterprideLogin(Enterprise enterprise);
+    // 热门企业查询
+    List<Enterprise> HotEnterprise();
 }
