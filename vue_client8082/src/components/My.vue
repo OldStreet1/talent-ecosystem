@@ -1,6 +1,7 @@
 <template>
   <div class="index">
-    <a href="#up"><div class="toup"></div>
+    <a href="#up">
+      <div class="toup"></div>
     </a><a name="up"></a>
 
     <div class="header">
@@ -11,7 +12,7 @@
       <router-link class="enterprise" to="enterprise_login">企业</router-link>
       <router-link class="resume" to="Resume">简历</router-link>
       <router-link class="applet" to="Applet">小程序</router-link>
-      <router-link class="upload-resume" to="UploadResume">上传简历</router-link>
+<!--      <router-link class="upload-resume" to="UploadResume">上传简历</router-link>-->
       <router-link class="recruit" to="Recruit">我要招聘</router-link>
       <router-link class="register" to="enterprise_register">注册</router-link>
       <router-link class="elogin" to="enterprise_login">登录</router-link>
@@ -37,14 +38,14 @@
             <img src="../assets/images/qq.png" class="headimg" alt="">
           </div>
           <div class="menus">
-            <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose" :collapse="isCollapse" router :default-active="this.$route.path">
+            <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
+                     :collapse="isCollapse" router :default-active="this.$route.path">
               <el-submenu index="1">
                 <template slot="title">
                   <i class="el-icon-location"></i>
                   <span slot="title">个人操作</span>
                 </template>
-                <el-menu-item index="/AInfo">个人信息</el-menu-item>
-                <el-menu-item index="/enterprise_intro">企业信息</el-menu-item>
+                <el-menu-item index="/AInfo">企业信息</el-menu-item>
                 <el-menu-item index="/BMap">查找地址</el-menu-item>
                 <el-menu-item index="1-4">投递简历</el-menu-item>
                 <el-menu-item index="1-5">查看已投简历</el-menu-item>
@@ -53,11 +54,7 @@
                 <i class="el-icon-chat-dot-round"></i>
                 <span slot="title">即时通讯</span>
               </el-menu-item>
-              <el-menu-item index="/Recharge">
-                <i class="el-icon-coin"></i>
-                <span slot="title">充值中心</span>
-              </el-menu-item>
-              <el-menu-item index="4">
+              <el-menu-item index="/ChangePwd">
                 <i class="el-icon-edit"></i>
                 <span slot="title">修改密码</span>
               </el-menu-item>
@@ -94,7 +91,7 @@
 <script>
 export default {
   name: 'My',
-  data () {
+  data() {
     return {
       list_img: [
         {url: require('../assets/images/1.jpg')},
@@ -112,19 +109,30 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath);
     },
-    logout(){
-      console.log("退出登录")
-      this.$message({
-        message:"退出登录成功！"
-      })
-      this.$router.push({path: "/Home"})
+    logout() {
+      this.$confirm('请问是否确定退出登录?', '提示', {
+        confirmButtonText: '确定',
+        cancelButtonText: '取消',
+        type: 'warning'
+      }).then(() => {
+        this.$message({
+          type: 'success',
+          message: '退出登录成功!',
+        });
+        this.$router.push({path: "/Home"})
+      }).catch(() => {
+        this.$message({
+          type: 'info',
+          message: '取消退出登录'
+        });
+      });
     }
   }
 }
 </script>
 
 <style scoped>
-.index{
+.index {
   width: 100%;
   height: 1000px;
   /*background-color: #40E0D0;*/
@@ -205,18 +213,18 @@ export default {
   text-decoration: none;
 }
 
-.content{
+.content {
   width: 100%;
   height: 920px;
 }
 
-.centre{
+.centre {
   width: 1000px;
   height: 920px;
   margin: 0 auto;
 }
 
-h2{
+h2 {
   margin: 0;
   padding-top: 20px;
 }
@@ -226,7 +234,7 @@ h2{
   margin: 0 auto;
 }
 
-.main{
+.main {
   width: 1000px;
   height: 700px;
   background-color: white;
@@ -234,17 +242,17 @@ h2{
   left: 452px;
 }
 
-.head{
+.head {
   margin-left: -800px;
 }
 
-.headimg{
+.headimg {
   width: 60px;
   height: 60px;
   margin-top: 20px;
 }
 
-.menus{
+.menus {
   margin-top: 20px;
 }
 
@@ -253,7 +261,7 @@ h2{
   min-height: 400px;
 }
 
-.place{
+.place {
   width: 800px;
   height: 700px;
   background-color: lightcyan;

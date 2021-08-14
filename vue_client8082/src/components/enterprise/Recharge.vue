@@ -1,5 +1,5 @@
 <template>
-  <div
+  <el-dialog
     title="充值页面"
     :visible.sync="dialogVisible"
     :close-on-click-modal="false"
@@ -34,7 +34,7 @@
         <el-button type="primary" @click="surePay">确认支付</el-button>
       </div>
     </div>
-  </div>
+  </el-dialog>
 
 </template>
 

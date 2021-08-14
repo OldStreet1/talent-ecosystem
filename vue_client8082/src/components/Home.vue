@@ -9,10 +9,10 @@
       <router-link class="home" to="Home">首页</router-link>
       <router-link class="post" to="Post">职位</router-link>
       <router-link class="university" to="University">校园</router-link>
-      <router-link class="enterprise" to="enterprise_login">企业</router-link>
+      <router-link class="enterprise" to="enterprise_intro">企业</router-link>
       <router-link class="resume" to="Resume">简历</router-link>
       <router-link class="applet" to="Applet">小程序</router-link>
-      <router-link class="upload-resume" to="UploadResume">上传简历</router-link>
+<!--      <router-link class="upload-resume" to="UploadResume">上传简历</router-link>-->
       <router-link class="recruit" to="Recruit">我要招聘</router-link>
       <router-link class="register" to="enterprise_register">注册</router-link>
       <router-link class="elogin" to="enterprise_login">登录</router-link>
