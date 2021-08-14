@@ -126,7 +126,6 @@ export default {
       hotRecruitData: [],
       hotEnterpriseData: [],
 
-
       isCollapse: true,
       tabPosition: 'left',
       value: [],
