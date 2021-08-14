@@ -1,15 +1,15 @@
 package com.street.conteoller;
 
-import com.aliyun.dysmsapi20170525.models.SendSmsRequest;
-import com.aliyun.teaopenapi.models.Config;
 import com.street.bean.Enterprise;
 import com.street.service.impl.EnterprideServiceImpl;
-import javafx.scene.chart.PieChart;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 /**
  * @version 1.0
@@ -26,11 +26,13 @@ public class EnterpriseController {
 
     //企业请求登陆"
     @PostMapping("/login")
-    public String EnterprideLogin(Enterprise enterprise){
+    public String EnterprideLogin(Enterprise enterprise, HttpServletRequest request){
         System.err.println("企业请求登陆");
         if (enterprideServiceImpl.enterprideLogin(enterprise).isEmpty()){
             return "errrr";
         }else {
+            HttpSession session =request.getSession();
+            session.setAttribute("enterprise_acc",enterprise.getEnterprise_acc());
             return "success";
         }
 
@@ -65,8 +67,26 @@ public class EnterpriseController {
         System.out.println(enterprise_coordinate);
         return enterprise_coordinate;
     }
+    //企业信息
+    @PostMapping("/data")
+    public List<Enterprise> EnterprideData(Enterprise enterprise ,HttpServletRequest request){
+        String enterprise_acc = String.valueOf(request.getSession().getAttribute("enterprise_acc"));
+        System.out.println(enterprise_acc);
+        List<Enterprise> enterpriseList = enterprideServiceImpl.queryEnterprideData(enterprise.getEnterprise_acc());
+//        System.out.println(enterpriseList.get(0).getEnterprise_name());
+        return enterpriseList;
+    }
 
-
+    //企业简介
+    @PostMapping("/intro")
+    public List<Enterprise> EnterprideIntro(HttpServletRequest request){
+        String enterprise_name = request.getParameter("enterprise_name");
+        System.out.println(enterprise_name);
+        List<Enterprise> enterprises = enterprideServiceImpl.queryEnterprideIntro(enterprise_name);
+        System.out.println(enterprises.get(0).getEnterprise_time_establishment());
+//        System.out.println(enterpriseList.get(0).getEnterprise_name());
+        return enterprises;
+    }
 
 
 }

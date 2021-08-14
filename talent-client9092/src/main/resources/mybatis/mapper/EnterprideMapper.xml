@@ -27,4 +27,21 @@
         where enterprise_name = #{enterprise_name}
         ;
     </select>
+    <select id="queryEnterprideData" parameterType="com.street.bean.Enterprise" resultType="com.street.bean.Enterprise">
+        select *
+        from t_enterprise
+        where enterprise_acc = #{enterprise_acc}
+        ;
+    </select>
+    <update id="increaseEnterprideBalance" parameterType="com.street.bean.Enterprise">
+        update t_enterprise
+        set enterprise_account_balance=enterprise_account_balance+#{enterprise_account_balance}
+        where enterprise_acc = #{enterprise_acc};
+    </update>
+    <select id="queryEnterprideIntro" parameterType="com.street.bean.Enterprise" resultType="com.street.bean.Enterprise">
+        select *
+        from t_enterprise
+        where enterprise_name = #{enterprise_name}
+        ;
+    </select>
 </mapper>

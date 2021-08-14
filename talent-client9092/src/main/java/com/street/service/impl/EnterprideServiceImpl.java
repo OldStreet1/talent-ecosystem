@@ -38,4 +38,21 @@ public class EnterprideServiceImpl implements EnterprideService {
     public String queryEnterpriseCoordinate(String enterprise_name) {
         return enterprideMapper.queryEnterpriseCoordinate(enterprise_name);
     }
+
+    @Override
+    public List<Enterprise> queryEnterprideData(String enterprise_acc) {
+        return enterprideMapper.queryEnterprideData(enterprise_acc);
+    }
+
+    @Override
+    public int increaseEnterprideBalance(String enterprise_account_balance, String enterprise_acc) {
+        return enterprideMapper.increaseEnterprideBalance(enterprise_account_balance,enterprise_acc);
+    }
+
+    @Override
+    public List<Enterprise> queryEnterprideIntro(String enterprise_name) {
+        return enterprideMapper.queryEnterprideIntro(enterprise_name);
+    }
+
+
 }

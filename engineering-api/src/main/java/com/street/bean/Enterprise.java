@@ -75,4 +75,10 @@ public class Enterprise {
     @ApiModelProperty(value = "企业坐标")
     private String enterprise_coordinate;
 
+    @ApiModelProperty(value = "企业介绍")
+    private String enterprise_intro;
+
+    @ApiModelProperty(value = "企业账户")
+    private String enterprise_account_balance;
+
 }
