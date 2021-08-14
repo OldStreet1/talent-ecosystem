@@ -18,7 +18,7 @@
       </el-menu>
     </div></el-col>
 <!--    右边显示内容-->
-    <el-col :span="14"><div class="grid-content bg-purple-dark">
+    <el-col :span="18"><div class="grid-content bg-purple-dark">
       <router-view></router-view>
     </div></el-col>
   </el-row>
@@ -52,7 +52,7 @@ export default {
 
 <style scoped>
 .bg-purple-dark {
-  background: #99a9bf;
+  background: white;
 }
 .grid-content {
   border-radius: 4px;

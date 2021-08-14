@@ -103,7 +103,7 @@
                      :total="tableData.length">
       </el-pagination>
     </div>
-    //模板
+<!--    //模板-->
     <el-dialog title="模板" :visible.sync="dialogTableVisible">
       <el-table :data="gridData" id="table">
         <el-table-column prop="user_id" label="序号"></el-table-column>
