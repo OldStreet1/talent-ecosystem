@@ -1,10 +1,7 @@
 package com.street.mapper;
 
 import com.street.bean.Admin;
-<<<<<<< HEAD
-=======
 import com.street.bean.Menu;
->>>>>>> origin/fwj
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
