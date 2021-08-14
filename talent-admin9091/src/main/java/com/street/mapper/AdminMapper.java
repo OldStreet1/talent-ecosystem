@@ -2,6 +2,7 @@ package com.street.mapper;
 
 import com.street.bean.Admin;
 import com.street.bean.Menu;
+import com.street.dto.AdminDto;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -9,7 +10,7 @@ import java.util.List;
 @Repository
 public interface AdminMapper {
     //后台管理登录
-    Admin AdminLogin(Admin admin);
+    AdminDto AdminLogin(Admin admin);
 
     //后台注册
     int AdminAdd(Admin admin);

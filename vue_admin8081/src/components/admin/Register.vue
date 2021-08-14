@@ -87,8 +87,48 @@
       'v-sidentify':Sidentify
     },
     methods:{
+      sures: function () {
+        debugger
+        if (this.ruleForm.password === ""&&this.ruleForm.password!=this.ruleForm.repassword) {
+          this.$message.error('您输入的密码不能为空或您两次输入的密码都不同');
+        }else
+        if (this.ruleForm.username === "") {
+          this.$message.error('您输入的账号不能为空');
+        }else
+        if(this.ruleForm.name ===""){
+          this.$message.error('您输入的昵称不能为空');
+        }else if(this.ruleForm.repassword ===""){
+          this.$message.error('确认密码不能为空');
+        }
+
+        else if (this.ruleForm.username != "" && this.ruleForm.password != ""&&this.ruleForm.name != ""&&this.ruleForm.repassword != "") {
+          // console.log(JSON.stringify(this.form))
+          console.log()
+          this.$axios.post("/Admin/register",
+            this.$qs.stringify({
+              // action: "AdminLogin",
+              admin_name:this.ruleForm.name,
+              admin_account: this.ruleForm.username,
+              admin_password: this.ruleForm.password,
+            })
+          ).then(response => {
+            if (response.data == "success") {
+              this.$message({
+                message: '恭喜你，注册成功',
+                type: 'success'
+              });
+              this.$router.push({path: "/admin_login"})
+            } else {
+              this.$message.error('注册失败,该用户名已经存在');
+            }
+          }).catch(err => {
+            console.log(err)
+          })
+        }
+      },
       returns:function () {
-          this.$router.replace('/admin_login')
+        this.$router.replace('/admin_login')
+
       }
     }
   }

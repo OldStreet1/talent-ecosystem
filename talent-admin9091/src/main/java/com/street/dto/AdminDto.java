@@ -30,8 +30,10 @@ public class AdminDto {
     private String updateTime;
 
 
-    private int admin_roleId;
+    private int adminRoleId;
 
 
-    private String admin_state;
+    private String adminState;
+
+    private String adminName;
 }

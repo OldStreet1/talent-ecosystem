@@ -2,6 +2,7 @@ package com.street.service.impl;
 
 import com.street.bean.Admin;
 import com.street.bean.Menu;
+import com.street.dto.AdminDto;
 import com.street.mapper.AdminMapper;
 import com.street.service.AdminService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class AdminServiceImpl implements AdminService {
     private AdminMapper adminMapper;
 
     @Override //后台登录方法
-    public Admin AdminLogin(Admin admin) {
+    public AdminDto AdminLogin(Admin admin) {
         return adminMapper.AdminLogin(admin);
     }
 

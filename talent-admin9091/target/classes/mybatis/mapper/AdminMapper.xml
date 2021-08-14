@@ -4,14 +4,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.street.mapper.AdminMapper">
     <insert id="AdminAdd" parameterType="com.street.bean.Admin">
-        insert into t_admin (admin_account, admin_password,create_time,admin_name)
-        VALUE (#{admin_account},#{admin_password},#{create_time},#{admin_name})
+        insert into t_admin (admin_account, admin_password,admin_name)
+        VALUE (#{admin_account},#{admin_password},#{admin_name})
     </insert>
 
     <select id="AdminLogin" parameterType="com.street.bean.Admin" resultType="com.street.dto.AdminDto">
         select *
         from t_admin
         where admin_account = #{admin_account} and admin_password = #{admin_password}
+        ;
     </select>
 
     <select id="UserSelect" parameterType="com.street.bean.Admin" resultType="com.street.bean.Admin">
@@ -21,22 +22,10 @@
         ;
     </select>
 
-    <select id="MenuAdd" parameterType="com.street.bean.Menu" resultType="com.street.bean.Menu">
-        insert into t_menu (menu_name,parent_id,create_time)
-        VALUE (#{menu_name},#{parent_id},#{create_time})
-    </select>
-
-    <select id="MenuSelect" parameterType="com.street.bean.Menu" resultType="com.street.bean.Admin">
+    <select id="MenuSelect" parameterType="com.street.bean.Menu" resultType="com.street.bean.Menu">
         select *
         from t_menu
-        where parent_id = #{parent_id}
-        ;
-    </select>
-
-    <select id="SelectFatherId" parameterType="com.street.bean.Menu" resultType="com.street.bean.Admin">
-        select *
-        from t_menu
-        where parent_id = #{0}
+        where menu_id = #{menu_id},menu_name = #{menu_name},parentid = #{parentid},path = #{path}
         ;
     </select>
 </mapper>

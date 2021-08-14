@@ -47,6 +47,7 @@
   export default {
     data: function () {
       return {
+        roleId:'',
         ruleForm: {
           username: '',
           password: '',
@@ -87,13 +88,12 @@
               admin_password: this.ruleForm.password,
             })
           ).then(response => {
-            console.log(response)
-
-            if (response.data == "success") {
+            if (response.data.isLoginSuceess == "success") {
               this.$message({
                 message: '恭喜你，登陆成功',
                 type: 'success'
               });
+              this.roleId=response.data.admins.adminRoleId;
               this.$router.push({path: "/AdminUser"})
             } else {
               this.$message.error('登陆失败');

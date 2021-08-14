@@ -1,6 +1,7 @@
 package com.street.conteoller;
 
 import com.street.bean.Admin;
+import com.street.dto.AdminDto;
 import com.street.service.impl.AdminServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -10,7 +11,9 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/Admin")
@@ -21,16 +24,20 @@ public class AdminControl {
     //后台请求登陆
     @PostMapping("/AdminLogin")
     @ResponseBody
-    public String AdminLogin(Admin admin) {
-//        System.err.println("后台管理请求登录");
-        System.out.println("后台管理请求登录");
-        Admin admins=adminServiceImpl.AdminLogin(admin);
-        if (admins==null) {
-            return "errrr";
-        } else {
-            return "sccess";
-        }
+    public Map<String,Object>  AdminLogin(Admin admin) {
 
+        System.out.println("后台管理请求登录");
+        Map<String,Object> map=new HashMap<>();
+        AdminDto admins=adminServiceImpl.AdminLogin(admin);
+        String isLoginSuceess=null;
+        if (admins==null) {
+            isLoginSuceess="error";
+        } else {
+            isLoginSuceess="success";
+        }
+        map.put("isLoginSuceess",isLoginSuceess);
+        map.put("admins",admins);
+        return map;
     }
 
     //后台管理注册
