@@ -89,7 +89,7 @@
           ).then(response => {
             console.log(response)
 
-            if (response.data == "success") {
+            if (response.data == "sccess") {
               this.$message({
                 message: '恭喜你，登陆成功',
                 type: 'success'
