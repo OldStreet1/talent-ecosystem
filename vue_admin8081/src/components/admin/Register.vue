@@ -50,7 +50,6 @@
       <div class="login-btn">
         <el-button type="primary" style="width:40%;" @click="sures" :loading="logining">确认</el-button>
         <el-button type="primary" style="width:40%;" @click="returns" :loading="logining">返回</el-button>
-
       </div>
     </el-form>
   </div>
