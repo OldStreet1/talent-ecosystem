@@ -26,14 +26,16 @@ public class EnterpriseController {
     @Autowired
     private EnterprideServiceImpl enterprideServiceImpl;
 
+
     //企业请求登陆"
     @PostMapping("/login")
-    public String EnterprideLogin(Enterprise enterprise){
+    public String EnterprideLogin(Enterprise enterprise, HttpServletRequest request){
         System.err.println("企业请求登陆");
-
         if (enterprideServiceImpl.enterprideLogin(enterprise).isEmpty()){
             return "errrr";
         }else {
+            HttpSession session =request.getSession();
+            session.setAttribute("enterprise_acc",enterprise.getEnterprise_acc());
             return "success";
         }
 
@@ -70,7 +72,7 @@ public class EnterpriseController {
     }
     //企业信息
     @PostMapping("/data")
-    public List<Enterprise> EnterprideData(Enterprise enterprise , HttpServletRequest request){
+    public List<Enterprise> EnterprideData(Enterprise enterprise ,HttpServletRequest request){
         String enterprise_acc = String.valueOf(request.getSession().getAttribute("enterprise_acc"));
         System.out.println(enterprise_acc);
         List<Enterprise> enterpriseList = enterprideServiceImpl.queryEnterprideData(enterprise_acc);
@@ -88,6 +90,7 @@ public class EnterpriseController {
 //        System.out.println(enterpriseList.get(0).getEnterprise_name());
         return enterprises;
     }
+
 
     // 热门企业查询
     @PostMapping("/hotEnterprise")

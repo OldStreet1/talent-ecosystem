@@ -24,7 +24,6 @@ public class EnterpriseController {
         List<Enterprise> epallchaxun = enterpriseService.epallchaxun();
 //        拿到第0个==第一行数据
         return epallchaxun;
-
     }
 
 
