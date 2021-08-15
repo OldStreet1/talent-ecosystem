@@ -21,6 +21,9 @@ public interface UniversityService {
     //查询学校名字
     List<University> fileName(University university);
 
+    //查询用户是否存在
+    List<User> selectIDcard(String user_id_card);
+
     //    添加
     int checkAdd(ArrayList<User> users);
 

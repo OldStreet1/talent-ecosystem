@@ -39,7 +39,15 @@ public class UniversityImpl implements UniversityService {
         List<University> files= universityMapper.fileName(university);
         return files;
     }
-//添加学生信息
+
+    @Override
+    public List<User> selectIDcard(String user_id_card) {
+        List<User> selectIDcard=universityMapper.selectIDcard(user_id_card);
+        return selectIDcard;
+    }
+
+
+    //添加学生信息
     @Override
     public int checkAdd(ArrayList<User> users) {
         int j=universityMapper.checkAdd(users);
