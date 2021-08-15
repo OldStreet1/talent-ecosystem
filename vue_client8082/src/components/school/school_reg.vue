@@ -74,31 +74,35 @@ export default {
   },
   methods: {
     Reg:function (){
-      if (this.university_name != '' && this.university_code != ''&& this.corporate_ID_number != ''&&
-        this.university_password != ''
-        && this.university_profile != '') {
-        //
-        this.$axios.post("/school/getReg",
-          this.$qs.stringify({
-            university_name: this.university_name,
-            university_code: this.university_code,
-            corporate_ID_number: this.corporate_ID_number,
-            university_password: this.university_password,
-            university_profile: this.university_profile,
+      if (this.university_password==this.checkPwd) {
+        if (this.university_name != '' && this.university_code != '' && this.corporate_ID_number != '' &&
+          this.university_password != ''
+          && this.university_profile != '') {
+          //
+          this.$axios.post("/school/getReg",
+            this.$qs.stringify({
+              university_name: this.university_name,
+              university_code: this.university_code,
+              corporate_ID_number: this.corporate_ID_number,
+              university_password: this.university_password,
+              university_profile: this.university_profile,
+            })
+          ).then(response => {
+            console.log(response)
+            if (response.data == "success") {
+              this.$message({
+                message: '注册成功',
+                type: 'success'
+              });
+            } else {
+              this.$message.error('注册失败');
+            }
+          }).catch(err => {
+            console.log(err)
           })
-        ).then(response=>{
-          console.log(response)
-          if (response.data == "success"){
-            this.$message({
-              message: '注册成功',
-              type: 'success'
-            });
-          }else {
-            this.$message.error('注册失败');
-          }
-        }).catch(err=> {
-          console.log(err)
-        })
+        }//
+      }else {
+        alert("两次密码不一致")
       }
     },
     returnLogin: function () {
