@@ -71,7 +71,6 @@
     },
     methods: {
       logins: function () {
-        debugger
         if (this.ruleForm.password === "") {
           this.$message.error('您输入的密码不能为空');
         }
