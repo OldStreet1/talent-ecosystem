@@ -22,7 +22,7 @@
       </el-menu>
     </div></el-col>
 <!--    右边显示内容-->
-    <el-col :span="18"><div class="grid-content bg-purple-dark" style="margin-top:20px">
+    <el-col :span="17"><div class="grid-content bg-purple-dark" style="margin-top:20px">
       <router-view></router-view>
     </div></el-col>
   </el-row>
