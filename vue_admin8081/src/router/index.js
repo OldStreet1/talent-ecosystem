@@ -2,7 +2,6 @@ import Vue from 'vue'
 import Router from 'vue-router'
 
 import enterprise_login from "../components/enterprise/enterprise_login";
-import AdminUser from "../../../vue_client8082/src/components/admin/AdminUser";
 import admin_login from "../components/admin/admin_login";
 import Sidentify from "../components/admin/Sidentify";
 import Register from "../components/admin/Register";
@@ -22,7 +21,7 @@ export default new Router({
     //   name: 'enterprise_login',
     //   component: enterprise_login
     // },
-    {path:'/',name:'adminUser',component:() => import('../components/admin/AdminUser')},
+    {path:'/adminUser',name:'adminUser',component:() => import('../components/admin/AdminUser')},
     {path:"/adminUser",name:'AdminUser',component: AdminUser,children:[
         {path:"/adminGwgl",name:'adminGwgl',component:() => import('../components/admin/Menu') },
         {path:"/adminqiyegl",name:'adminqiyegl',component:() => import('../components/admin/AdminQiye')},

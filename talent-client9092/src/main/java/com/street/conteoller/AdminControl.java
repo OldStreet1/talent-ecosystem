@@ -1,9 +1,7 @@
 package com.street.conteoller;
 
 import com.street.bean.Admin;
-import com.street.bean.Menu;
 import com.street.service.impl.AdminServiceImpl;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -26,7 +24,8 @@ public class AdminControl {
     public String AdminLogin(Admin admin) {
 //        System.err.println("后台管理请求登录");
         System.out.println("后台管理请求登录");
-        if (adminServiceImpl.AdminLogin(admin).isEmpty()) {
+        List<Admin> admins = adminServiceImpl.AdminLogin(admin);
+        if (admins.isEmpty()) {
             return "errrr";
         } else {
             return "sccess";
