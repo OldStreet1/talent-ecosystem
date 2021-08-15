@@ -129,15 +129,12 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
         if (!file_server.getParentFile().exists()) {
             //如果文件父目录不存在，就创建这样一个目录
             file_server.getParentFile().mkdirs();
-            System.out.println("创建目录" + pathname);
+            System.out.println("创建目录" + file);
             System.out.println("文件路径"+pathname+filename);
         } else {  //如果父文件夹已经存在
-            File upfile=new File(pathname);
-            if (upfile.exists()) {
-                upfile.delete();
-            }
+            file_server.getParentFile().delete();
             file_server.getParentFile().mkdirs();
-            System.out.println("222创建目录" + pathname);
+            System.out.println("222创建目录" + file);
             System.out.println("222文件路径"+pathname+filename);
         }
         file.transferTo(file_server);
