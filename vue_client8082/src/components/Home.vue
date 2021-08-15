@@ -7,13 +7,13 @@
     <div class="header">
       <router-link class="talent" to="Home">人才生态圈</router-link>
       <router-link class="home" to="Home">首页</router-link>
-      <router-link class="post" to="Post">职位</router-link>
-      <router-link class="university" to="University">校园</router-link>
-      <router-link class="enterprise" to="enterprise_login">企业</router-link>
+      <router-link class="post" to="Recruit">职位</router-link>
       <router-link class="resume" to="Resume">简历</router-link>
+      <router-link class="enterprise" to="Enterprise">企业</router-link>
+      <router-link class="university" to="school_login">校园</router-link>
       <router-link class="applet" to="Applet">小程序</router-link>
-      <router-link class="upload-resume" to="UploadResume">上传简历</router-link>
-      <router-link class="recruit" to="Recruit">我要招聘</router-link>
+      <!--      <router-link class="upload-resume" to="UploadResume">上传简历</router-link>-->
+      <router-link class="recruit" to="enterprise_login">我要招聘</router-link>
       <router-link class="register" to="enterprise_register">注册</router-link>
       <router-link class="elogin" to="enterprise_login">登录</router-link>
       <router-link class="elogin" to="school_login">高校入口</router-link>
@@ -31,7 +31,8 @@
             :options="options"
             :props="{ expandTrigger: 'hover' }"
             @change="handleChange"></el-cascader>
-          <el-input v-model="input" class="search" type="text" aria-valuetext="123456" placeholder="搜索职位、简历、企业、高校"></el-input>
+          <el-input v-model="input" class="search" type="text" aria-valuetext="123456"
+                    placeholder="搜索职位、简历、企业"></el-input>
           <el-button class="searchbtn" type="primary" icon="el-icon-search" @click="query()">搜索</el-button>
           <div class="hotdiv">
             <span class="hot">*热门职位：</span>
@@ -61,33 +62,25 @@
         <div class="hot-recruit">
           <h2>——热招职位——</h2>
           <a href="#">
-            <div class="recruit">
-<!--              <h2>Java开发工程师</h2>-->
-<!--              <el-button prop="position"></el-button>-->
-<!--              <span>薪资：6000-8000</span>-->
-              <el-table :data="hotRecruitData">
-                <el-table-column prop="position" label="职位"></el-table-column>
-                <el-table-column prop="salary" label="薪资"></el-table-column>
-                <el-table-column prop="education" label="学历要求"></el-table-column>
-              </el-table>
+            <div class="recruits" v-for="(item,i) in hotRecruitData">
+              <h2 ref="position" @click="toRecruit()">{{ item.position }}</h2>
+              <span>学历要求：{{ item.education }}</span><br>
+              <span>工作经验：{{ item.experience }}</span><br>
+              <span>参考薪资：<span class="salary">{{ item.salary }}</span></span>
             </div>
           </a>
         </div>
 
         <div class="hot-enterprise">
           <h2>——热门企业——</h2>
-          <a href="#">
-            <div class="enterprise">
-              <!--              <h2>Java开发工程师</h2>-->
-              <!--              <el-button prop="position"></el-button>-->
-              <!--              <span>薪资：6000-8000</span>-->
-              <el-table :data="hotEnterpriseData">
-                <el-table-column prop="enterprise_name" label="企业名称"></el-table-column>
-                <el-table-column prop="enterprise_financing_stage" label="融资状态"></el-table-column>
-                <el-table-column prop="enterprise_address" label="地址"></el-table-column>
-              </el-table>
+          <router-link to="enterprise_intro">
+            <div class="enterprises" v-for="(item,i) in hotEnterpriseData">
+              <h2>{{item.enterprise_name}}</h2>
+              <span>融资状态：{{item.enterprise_financing_stage}}</span><br>
+              <span>经营范围：{{item.enterprise_recruitment_position}}</span><br>
+              <span>地址：{{item.enterprise_address}}</span>
             </div>
-          </a>
+          </router-link>
         </div>
       </div>
     </div>
@@ -102,7 +95,7 @@
       <router-link to="Home">
         <img class="weibo" src="../assets/images/weibo.png" alt="">
       </router-link>
-      <router-link to="My">
+      <router-link to="Applet">
         <img class="apps" src="../assets/images/apps.png" alt="">
       </router-link>
     </div>
@@ -116,16 +109,15 @@ export default {
   name: 'Home',
   data() {
     return {
-      input:'',
+      input: '',
       list_img: [
         {url: require('../assets/images/p1.png')},
         {url: require('../assets/images/p2.png')},
         {url: require('../assets/images/p3.png')},
         {url: require('../assets/images/p4.png')},
       ],
-      hotRecruitData: [],
+      hotRecruitData: [{}],
       hotEnterpriseData: [],
-
 
       isCollapse: true,
       tabPosition: 'left',
@@ -239,9 +231,19 @@ export default {
     handleClose(key, keyPath) {
       console.log(key, keyPath)
     },
-    query: function (){
+    query: function () {
       console.log(this.input)
-      // this.$axios.post("/recruit/queryRecruit")
+      this.$axios.post("/recruit/queryRecruit",
+      this.$qs.stringify({
+        action:'query',
+        position:this.input
+      })
+      ).then(response=>{
+        console.log(response)
+        this.$router.push({path:"/Recruit"})
+      }).catch(error=>{
+        console.log(error)
+      })
     },
     getHotRecruit: function () {
       this.$axios.post("/recruit/hotRecruit"
@@ -260,6 +262,9 @@ export default {
       }).catch(error => {
         console.log(error)
       })
+    },
+    toRecruit(){
+      console.log(this.$refs.position.innerHTML)
     }
   }
 }
@@ -427,14 +432,26 @@ el-carousel__container {
   line-height: 40px;
 }
 
-.hot-recruit .recruit {
+.hot-recruit .recruits {
   width: 373px;
   height: 250px;
   margin: 0 0 20px 20px;
   background-color: white;
-  color: #40E0D0;
   /*background-color: #40E0D0;*/
   float: left;
+}
+
+.hot-recruit .recruits h2{
+  color: #40E0D0;
+}
+
+.hot-recruit .recruits span{
+  color: black;
+  line-height: 50px;
+}
+
+.hot-recruit .recruits .salary{
+  color: red;
 }
 
 .hot-enterprise {
@@ -447,13 +464,23 @@ el-carousel__container {
   line-height: 40px;
 }
 
-.hot-enterprise .enterprise {
+.hot-enterprise .enterprises {
   width: 373px;
   height: 250px;
   margin: 0 0 20px 20px;
   background-color: white;
+  color: #40E0D0;
   /*background-color: #40E0D0;*/
   float: left;
+}
+
+.hot-enterprise .enterprises h2{
+  color: #40E0D0;
+}
+
+.hot-enterprise .enterprises span{
+  color: black;
+  line-height: 50px;
 }
 
 .footer {

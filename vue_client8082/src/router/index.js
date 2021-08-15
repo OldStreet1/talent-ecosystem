@@ -16,9 +16,19 @@ export default new Router({
   routes: [
     {path: '/', name: 'Home', component: Home,},
     {path: '/Home', name: 'Home', component: Home},
+    {path:'/Recruit',name:'Recruit',component:()=>import ('../components/Recruit')},
+    {path:'/Resume',name:'Resume',component:()=>import ('../components/Resume')},
+    {path:'/Enterprise',name:'Enterprise',component:()=>import ('../components/Enterprise')},
+    {path:'/Applet',name:'Applet',component:()=>import ('../components/Applet')},
+    {path:'/enterprise_intro',name:'enterprise_intro',component:()=>import ('../components/enterprise/enterprise_intro')},
     {path: '/My', name: 'My', component: My,
       children:[
         {path:'/AInfo',name:'AInfo',component:()=>import ('../components/enterprise/AInfo')},
+        {path:'/Chat',name:'Chat',component:()=>import ('../components/enterprise/Chat')},
+        {path:'/BMap',name:'BMap',component:()=>import ('../components/enterprise/BMap')},
+        {path:'/Recharge',name:'Recharge',component:()=>import ('../components/enterprise/Recharge')},
+
+        {path:'/ChangePwd',name:'ChangePwd',component:()=>import ('../components/enterprise/ChangePwd')},
       ]
     },
     {path: '/enterprise_login', name: 'enterprise_login', component: enterprise_login},

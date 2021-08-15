@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.web.servlet.server.Session;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -56,6 +57,36 @@ public class EnterpriseController {
         }else{
             return "existence";
         }
+    }
+
+    //企业坐标
+    @PostMapping("/center")
+    public String EnterprideCenter(Enterprise enterprise){
+        String name = "美柚";
+        enterprise.setEnterprise_name(name);
+        String enterprise_coordinate = enterprideServiceImpl.queryEnterpriseCoordinate(name);
+        System.out.println(enterprise_coordinate);
+        return enterprise_coordinate;
+    }
+    //企业信息
+    @PostMapping("/data")
+    public List<Enterprise> EnterprideData(Enterprise enterprise , HttpServletRequest request){
+        String enterprise_acc = String.valueOf(request.getSession().getAttribute("enterprise_acc"));
+        System.out.println(enterprise_acc);
+        List<Enterprise> enterpriseList = enterprideServiceImpl.queryEnterprideData(enterprise.getEnterprise_acc());
+//        System.out.println(enterpriseList.get(0).getEnterprise_name());
+        return enterpriseList;
+    }
+
+    //企业简介
+    @PostMapping("/intro")
+    public List<Enterprise> EnterprideIntro(HttpServletRequest request){
+        String enterprise_name = request.getParameter("enterprise_name");
+        System.out.println(enterprise_name);
+        List<Enterprise> enterprises = enterprideServiceImpl.queryEnterprideIntro(enterprise_name);
+        System.out.println(enterprises.get(0).getEnterprise_time_establishment());
+//        System.out.println(enterpriseList.get(0).getEnterprise_name());
+        return enterprises;
     }
 
     // 热门企业查询
