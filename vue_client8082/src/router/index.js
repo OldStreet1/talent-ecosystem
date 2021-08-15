@@ -16,6 +16,10 @@ export default new Router({
   routes: [
     {path: '/', name: 'Home', component: Home,},
     {path: '/Home', name: 'Home', component: Home},
+    {path:'/Recruit',name:'Recruit',component:()=>import ('../components/Recruit')},
+    {path:'/Resume',name:'Resume',component:()=>import ('../components/Resume')},
+    {path:'/Enterprise',name:'Enterprise',component:()=>import ('../components/Enterprise')},
+    {path:'/Applet',name:'Applet',component:()=>import ('../components/Applet')},
     {path:'/enterprise_intro',name:'enterprise_intro',component:()=>import ('../components/enterprise/enterprise_intro')},
     {path: '/My', name: 'My', component: My,
       children:[

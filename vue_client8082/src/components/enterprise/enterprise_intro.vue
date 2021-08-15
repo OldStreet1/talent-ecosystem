@@ -7,19 +7,24 @@
     <div class="header">
       <router-link class="talent" to="Home">人才生态圈</router-link>
       <router-link class="home" to="Home">首页</router-link>
-      <router-link class="post" to="Post">职位</router-link>
-      <router-link class="university" to="University">校园</router-link>
-      <router-link class="enterprise" to="enterprise_login">企业</router-link>
+      <router-link class="post" to="Recruit">职位</router-link>
       <router-link class="resume" to="Resume">简历</router-link>
+      <router-link class="enterprise" to="Enterprise">企业</router-link>
+      <router-link class="university" to="school_login">校园</router-link>
       <router-link class="applet" to="Applet">小程序</router-link>
-<!--      <router-link class="upload-resume" to="UploadResume">上传简历</router-link>-->
-      <router-link class="recruit" to="Recruit">我要招聘</router-link>
+      <!--      <router-link class="upload-resume" to="UploadResume">上传简历</router-link>-->
+      <router-link class="recruit" to="enterprise_login">我要招聘</router-link>
       <router-link class="register" to="enterprise_register">注册</router-link>
       <router-link class="elogin" to="enterprise_login">登录</router-link>
       <router-link class="elogin" to="school_login">高校入口</router-link>
       <router-link class="elogin" to="AdminUser">后台管理</router-link>
       <router-link class="my" to="My">个人中心</router-link>
     </div>
+
+    <div class="up">
+
+    </div>
+
     <div class="job-box" style="margin-top: 30px">
       <div class="home-inner" style="max-width: 1184px;max-width: 1184px;margin: 0 auto;">
         <div class="job-detail" style="float: left;width: 836px;margin-right: 0;">
@@ -108,7 +113,7 @@
       <router-link to="Home">
         <img class="weibo" src="../../assets/images/weibo.png" alt="">
       </router-link>
-      <router-link to="My">
+      <router-link to="Applet">
         <img class="apps" src="../../assets/images/apps.png" alt="">
       </router-link>
     </div>

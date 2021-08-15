@@ -7,6 +7,6 @@ import java.util.List;
 public interface RecruitService {
     // 热门招聘查询
     List<Recruit> HotRecruit();
-    // 职位查询
+    // 职位搜索
     List<Recruit> QueryRecruit(Recruit recruit);
 }

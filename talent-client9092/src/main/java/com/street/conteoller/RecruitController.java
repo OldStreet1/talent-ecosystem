@@ -25,10 +25,10 @@ public class RecruitController {
         return recruits;
     }
 
-    // 热门招聘查询
+    // 职位搜索
     @PostMapping("/queryRecruit")
     public List<Recruit> RecruitQuery(String position){
-        System.err.println("1>>>>>>>>>>>>>>>热门招聘查询");
+        System.err.println("3>>>>>>>>>>>>>>>职位搜索");
         Recruit recruit  = new Recruit();
         recruit.setPosition(position);
         List<Recruit> recruits = recruitService.QueryRecruit(recruit);

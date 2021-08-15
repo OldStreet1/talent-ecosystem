@@ -22,52 +22,70 @@
     </div>
 
     <div class="content">
-      <div class="centre">
-        <h2>个人中心</h2>
-        <div class="slideshow">
-          <el-carousel height="120px">
-            <el-carousel-item v-for="(item, index) in list_img" :key="index">
-              <h3 class="small">
-                <img :src="item.url" alt/>
-              </h3>
-            </el-carousel-item>
-          </el-carousel>
-        </div>
-        <div class="main">
-          <div class="head">
-            <img src="../assets/images/qq.png" class="headimg" alt="">
+      <div class="up">
+        <el-input class="search" type="text" aria-valuetext="123456"
+                  placeholder="搜索职位"></el-input>
+        <el-button class="searchbtn" type="primary" icon="el-icon-search" @click="query()">搜索</el-button>
+      </div>
+
+      <div class="main">
+        <a href="#">
+          <div class="recruits">
+            <h2 ref="position" @click="toRecruit()">Java</h2>
+            <span>学历要求：education</span><br>
+            <span>工作经验：experience</span><br>
+            <span>参考薪资：<span class="salary">salary</span></span>
           </div>
-          <div class="menus">
-            <el-menu default-active="1-4-1" class="el-menu-vertical-demo" @open="handleOpen" @close="handleClose"
-                     :collapse="isCollapse" router :default-active="this.$route.path">
-              <el-submenu index="1">
-                <template slot="title">
-                  <i class="el-icon-location"></i>
-                  <span slot="title">个人操作</span>
-                </template>
-                <el-menu-item index="/AInfo">企业信息</el-menu-item>
-                <el-menu-item index="/BMap">查找地址</el-menu-item>
-                <el-menu-item index="1-4">投递简历</el-menu-item>
-                <el-menu-item index="1-5">查看已投简历</el-menu-item>
-              </el-submenu>
-              <el-menu-item index="/Chat">
-                <i class="el-icon-chat-dot-round"></i>
-                <span slot="title">即时通讯</span>
-              </el-menu-item>
-              <el-menu-item index="/ChangePwd">
-                <i class="el-icon-edit"></i>
-                <span slot="title">修改密码</span>
-              </el-menu-item>
-              <el-menu-item @click="logout()">
-                <i class="el-icon-close"></i>
-                <span slot="title">退出登录</span>
-              </el-menu-item>
-            </el-menu>
+          <div class="recruits">
+            <h2 ref="position" @click="toRecruit()">Java</h2>
+            <span>学历要求：education</span><br>
+            <span>工作经验：experience</span><br>
+            <span>参考薪资：<span class="salary">salary</span></span>
           </div>
-        </div>
-        <div class="place">
-          <router-view></router-view>
-        </div>
+          <div class="recruits">
+            <h2 ref="position" @click="toRecruit()">Java</h2>
+            <span>学历要求：education</span><br>
+            <span>工作经验：experience</span><br>
+            <span>参考薪资：<span class="salary">salary</span></span>
+          </div>
+          <div class="recruits">
+            <h2 ref="position" @click="toRecruit()">Java</h2>
+            <span>学历要求：education</span><br>
+            <span>工作经验：experience</span><br>
+            <span>参考薪资：<span class="salary">salary</span></span>
+          </div>
+          <div class="recruits">
+            <h2 ref="position" @click="toRecruit()">Java</h2>
+            <span>学历要求：education</span><br>
+            <span>工作经验：experience</span><br>
+            <span>参考薪资：<span class="salary">salary</span></span>
+          </div>
+          <div class="recruits">
+            <h2 ref="position" @click="toRecruit()">Java</h2>
+            <span>学历要求：education</span><br>
+            <span>工作经验：experience</span><br>
+            <span>参考薪资：<span class="salary">salary</span></span>
+          </div>
+          <div class="recruits">
+            <h2 ref="position" @click="toRecruit()">Java</h2>
+            <span>学历要求：education</span><br>
+            <span>工作经验：experience</span><br>
+            <span>参考薪资：<span class="salary">salary</span></span>
+          </div>
+          <div class="recruits">
+            <h2 ref="position" @click="toRecruit()">Java</h2>
+            <span>学历要求：education</span><br>
+            <span>工作经验：experience</span><br>
+            <span>参考薪资：<span class="salary">salary</span></span>
+          </div>
+          <div class="recruits">
+            <h2 ref="position" @click="toRecruit()">Java</h2>
+            <span>学历要求：education</span><br>
+            <span>工作经验：experience</span><br>
+            <span>参考薪资：<span class="salary">salary</span></span>
+          </div>
+
+        </a>
       </div>
     </div>
 
@@ -90,51 +108,14 @@
 
 <script>
 export default {
-  name: 'My',
-  data() {
-    return {
-      list_img: [
-        {url: require('../assets/images/1.jpg')},
-        {url: require('../assets/images/2.jpg')},
-        {url: require('../assets/images/3.jpg')},
-        {url: require('../assets/images/4.jpg')},
-      ],
-      isCollapse: false
-    }
-  },
-  methods: {
-    handleOpen(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    handleClose(key, keyPath) {
-      console.log(key, keyPath);
-    },
-    logout() {
-      this.$confirm('请问是否确定退出登录?', '提示', {
-        confirmButtonText: '确定',
-        cancelButtonText: '取消',
-        type: 'warning'
-      }).then(() => {
-        this.$message({
-          type: 'success',
-          message: '退出登录成功!',
-        });
-        this.$router.push({path: "/Home"})
-      }).catch(() => {
-        this.$message({
-          type: 'info',
-          message: '取消退出登录'
-        });
-      });
-    }
-  }
+  name: "Recruit"
 }
 </script>
 
 <style scoped>
 .index {
   width: 100%;
-  height: 1000px;
+  height: 1800px;
   /*background-color: #40E0D0;*/
   background-image: url("../assets/images/back.jpg");
 }
@@ -215,59 +196,57 @@ export default {
 
 .content {
   width: 100%;
-  height: 920px;
+  height: 1600px;
 }
 
-.centre {
-  width: 1000px;
-  height: 920px;
-  margin: 0 auto;
-}
-
-h2 {
-  margin: 0;
-  padding-top: 20px;
-}
-
-.slideshow {
-  width: 1000px;
-  margin: 0 auto;
-}
-
-.main {
-  width: 1000px;
-  height: 700px;
-  background-color: white;
-  position: absolute;
-  left: 452px;
-}
-
-.head {
-  margin-left: -800px;
-}
-
-.headimg {
-  width: 60px;
+.up {
+  width: 100%;
   height: 60px;
+  margin: 0 auto;
+  /*background-color: #40E0D0;*/
+}
+
+.search {
+  width: 600px;
+  height: 40px;
+  /*line-height: 80px;*/
+  font-size: 16px;
   margin-top: 20px;
+  border: none;
 }
 
-.menus {
-  margin-top: 20px;
+.searchbtn {
+  font-size: 16px;
+  margin-left: -4px;
 }
 
-.el-menu-vertical-demo:not(.el-menu--collapse) {
-  width: 200px;
-  min-height: 400px;
+.main{
+  width: 1200px;
+  height: 1500px;
+  margin: 0 auto;
 }
 
-.place {
-  width: 800px;
-  height: 700px;
-  background-color: lightcyan;
-  position: absolute;
-  left: 652px;
-  z-index: auto;
+.recruits {
+  width: 373px;
+  height: 250px;
+  margin: 20px 0 20px 20px;
+  background-color: white;
+  /*background-color: #40E0D0;*/
+  float: left;
+}
+
+.recruits h2{
+  color: #40E0D0;
+  line-height: 40px;
+}
+
+.recruits span{
+  color: black;
+  line-height: 50px;
+}
+
+.recruits .salary{
+  color: red;
 }
 
 .footer {
