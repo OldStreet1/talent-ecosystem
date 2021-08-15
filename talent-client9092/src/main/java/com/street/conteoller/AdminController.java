@@ -13,24 +13,5 @@ import java.util.List;
 @RequestMapping("/admin")
 public class AdminController {
 
-    @Autowired
-    private AdminServiceImpl adminService;
 
-    @ResponseBody
-    @RequestMapping("/adminchaxun")
-    public List<Admin> admin(){
-        System.out.println("0000");
-        Admin admin = new Admin();
-        List<Admin> allchaxun = adminService.allchaxun();
-        return allchaxun;
-    }
-
-    @ResponseBody
-    @RequestMapping("/adminxiugai")
-    public List<Admin> xiugai(){
-//        System.out.println("0000");
-        Admin admin = new Admin();
-        List<Admin> allchaxun = adminService.allchaxun();
-        return allchaxun;
-    }
 }

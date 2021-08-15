@@ -73,7 +73,7 @@ public class EnterpriseController {
     public List<Enterprise> EnterprideData(Enterprise enterprise , HttpServletRequest request){
         String enterprise_acc = String.valueOf(request.getSession().getAttribute("enterprise_acc"));
         System.out.println(enterprise_acc);
-        List<Enterprise> enterpriseList = enterprideServiceImpl.queryEnterprideData(enterprise.getEnterprise_acc());
+        List<Enterprise> enterpriseList = enterprideServiceImpl.queryEnterprideData(enterprise_acc);
 //        System.out.println(enterpriseList.get(0).getEnterprise_name());
         return enterpriseList;
     }
