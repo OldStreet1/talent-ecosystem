@@ -19,6 +19,11 @@ and university_password=#{university_password}
         select university_name from t_university where university_corporate_ID_number=#{university_corporate_ID_number}
     </select>
 
+<!--    检查身份证是否重复-->
+    <select id="selectIDcard" resultType="com.street.bean.User">
+        select * from t_user where user_id_card=#{user_id_card}
+    </select>
+
     <!--    解析文件添加学生信息到用户表-->
     <insert id="checkAdd" parameterType="java.util.List">
         insert  into t_user (user_name,user_pwd,user_id_card,user_nation,
