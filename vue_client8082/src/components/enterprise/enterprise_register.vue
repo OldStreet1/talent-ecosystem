@@ -17,7 +17,7 @@
         hide-required-asterisk
 
       >
-        <el-form-item prop="employerName" :validate-status="status">
+        <el-form-item prop="" >
           <el-input clearable v-model="data.employerName" placeholder="企业名称" @blur="validateName"></el-input>
         </el-form-item>
           <el-input clearable v-model="data.employerAddress"  placeholder="企业地址" @blur=""></el-input>
