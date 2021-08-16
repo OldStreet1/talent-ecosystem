@@ -65,7 +65,7 @@
 export default {
   name: 'school_reg',
   data  () {
-
+//身份证验证
     let num = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
     let isNum = (rule, value, callback) => {
       if (!num.test(value)) {
@@ -83,6 +83,24 @@ export default {
         callback()
       }
     };
+    //学校名称
+    let schoolName=/[\u4e00-\u9fa5]/;
+    let isschool=(rule,value,callback)=>{
+      if (!schoolName.test(value)){
+        return callback(new Error('请输入合法的学校名字'))
+      }else {
+        callback()
+      }
+    };
+    //
+    let schoolCard=/^[0-9]*$/;
+    let isCard=(rule,value,callback)=>{
+      if(!schoolCard.test(value)){
+        return callback(new Error('请输入合法的学校代码'))
+      }else {
+        callback()
+      }
+    }
 
     return {
       form: {
@@ -103,8 +121,11 @@ export default {
           { min: 1, max: 8, message: '长度在 1 到 8 个字符', trigger: 'blur' },
           { validator:isNumber}
         ],
-        university_code:[{required: true, message: '不能为空', trigger: 'blur'}],
-        university_name:[{required: true, message: '不能为空', trigger: 'blur'}],
+        university_code:[{required: true, message: '不能为空', trigger: 'blur'},
+          {validator:isCard}],
+        university_name:[{required: true, message: '不能为空', trigger: 'blur'},
+          {validator:isschool}
+        ],
         checkPwd:[{required: true, message: '不能为空', trigger: 'blur'}],
         university_profile:[{required: true, message: '不能为空', trigger: 'blur'}]
       }
