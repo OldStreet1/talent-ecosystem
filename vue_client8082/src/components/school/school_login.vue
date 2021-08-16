@@ -67,7 +67,7 @@ export default {
       },
       rules: {
         corporate_ID_number: [
-          { required: true, message: '1', trigger: 'blur' },
+          { required: true, message: '不能为空', trigger: 'blur' },
           { validator:isNum}
         ],
         university_password: [
