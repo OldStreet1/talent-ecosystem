@@ -87,8 +87,8 @@ export default {
       if (this.corporate_ID_number != '' && this.university_password != '') {
         this.$axios.post("/school/getLogin",
           this.$qs.stringify({
-            corporate_ID_number: this.corporate_ID_number,
-            university_password: this.university_password,
+            corporate_ID_number: this.form.corporate_ID_number,
+            university_password: this.form.university_password,
           })
         ).then(response => {
           console.log(response.data)
