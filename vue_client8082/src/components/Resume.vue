@@ -23,71 +23,21 @@
 
     <div class="content">
       <div class="up">
-        <el-input class="search" type="text" aria-valuetext="123456"
+        <el-input v-model="input" class="search" type="text" aria-valuetext="123456"
                   placeholder="搜索简历"></el-input>
         <el-button class="searchbtn" type="primary" icon="el-icon-search" @click="query()">搜索</el-button>
       </div>
 
       <div class="main">
-        <a href="#">
-          <div class="resumes">
-            <h2 ref="position" @click="toResume()">姓名</h2>
-            <span>学历：education</span><br>
-            <span>专业：experience</span><br>
-            <span>求职意向：<span class="salary">salary</span></span><br>
+        <router-link to="/">
+          <div class="resumes" v-for="(item,i) in ResumeData">
+            <h2>{{item.user_name}}</h2>
+            <span class="edu">学历：{{item.edu_back}}</span><br>
+            <span>求职意向：{{item.job_intention}}</span><br>
+            <span>期望薪资：<span class="salary">{{item.exp_salary}}</span></span><br>
             <el-button class="btn">马上联系</el-button>
           </div>
-          <div class="resumes">
-            <h2 ref="position" @click="toResume()">姓名</h2>
-            <span>学历：education</span><br>
-            <span>专业：experience</span><br>
-            <span>求职意向：<span class="salary">salary</span></span><br>
-            <el-button class="btn">马上联系</el-button>
-          </div>
-          <div class="resumes">
-            <h2 ref="position" @click="toResume()">姓名</h2>
-            <span>学历：education</span><br>
-            <span>专业：experience</span><br>
-            <span>求职意向：<span class="salary">salary</span></span><br>
-            <el-button class="btn">马上联系</el-button>
-          </div>
-          <div class="resumes">
-            <h2 ref="position" @click="toResume()">姓名</h2>
-            <span>学历：education</span><br>
-            <span>专业：experience</span><br>
-            <span>求职意向：<span class="salary">salary</span></span><br>
-            <el-button class="btn">马上联系</el-button>
-          </div>
-          <div class="resumes">
-            <h2 ref="position" @click="toResume()">姓名</h2>
-            <span>学历：education</span><br>
-            <span>专业：experience</span><br>
-            <span>求职意向：<span class="salary">salary</span></span><br>
-            <el-button class="btn">马上联系</el-button>
-          </div>
-          <div class="resumes">
-            <h2 ref="position" @click="toResume()">姓名</h2>
-            <span>学历：education</span><br>
-            <span>专业：experience</span><br>
-            <span>求职意向：<span class="salary">salary</span></span><br>
-            <el-button class="btn">马上联系</el-button>
-          </div>
-          <div class="resumes">
-            <h2 ref="position" @click="toResume()">姓名</h2>
-            <span>学历：education</span><br>
-            <span>专业：experience</span><br>
-            <span>求职意向：<span class="salary">salary</span></span><br>
-            <el-button class="btn">马上联系</el-button>
-          </div>
-          <div class="resumes">
-            <h2 ref="position" @click="toResume()">姓名</h2>
-            <span>学历：education</span><br>
-            <span>专业：experience</span><br>
-            <span>求职意向：<span class="salary">salary</span></span><br>
-            <el-button class="btn">马上联系</el-button>
-          </div>
-
-        </a>
+        </router-link>
       </div>
     </div>
 
@@ -105,19 +55,42 @@
         <img class="apps" src="../assets/images/apps.png" alt="">
       </router-link>
     </div>
+
   </div>
 </template>
 
 <script>
+
 export default {
-  name: "Resume"
+  name: "Resume",
+  data(){
+    return{
+      dialogVisible:false,
+      input:'',
+      ResumeData:[]
+    }
+  },
+  created() {
+    this.getResumeData()
+  },
+  methods:{
+    getResumeData:function (){
+      this.$axios.post("/resume/resumes"
+      ).then(response => {
+        console.log(response)
+        this.ResumeData = response.data
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+  }
 }
 </script>
 
 <style scoped>
 .index {
   width: 100%;
-  height: 1800px;
+  height: 2000px;
   /*background-color: #40E0D0;*/
   background-image: url("../assets/images/back.jpg");
 }
@@ -198,7 +171,7 @@ export default {
 
 .content {
   width: 100%;
-  height: 1600px;
+  height: 1800px;
 }
 
 .up {
@@ -224,7 +197,7 @@ export default {
 
 .main{
   width: 1200px;
-  height: 1500px;
+  height: 1800px;
   margin: 0 auto;
 }
 
@@ -245,6 +218,10 @@ export default {
 .resumes span{
   color: black;
   line-height: 50px;
+}
+
+.resumes .edu{
+  height: 50px;
 }
 
 .resumes .salary{

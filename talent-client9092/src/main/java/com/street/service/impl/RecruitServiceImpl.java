@@ -26,4 +26,9 @@ public class RecruitServiceImpl implements RecruitService {
         List<Recruit> recruits = recruitMapper.QueryRecruit(recruit);
         return recruits;
     }
+
+    @Override
+    public List<Recruit> AllRecruit() {
+        return recruitMapper.AllRecruit();
+    }
 }

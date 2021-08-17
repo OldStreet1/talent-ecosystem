@@ -20,6 +20,8 @@ public interface EnterprideService {
     List<Enterprise> enterprideLogin(Enterprise enterprise);
     // 热门企业查询
     List<Enterprise> HotEnterprise();
+    // 所有企业查询
+    List<Enterprise> AllEnterprise();
     //查询企业坐标
     String queryEnterpriseCoordinate(String enterprise_name);
     //企业信息
@@ -29,4 +31,7 @@ public interface EnterprideService {
                                   @Param("enterprise_acc")String enterprise_acc);
     //企业信息
     List<Enterprise> queryEnterprideIntro(String enterprise_name);
+
+    // 企业修改密码
+    int ChangePwd(Enterprise enterprise);
 }

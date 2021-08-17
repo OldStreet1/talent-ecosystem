@@ -47,7 +47,7 @@ public class AdminServiceImpl implements AdminService {
     }
 
     @Override //后台登录方法
-    public Admin AdminLogin(Admin admin) {
+    public List<Admin> AdminLogin(Admin admin) {
         return adminMapper.AdminLogin(admin);
     }
 

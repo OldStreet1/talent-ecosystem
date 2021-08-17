@@ -7,6 +7,9 @@
         select * from t_recruit order by recruit_id desc limit 0,6;
     </select>
     <select id="QueryRecruit" parameterType="com.street.bean.Recruit" resultType="com.street.bean.Recruit">
-        select * from t_recruit where position like #{position};
+        select * from t_recruit where position like concat('%',#{position},'%');
+    </select>
+    <select id="AllRecruit" parameterType="com.street.bean.Recruit" resultType="com.street.bean.Recruit">
+        select * from t_recruit;
     </select>
 </mapper>

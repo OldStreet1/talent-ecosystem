@@ -32,7 +32,7 @@
             :props="{ expandTrigger: 'hover' }"
             @change="handleChange"></el-cascader>
           <el-input v-model="input" class="search" type="text" aria-valuetext="123456"
-                    placeholder="搜索职位、简历、企业"></el-input>
+                    placeholder="搜索职位、企业"></el-input>
           <el-button class="searchbtn" type="primary" icon="el-icon-search" @click="query()">搜索</el-button>
           <div class="hotdiv">
             <span class="hot">*热门职位：</span>
@@ -61,14 +61,14 @@
 
         <div class="hot-recruit">
           <h2>——热招职位——</h2>
-          <a href="#">
-            <div class="recruits" v-for="(item,i) in hotRecruitData">
+          <router-link to="/">
+            <div class="recruits" v-for="(item,i) in hotRecruitData" >
               <h2 ref="position" @click="toRecruit()">{{ item.position }}</h2>
               <span>学历要求：{{ item.education }}</span><br>
               <span>工作经验：{{ item.experience }}</span><br>
               <span>参考薪资：<span class="salary">{{ item.salary }}</span></span>
             </div>
-          </a>
+          </router-link>
         </div>
 
         <div class="hot-enterprise">

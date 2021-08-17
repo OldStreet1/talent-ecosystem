@@ -16,7 +16,7 @@ public interface AdminService {
     //后台注册
     int AdminAdd(Admin admin);
     //后台管理登录
-    Admin AdminLogin(Admin admin);
+    List<Admin> AdminLogin(Admin admin);
    //查询账号是否存在
     List<Admin> UserSelect(String admin_account);
     //菜单栏查询
