@@ -11,6 +11,7 @@
 </el-select>
 
 <el-button @click="screen">查询</el-button>
+    <el-button @click="downloadExcel">导出</el-button>
   <el-table
     id="example"
     :data="tableData.slice((currentPage-1)*pageSize,currentPage*pageSize)"
@@ -79,6 +80,14 @@
       prop="create_time"
       label="导入时间">
     </el-table-column>
+    <el-table-column
+      fixed="right"
+      label="操作"
+      width="100">
+      <template slot-scope="scope">
+        <el-button @click="handleClick(scope.row)" type="text" size="small">查看</el-button>
+      </template>
+    </el-table-column>
   </el-table>
   <div class="block" style="margin-top:15px;">
     <el-pagination align='center' @size-change="handleSizeChange" @current-change="handleCurrentChange"
@@ -89,24 +98,39 @@
                    :total="tableData.length">
     </el-pagination>
   </div>
+    <el-dialog title="学生个人简历" :visible.sync="resumeTableVisible">
+      <el-table :data="resumeData" id="resume">
+
+      </el-table>
+    </el-dialog>
   </div>
 </template>
 
 <script>
-import student_admin from "./student_admin";
-
+import FileSaver from 'file-saver'
+import XLSX from 'xlsx'
 export default {
   name: "sAdmin_Export",
   data(){
     return{
+      luj:'',
       majors:[],//装下拉框请求的值
       user_major:'',
+      user_id:'',
       tableData:[],//存学生信息
       currentPage: 1, // 当前页码
       pageSize: 5 ,// 每页的数据条数
+
+      //简历
+      resumeTableVisible:false,
+      resumeData:[],
     }
   },
-  methods:{
+  methods: {
+    handleClick(row) {
+      console.log(row);
+      this.resumeTableVisible=true
+    },
     //每页条数改变时触发 选择一页显示多少行
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
@@ -119,16 +143,16 @@ export default {
       this.currentPage = val;
     },
     //获得下拉框选中的value
-      getMajor(value){
-        if (value!=''){
-          this.user_major=value
-          console.log("选择了"+this.user_major)
-        }else {
-          this.user_major=''
-        }
-      },
+    getMajor(value) {
+      if (value != '') {
+        this.user_major = value
+        console.log("选择了" + this.user_major)
+      } else {
+        this.user_major = ''
+      }
+    },
     //根据下拉框值筛选
-    screen:function () {
+    screen: function () {
       if (this.user_major != '全部') {
         this.$axios.post("/school/screenUser",
           this.$qs.stringify({
@@ -136,20 +160,31 @@ export default {
           })
         ).then(response => {
           console.log(response.data)
-          this.tableData=response.data
+          this.tableData = response.data
         }).catch(err => {
           console.log(err)
         })
-      }else if (this.user_major="全部"){
+      } else if (this.user_major = "全部") {
         this.$axios.post("/school/queryUser",
         ).then(response => {
           console.log(response.data)
-          this.tableData=response.data
+          this.tableData = response.data
         }).catch(err => {
           console.log(err)
         })
-    }
-
+      }
+    },
+    //导出
+    downloadExcel:function (){
+      this.$axios.post("/school/downloadExcel",
+      this.$qs.stringify({
+        user_major: this.user_major
+      })
+      ).then(response => {
+        console.log(response)
+      }).catch(err =>{
+        console.log(err)
+      })
     }
   },
   //下拉框的值

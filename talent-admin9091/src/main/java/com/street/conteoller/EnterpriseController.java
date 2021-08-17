@@ -8,13 +8,11 @@ import com.street.service.impl.EnterpriseServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
-import java.util.Map;
 
 @Controller
 @RequestMapping("/enter")
@@ -35,7 +33,6 @@ public class EnterpriseController {
         return epallchaxun;
 
     }
-
     //获取聊天记录
     @PostMapping("/getchat")
     @ResponseBody
@@ -71,5 +68,6 @@ public class EnterpriseController {
 
         return "";
     }
+
 
 }

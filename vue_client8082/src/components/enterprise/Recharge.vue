@@ -7,7 +7,7 @@
     <div>
       <ul class="msg-box">
         <li>
-          <h4>我要充值</h4>
+          <h3>充值中心</h3>
         </li>
         <li>
           <h4 style="margin-bottom: 15px">充值金额</h4>

@@ -35,6 +35,11 @@ public class EnterprideServiceImpl implements EnterprideService {
     }
 
     @Override
+    public List<Enterprise> HotEnterprise() {
+        return enterprideMapper.HotEnterprise();
+    }
+
+    @Override
     public String queryEnterpriseCoordinate(String enterprise_name) {
         return enterprideMapper.queryEnterpriseCoordinate(enterprise_name);
     }
@@ -53,6 +58,4 @@ public class EnterprideServiceImpl implements EnterprideService {
     public List<Enterprise> queryEnterprideIntro(String enterprise_name) {
         return enterprideMapper.queryEnterprideIntro(enterprise_name);
     }
-
-
 }

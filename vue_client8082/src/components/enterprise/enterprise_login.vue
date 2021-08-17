@@ -86,7 +86,7 @@ export default {
               message: '恭喜你，登陆成功',
               type: 'success'
             });
-            this.$router.push({path: "/home"})
+            this.$router.push({path: "/My"})
           }else {
             this.$message.error('登陆失败');
           }

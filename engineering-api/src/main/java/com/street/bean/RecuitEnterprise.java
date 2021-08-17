@@ -91,7 +91,7 @@ public class RecuitEnterprise {
 
     private String position;
 
-    private String alary;
+    private String salary;
 
     private String experience;
 

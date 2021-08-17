@@ -1,10 +1,7 @@
 package com.street.bean;
 
-import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import lombok.experimental.Accessors;
 
 /**
@@ -17,6 +14,8 @@ import lombok.experimental.Accessors;
 @AllArgsConstructor
 @NoArgsConstructor
 @Accessors(chain = true)     //链式写法
+@Getter
+@Setter
 public class Admin {
     @ApiModelProperty(value = "主键Id")
     private int admin_id;
@@ -41,4 +40,13 @@ public class Admin {
 
     @ApiModelProperty(value = "更新时间")
     private String update_time;
+
+    @ApiModelProperty(value = "角色ID")
+    private int admin_roleId;
+
+    @ApiModelProperty(value = "角色状态")
+    private String admin_state;
+
+    @ApiModelProperty(value = "昵称")
+    private String admin_name;
 }

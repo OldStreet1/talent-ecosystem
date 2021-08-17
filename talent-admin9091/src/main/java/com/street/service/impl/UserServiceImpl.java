@@ -43,4 +43,9 @@ public class UserServiceImpl implements UserService {
     public int updetepwd(User user) {
         return userMapper.updetepwd(user);
     }
+
+    @Override
+    public int updateuserinfo(User user) {
+        return userMapper.updateuserinfo(user);
+    }
 }

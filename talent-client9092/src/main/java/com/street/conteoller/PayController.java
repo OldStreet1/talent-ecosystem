@@ -1,14 +1,12 @@
 package com.street.conteoller;
 
 import com.street.bean.AlipayBean;
-import com.street.bean.Enterprise;
 import com.street.config.AlipayConfig;
 import com.street.service.impl.EnterprideServiceImpl;
 import com.street.service.impl.PayServiceImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;

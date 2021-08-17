@@ -24,6 +24,7 @@ import java.io.IOException;
 @EnableConfigurationProperties(AlipayConfig.class)
 @Service
 public class PayServiceImpl implements PayService {
+
     @Autowired
     AlipayConfig alipayConfig;
     @Override

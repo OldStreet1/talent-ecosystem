@@ -18,6 +18,8 @@ public interface EnterprideService {
     List<Enterprise> queryEnterpride(String enterprise_acc);
     //企业登陆
     List<Enterprise> enterprideLogin(Enterprise enterprise);
+    // 热门企业查询
+    List<Enterprise> HotEnterprise();
     //查询企业坐标
     String queryEnterpriseCoordinate(String enterprise_name);
     //企业信息

@@ -2,7 +2,6 @@ package com.street.config;
 
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.context.annotation.PropertySource;
 import org.springframework.stereotype.Component;
 
 import java.io.Serializable;
@@ -25,9 +24,9 @@ public class AlipayConfig implements Serializable {
     //支付宝公钥
     private String alipay_public_key="MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAsKPjlV8pVxHy6CjLpjYS0GUiRnS/rDXfHT67xVxbYFE+Xq/CVOJx5tNOaWvaDX6/PSWWIxoVTHkF1Rpb2WPrcfXAfOKsJ5Xf9z0oU3K0IOCAaIOnVvyiANieGNbjPHxfK46yqJjD1K4YPd+q/wlWe3BXe/2tzKYXpHX9Zzo5ap9kMvKe5FyiixB+pdhy11Ps4ii8oEperx4YVmuWQ6nhAs4yGLYsUxkTdrwEoy+2zwOCxIQuHA+9EBBJXj1pHK+GnNteNlzOOCyfmLu+MV9TadVCTwBzTTLik/jWnNtx6JgAoyiyUFyqf++hZFMYSNxWvMJpdw4B2YpF5vH/kKM/aQIDAQAB";
     //服务器异步通知页面路径
-    private String notify_url= "http://localhost:8082/#/AInfo";
+    private String notify_url= "http://localhost:8082/AInfo";
     //页面跳转同步通知页面路径
-    private String return_url= "http://localhost:8082/#/AInfo";
+    private String return_url= "http://localhost:8082/AInfo";
     //签名方式
     private String sign_type="RSA2";
     //字符编码格式

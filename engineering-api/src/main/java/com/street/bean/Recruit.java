@@ -31,4 +31,31 @@ public class Recruit {
 
     @ApiModelProperty(value = "更新时间")
     private String update_time;
+
+    @ApiModelProperty(value = "简介")
+    private String brief_introduction;
+
+    @ApiModelProperty(value = "联系人")
+    private String contacts;
+
+    @ApiModelProperty(value = "联系电话")
+    private String phonenumber;
+
+    @ApiModelProperty(value = "联系地址")
+    private String contact_address;
+
+    @ApiModelProperty(value = "掌握技能")
+    private String skills;
+
+    @ApiModelProperty(value = "招聘职位")
+    private String position;
+
+    @ApiModelProperty(value = "薪资")
+    private String salary;
+
+    @ApiModelProperty(value = "经验要求")
+    private String experience;
+
+    @ApiModelProperty(value = "学历要求")
+    private String education;
 }

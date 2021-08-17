@@ -4,8 +4,10 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.street.mapper.EnterprideMapper">
     <insert id="addEnterpride" parameterType="com.street.bean.Enterprise">
-        insert into t_enterprise (enterprise_name, enterprise_acc,enterprise_pwd,enterprise_address,enterprise_operation_status,enterprise_time_of_establishment,enterprise_legal_person,enterprise_code,enterprise_type,create_time)
-        VALUE (#{enterprise_name},#{enterprise_acc},#{enterprise_pwd},#{enterprise_address},#{enterprise_operation_status},#{enterprise_time_establishment},#{enterprise_legal_person},#{enterprise_code},#{enterprise_type},#{create_time})
+        insert into t_enterprise (enterprise_name, enterprise_acc, enterprise_pwd, enterprise_address,
+                                  enterprise_operation_status, enterprise_time_of_establishment,
+                                  enterprise_legal_person, enterprise_code, enterprise_type, create_time)
+            VALUE (#{enterprise_name},#{enterprise_acc},#{enterprise_pwd},#{enterprise_address},#{enterprise_operation_status},#{enterprise_time_establishment},#{enterprise_legal_person},#{enterprise_code},#{enterprise_type},#{create_time})
     </insert>
 
     <select id="queryEnterpride" parameterType="String" resultType="com.street.bean.Enterprise">
@@ -18,7 +20,39 @@
     <select id="enterprideLogin" parameterType="com.street.bean.Enterprise" resultType="com.street.bean.Enterprise">
         select *
         from t_enterprise
-        where enterprise_acc = #{enterprise_acc} and enterprise_pwd = #{enterprise_pwd}
+        where enterprise_acc = #{enterprise_acc}
+          and enterprise_pwd = #{enterprise_pwd}
+        ;
+    </select>
+
+    <select id="HotEnterprise" parameterType="com.street.bean.Enterprise" resultType="com.street.bean.Enterprise">
+        select *
+        from t_enterprise limit 5,6;
+    </select>
+
+
+    <select id="queryEnterpriseCoordinate" parameterType="String" resultType="string">
+        select enterprise_coordinate
+        from t_enterprise
+        where enterprise_name = #{enterprise_name}
+        ;
+    </select>
+    <select id="queryEnterprideData" parameterType="com.street.bean.Enterprise" resultType="com.street.bean.Enterprise">
+        select *
+        from t_enterprise
+        where enterprise_acc = #{enterprise_acc}
+        ;
+    </select>
+    <update id="increaseEnterprideBalance" parameterType="com.street.bean.Enterprise">
+        update t_enterprise
+        set enterprise_account_balance=enterprise_account_balance + #{enterprise_account_balance}
+        where enterprise_acc = #{enterprise_acc};
+    </update>
+    <select id="queryEnterprideIntro" parameterType="com.street.bean.Enterprise"
+            resultType="com.street.bean.Enterprise">
+        select *
+        from t_enterprise
+        where enterprise_name = #{enterprise_name}
         ;
     </select>
     <select id="queryEnterpriseCoordinate" parameterType="String" resultType="string">

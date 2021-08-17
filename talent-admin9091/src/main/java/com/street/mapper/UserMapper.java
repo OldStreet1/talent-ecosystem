@@ -1,7 +1,6 @@
 package com.street.mapper;
 
 import com.street.bean.User;
-import org.apache.ibatis.annotations.Mapper;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
@@ -29,4 +28,7 @@ public interface UserMapper {
 
     //修改密码
     int updetepwd(User user);
+
+    //修改信息
+    int updateuserinfo(User user);
 }

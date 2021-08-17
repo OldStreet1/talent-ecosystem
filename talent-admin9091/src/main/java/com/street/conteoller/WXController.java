@@ -138,23 +138,17 @@ public class WXController {
     @PostMapping("/sendSms")
     @ResponseBody
     public String sendSms(@RequestBody Map<String, String> req) throws Exception {
-//        // 获取到操作String的对象
-//        String code  = redisTemplate.opsForValue().get(req.get("phone"));
-//        if (StringUtils.isEmpty(code)) {
             // 生成6位随机数
-             String code = String.valueOf(Math.random()).substring(3, 9);
+            String code = String.valueOf(Math.random()).substring(3, 9);
             System.out.println(code);
             // 将redisTemplate模板对象的key的序列化方式修改为new StringRedisSerializer
             redisTemplate.setKeySerializer(new StringRedisSerializer());
             // 将phone当做key，将code当做value存进redis中，时间为5分钟
             redisTemplate.opsForValue().set(req.get("phone"), code, 5, TimeUnit.MINUTES);
             // 调用业务层接口 发送验证码
-//            boolean sendSmsFlag = sendSms.sendSmsCode(req.get("phone"), code);
+            boolean sendSmsFlag = sendSms.sendSmsCode(req.get("phone"), code);
             return "success";
-//        }else {
-//            System.out.println(redisTemplate.getExpire(req.get("phone")));
-//            return ""+redisTemplate.getExpire(req.get("phone"));
-//        }
+
     }
 
 
@@ -303,6 +297,24 @@ public class WXController {
         return s;
     }
 
+    //用户信息修改
+
+    @PostMapping("/updateuserinfo")
+    @ResponseBody
+    public String updateuserinfo(@RequestBody Map<String, String> req){
+        User user = new User();
+        user.setUser_name(req.get("username"));
+        user.setUser_school_name(req.get("user_school_name"));
+        user.setUser_major(req.get("user_major"));
+        user.setUser_date_birth(req.get("user_date_birth"));
+        user.setUserage(req.get("userage"));
+        user.setUser_education(req.get("user_education"));
+        user.setUser_id(Integer.valueOf(req.get("userid")));
+        System.out.println(user);
+        int updateuserinfo = userServiceImpl.updateuserinfo(user);
+
+        return "acc";
+    }
 
 
 }
