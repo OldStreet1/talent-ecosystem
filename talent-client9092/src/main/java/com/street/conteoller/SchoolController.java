@@ -220,14 +220,13 @@ public Map<String, Object> upload(@RequestParam("file") MultipartFile file,
                 sdf.format(d);
                 user.setCreate_time(sdf.format(d));
             }
-            users.add(user);
-            System.out.println(user);
            List<User> k=UniversityService.selectIDcard(user.getUser_id_card());
-            if (k.isEmpty()) {
+            if (!k.isEmpty()) {
+                System.out.println("已经存在");
+            }else {
+                users.add(user);
+                System.out.println(user);
                 int j = UniversityService.checkAdd(users);
-                return users;
-            } else {
-
             }
         }
         return users;
