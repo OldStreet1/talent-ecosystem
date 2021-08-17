@@ -15,6 +15,37 @@
         ;
     </select>
 
+    <select id="AdminSelect" parameterType="com.street.bean.Admin" resultType="com.street.dto.AdminDto">
+        select *
+        from t_admin
+        where admin_roleId != '1'
+
+    </select>
+
+
+    <delete id="AdminDelete" parameterType="com.street.bean.Admin">
+        delete
+        from t_admin
+        where admin_id =#{Admin.admin_id}
+
+    </delete>
+
+    <update id="AdminEnable" parameterType="com.street.bean.Admin">
+        update
+        t_admin set admin_state='启用'
+        where admin_id =#{Admin.admin_id}
+
+    </update>
+
+    <update id="AdminDisable" parameterType="com.street.bean.Admin">
+        update
+        t_admin set admin_state='禁用'
+        where admin_id =#{Admin.admin_id}
+
+    </update>
+
+
+
     <select id="UserSelect" parameterType="com.street.bean.Admin" resultType="com.street.bean.Admin">
         select *
         from t_admin

@@ -16,4 +16,12 @@ public interface AdminService {
     List<Admin> UserSelect(String admin_account);
     //菜单栏查询
     List<Menu> MenuSelect(Menu menu);
+    //查询用户所有信息
+    List<AdminDto> AdminSelect(Admin admin);
+    //删除用户信息
+    int AdminDelete(String admin_id);
+    //启用用户状态
+    int AdminEnable(String admin_id);
+    //禁用用户状态
+    int AdminDisable(String admin_id);
 }

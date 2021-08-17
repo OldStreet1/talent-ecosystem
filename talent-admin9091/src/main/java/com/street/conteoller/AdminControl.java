@@ -62,10 +62,54 @@ public class AdminControl {
 
     }
 
-    //后台动态菜单栏
-//    @PostMapping("/Menu")
-//    public String MenuAdd(Menu menu) {
-//
-//    }
+    //查询用户所有信息
+    @PostMapping("/AdminSelect")
+    @ResponseBody
+    public Map<String,Object>  AdminSelect(Admin admin) {
 
-}
+        System.out.println("后台管理请求获取用户信息");
+        Map<String,Object> map=new HashMap<>();
+        List<AdminDto> admins=adminServiceImpl.AdminSelect(admin);
+        String isMessageSuceess=null;
+        if (admins==null) {
+            isMessageSuceess="error";
+        } else {
+            isMessageSuceess="success";
+        }
+        map.put("isMessageSuceess",isMessageSuceess);
+        map.put("admins",admins);
+        return map;
+    }
+    //删除用户信息
+    @PostMapping("/AdminDelete")
+    public String AdminDelete(String admin_id) {
+        int a = adminServiceImpl.AdminDelete(admin_id);
+        if (a >= 1) {
+            return "success";
+        } else {
+            return "errrrr";
+        }
+    }
+    //启用用户
+    @PostMapping("/AdminEnable")
+    public String AdminEnable(String admin_id) {
+        int a = adminServiceImpl.AdminEnable(admin_id);
+        if (a >= 1) {
+            return "c";
+        } else {
+            return "errrrr";
+        }
+    }
+    //禁用用户
+    @PostMapping("/AdminDisable")
+    public String AdminDisable(String admin_id) {
+        int a = adminServiceImpl.AdminDisable(admin_id);
+        if (a >= 1) {
+            return "success";
+        } else {
+            return "errrrr";
+        }
+    }
+    }
+
+

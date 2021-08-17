@@ -20,6 +20,25 @@ public class AdminServiceImpl implements AdminService {
         return adminMapper.AdminLogin(admin);
     }
 
+    @Override //查询用户所有信息
+    public List<AdminDto> AdminSelect(Admin admin) {
+        return adminMapper.AdminSelect(admin);
+    }
+    @Override //删除用户信息
+    public int AdminDelete(String admin_id) {
+        return adminMapper.AdminDelete(admin_id);
+    }
+
+    @Override //启用用户状态
+    public int AdminEnable(String admin_id) {
+        return adminMapper.AdminEnable(admin_id);
+    }
+
+    @Override //禁用用户状态
+    public int AdminDisable(String admin_id) {
+        return adminMapper.AdminDisable(admin_id);
+    }
+
     @Override
     public int AdminAdd(Admin admin) {
         return adminMapper.AdminAdd(admin);
@@ -32,4 +51,8 @@ public class AdminServiceImpl implements AdminService {
     public List<Menu> MenuSelect(Menu menu) {
         return adminMapper.MenuSelect(menu);
     }
+
+
+
+
 }

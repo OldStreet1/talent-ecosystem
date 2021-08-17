@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <router-view/>
+    <router-view v-if="isRouterAlive"></router-view>
   </div>
 </template>
 
@@ -8,9 +8,28 @@
   import admin_login from "./components/admin/admin_login"
   import Register from "./components/admin/Register"
   import AdminUser from "./components/admin/AdminUser"
+  import PowerManagement from "./components/admin/PowerManagement"
 export default {
   name: 'App',
-  components:{admin_login:admin_login,Register:Register,AdminUser:AdminUser}
+  components:{admin_login:admin_login,Register:Register,AdminUser:AdminUser,PowerManagement:PowerManagement},
+  provide () {
+    return {
+      reload: this.reload
+    }
+  },
+  data () {
+    return {
+      isRouterAlive: true
+    }
+  },
+  methods: {
+    reload () {
+      this.isRouterAlive= false
+      this.$nextTick(function () {
+        this.isRouterAlive= true
+      })
+    }
+  }
 }
 </script>
 
