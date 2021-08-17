@@ -90,6 +90,7 @@ public class WebSocketServerEndpoint {
     @OnMessage
     public void onMessage(String message) throws IOException{
 //        message = "客户端：" + message + ",已收到";
+        System.err.println(message);
         String[] data = message.split("&&");
         if (sessionPools.get(data[1]) == null){
 
