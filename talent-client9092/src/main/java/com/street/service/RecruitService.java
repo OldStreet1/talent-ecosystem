@@ -9,4 +9,6 @@ public interface RecruitService {
     List<Recruit> HotRecruit();
     // 职位搜索
     List<Recruit> QueryRecruit(Recruit recruit);
+    // 查询所有职位
+    List<Recruit> AllRecruit();
 }

@@ -16,7 +16,7 @@ public interface AdminMapper {
     List<Admin> gmuserxiugai();
     List<Admin> gmuserchaxun();
     //后台管理登录
-    Admin AdminLogin(Admin admin);
+    List<Admin> AdminLogin(Admin admin);
 
     //后台注册
     int AdminAdd(Admin admin);

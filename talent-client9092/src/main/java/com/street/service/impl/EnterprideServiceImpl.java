@@ -40,6 +40,11 @@ public class EnterprideServiceImpl implements EnterprideService {
     }
 
     @Override
+    public List<Enterprise> AllEnterprise() {
+        return enterprideMapper.AllEnterprise();
+    }
+
+    @Override
     public String queryEnterpriseCoordinate(String enterprise_name) {
         return enterprideMapper.queryEnterpriseCoordinate(enterprise_name);
     }
@@ -57,5 +62,11 @@ public class EnterprideServiceImpl implements EnterprideService {
     @Override
     public List<Enterprise> queryEnterprideIntro(String enterprise_name) {
         return enterprideMapper.queryEnterprideIntro(enterprise_name);
+    }
+
+    @Override
+    public int ChangePwd(Enterprise enterprise) {
+        int i = enterprideMapper.ChangePwd(enterprise);
+        return i;
     }
 }

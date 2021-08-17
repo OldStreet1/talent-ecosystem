@@ -31,7 +31,7 @@ public class EnterpriseController {
     @PostMapping("/login")
     public String EnterprideLogin(Enterprise enterprise, HttpServletRequest request){
         System.err.println("企业请求登陆");
-        if (enterprideServiceImpl.enterprideLogin(enterprise).isEmpty()){
+        if (enterprideServiceImpl.enterprideLogin(enterprise).isEmpty()) {
             return "errrr";
         }else {
             HttpSession session =request.getSession();
@@ -43,36 +43,37 @@ public class EnterpriseController {
 
     //企业注册
     @PostMapping("/register")
-    public String EnterprideRegister(Enterprise enterprise){
+    public String EnterprideRegister(Enterprise enterprise) {
         Date d = new Date();
         SimpleDateFormat sbf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         System.out.println(sbf.format(d));
         enterprise.setCreate_time(sbf.format(d));
 //       查询企业是否存在
-        if(enterprideServiceImpl.queryEnterpride(enterprise.getEnterprise_acc()).isEmpty()){
+        if (enterprideServiceImpl.queryEnterpride(enterprise.getEnterprise_acc()).isEmpty()) {
             int a = enterprideServiceImpl.addEnterpride(enterprise);
-            if (a == 1){
+            if (a == 1) {
                 return "success";
-            }else {
+            } else {
                 return "errrrr";
             }
-        }else{
+        } else {
             return "existence";
         }
     }
 
     //企业坐标
     @PostMapping("/center")
-    public String EnterprideCenter(Enterprise enterprise){
+    public String EnterprideCenter(Enterprise enterprise) {
         String name = "美柚";
         enterprise.setEnterprise_name(name);
         String enterprise_coordinate = enterprideServiceImpl.queryEnterpriseCoordinate(name);
         System.out.println(enterprise_coordinate);
         return enterprise_coordinate;
     }
+
     //企业信息
     @PostMapping("/data")
-    public List<Enterprise> EnterprideData(Enterprise enterprise ,HttpServletRequest request){
+    public List<Enterprise> EnterprideData(Enterprise enterprise, HttpServletRequest request) {
         String enterprise_acc = String.valueOf(request.getSession().getAttribute("enterprise_acc"));
         System.out.println(enterprise_acc);
         List<Enterprise> enterpriseList = enterprideServiceImpl.queryEnterprideData(enterprise_acc);
@@ -82,7 +83,7 @@ public class EnterpriseController {
 
     //企业简介
     @PostMapping("/intro")
-    public List<Enterprise> EnterprideIntro(HttpServletRequest request){
+    public List<Enterprise> EnterprideIntro(HttpServletRequest request) {
         String enterprise_name = request.getParameter("enterprise_name");
         System.out.println(enterprise_name);
         List<Enterprise> enterprises = enterprideServiceImpl.queryEnterprideIntro(enterprise_name);
@@ -94,11 +95,38 @@ public class EnterpriseController {
 
     // 热门企业查询
     @PostMapping("/hotEnterprise")
-    public List<Enterprise> HotEnterpriseQuery(){
+    public List<Enterprise> HotEnterpriseQuery() {
         System.err.println("2>>>>>>>>>>>>>>>热门企业查询");
         List<Enterprise> enterprises = enterprideServiceImpl.HotEnterprise();
         System.out.println(enterprises.size());
         return enterprises;
+    }
+
+    // 所有企业查询
+    @PostMapping("/enterprises")
+    public List<Enterprise> AllEnterprise() {
+        System.err.println("5>>>>>>>>>>>>>>>所有企业查询");
+        List<Enterprise> enterprises = enterprideServiceImpl.AllEnterprise();
+        System.out.println(enterprises.size());
+        return enterprises;
+    }
+
+    // 企业修改密码
+    @PostMapping("/changePwd")
+    public String ChangePwd(String enterprise_pwd, HttpServletRequest request) {
+        System.err.println("7>>>>>>>>>>>>>>>修改密码");
+        String enterprise_acc = String.valueOf(request.getSession().getAttribute("enterprise_acc"));
+        System.out.println("企业账号："+enterprise_acc);
+        Enterprise enterprise = new Enterprise();
+        enterprise.setEnterprise_acc(enterprise_acc);
+        enterprise.setEnterprise_pwd(enterprise_pwd);
+        int i = enterprideServiceImpl.ChangePwd(enterprise);
+        System.out.println(i);
+        if (i > 0) {
+            return "success";
+        } else {
+            return "error";
+        }
     }
 
 }

@@ -23,114 +23,20 @@
 
     <div class="content">
       <div class="up">
-        <el-input class="search" type="text" aria-valuetext="123456"
+        <el-input v-model="input" class="search" type="text" aria-valuetext="123456"
                   placeholder="搜索企业"></el-input>
         <el-button class="searchbtn" type="primary" icon="el-icon-search" @click="query()">搜索</el-button>
       </div>
 
       <div class="main">
-        <a href="">
-          <router-link to="enterprise_intro">
-            <div class="enterprises">
-              <h2>企业名称</h2>
-              <span>融资状态：上市</span><br>
-              <span>经营范围：软件开发</span><br>
-              <span>地址：厦门市湖里区创新园</span>
-            </div>
-          </router-link>
-          <router-link to="enterprise_intro">
-            <div class="enterprises">
-              <h2>企业名称</h2>
-              <span>融资状态：上市</span><br>
-              <span>经营范围：软件开发</span><br>
-              <span>地址：厦门市湖里区创新园</span>
-            </div>
-          </router-link><router-link to="enterprise_intro">
-          <div class="enterprises">
-            <h2>企业名称</h2>
-            <span>融资状态：上市</span><br>
-            <span>经营范围：软件开发</span><br>
-            <span>地址：厦门市湖里区创新园</span>
-          </div>
-        </router-link><router-link to="enterprise_intro">
-          <div class="enterprises">
-            <h2>企业名称</h2>
-            <span>融资状态：上市</span><br>
-            <span>经营范围：软件开发</span><br>
-            <span>地址：厦门市湖里区创新园</span>
-          </div>
-        </router-link><router-link to="enterprise_intro">
-          <div class="enterprises">
-            <h2>企业名称</h2>
-            <span>融资状态：上市</span><br>
-            <span>经营范围：软件开发</span><br>
-            <span>地址：厦门市湖里区创新园</span>
-          </div>
-        </router-link><router-link to="enterprise_intro">
-          <div class="enterprises">
-            <h2>企业名称</h2>
-            <span>融资状态：上市</span><br>
-            <span>经营范围：软件开发</span><br>
-            <span>地址：厦门市湖里区创新园</span>
-          </div>
-        </router-link><router-link to="enterprise_intro">
-          <div class="enterprises">
-            <h2>企业名称</h2>
-            <span>融资状态：上市</span><br>
-            <span>经营范围：软件开发</span><br>
-            <span>地址：厦门市湖里区创新园</span>
-          </div>
-        </router-link><router-link to="enterprise_intro">
-          <div class="enterprises">
-            <h2>企业名称</h2>
-            <span>融资状态：上市</span><br>
-            <span>经营范围：软件开发</span><br>
-            <span>地址：厦门市湖里区创新园</span>
-          </div>
-        </router-link><router-link to="enterprise_intro">
-          <div class="enterprises">
-            <h2>企业名称</h2>
-            <span>融资状态：上市</span><br>
-            <span>经营范围：软件开发</span><br>
-            <span>地址：厦门市湖里区创新园</span>
-          </div>
-        </router-link><router-link to="enterprise_intro">
-          <div class="enterprises">
-            <h2>企业名称</h2>
-            <span>融资状态：上市</span><br>
-            <span>经营范围：软件开发</span><br>
-            <span>地址：厦门市湖里区创新园</span>
-          </div>
-        </router-link><router-link to="enterprise_intro">
-          <div class="enterprises">
-            <h2>企业名称</h2>
-            <span>融资状态：上市</span><br>
-            <span>经营范围：软件开发</span><br>
-            <span>地址：厦门市湖里区创新园</span>
-          </div>
-        </router-link><router-link to="enterprise_intro">
-          <div class="enterprises">
-            <h2>企业名称</h2>
-            <span>融资状态：上市</span><br>
-            <span>经营范围：软件开发</span><br>
-            <span>地址：厦门市湖里区创新园</span>
-          </div>
-        </router-link><router-link to="enterprise_intro">
-          <div class="enterprises">
-            <h2>企业名称</h2>
-            <span>融资状态：上市</span><br>
-            <span>经营范围：软件开发</span><br>
-            <span>地址：厦门市湖里区创新园</span>
-          </div>
-        </router-link><router-link to="enterprise_intro">
-          <div class="enterprises">
-            <h2>企业名称</h2>
-            <span>融资状态：上市</span><br>
-            <span>经营范围：软件开发</span><br>
-            <span>地址：厦门市湖里区创新园</span>
+        <router-link to="enterprise_intro">
+          <div class="enterprises" v-for="(item,i) in enterprisesData">
+            <h2>{{item.enterprise_name}}</h2>
+            <span>融资状态：{{item.enterprise_financing_stage}}</span><br>
+            <span>经营范围：{{item.enterprise_recruitment_position}}</span><br>
+            <span>地址：{{item.enterprise_address}}</span>
           </div>
         </router-link>
-        </a>
       </div>
     </div>
 
@@ -153,7 +59,27 @@
 
 <script>
 export default {
-  name: "Enterprise"
+  name: "Enterprise",
+  data() {
+    return {
+      input: '',
+      enterprisesData: [],
+    }
+  },
+  created() {
+    this.getEnterprisesData()
+  },
+  methods:{
+    getEnterprisesData:function (){
+      this.$axios.post("/enterprise/enterprises"
+      ).then(response => {
+        console.log(response)
+        this.enterprisesData = response.data
+      }).catch(error => {
+        console.log(error)
+      })
+    }
+  }
 }
 </script>
 

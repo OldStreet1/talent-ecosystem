@@ -29,6 +29,13 @@
         select *
         from t_enterprise limit 5,6;
     </select>
+    <select id="AllEnterprise" parameterType="com.street.bean.Enterprise" resultType="com.street.bean.Enterprise">
+        select * from t_enterprise;
+    </select>
+
+    <update id="ChangePwd" parameterType="com.street.bean.Enterprise">
+        update t_enterprise set enterprise_pwd = #{enterprise_pwd} where enterprise_acc = #{enterprise_acc};
+    </update>
 
 
     <select id="queryEnterpriseCoordinate" parameterType="String" resultType="string">

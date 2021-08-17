@@ -4,7 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.street.mapper.UserMapper">
     <select id="queryall" resultType="com.street.bean.User">
-        select * From t_user
+        select * From t_user;
     </select>
 
 </mapper>

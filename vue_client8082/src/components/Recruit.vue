@@ -23,69 +23,18 @@
 
     <div class="content">
       <div class="up">
-        <el-input class="search" type="text" aria-valuetext="123456"
+        <el-input v-model="input" class="search" type="text" aria-valuetext="123456"
                   placeholder="搜索职位"></el-input>
         <el-button class="searchbtn" type="primary" icon="el-icon-search" @click="query()">搜索</el-button>
       </div>
 
       <div class="main">
-        <a href="#">
-          <div class="recruits">
-            <h2 ref="position" @click="toRecruit()">Java</h2>
-            <span>学历要求：education</span><br>
-            <span>工作经验：experience</span><br>
-            <span>参考薪资：<span class="salary">salary</span></span>
+          <div class="recruits" v-for="(item,i) in recruitsData" @click="showInfo">
+            <h2 ref="position" @click="toRecruit()">{{ item.position }}</h2>
+            <span>学历要求：{{ item.education }}</span><br>
+            <span>工作经验：{{ item.experience }}</span><br>
+            <span>参考薪资：<span class="salary">{{ item.salary }}</span></span>
           </div>
-          <div class="recruits">
-            <h2 ref="position" @click="toRecruit()">Java</h2>
-            <span>学历要求：education</span><br>
-            <span>工作经验：experience</span><br>
-            <span>参考薪资：<span class="salary">salary</span></span>
-          </div>
-          <div class="recruits">
-            <h2 ref="position" @click="toRecruit()">Java</h2>
-            <span>学历要求：education</span><br>
-            <span>工作经验：experience</span><br>
-            <span>参考薪资：<span class="salary">salary</span></span>
-          </div>
-          <div class="recruits">
-            <h2 ref="position" @click="toRecruit()">Java</h2>
-            <span>学历要求：education</span><br>
-            <span>工作经验：experience</span><br>
-            <span>参考薪资：<span class="salary">salary</span></span>
-          </div>
-          <div class="recruits">
-            <h2 ref="position" @click="toRecruit()">Java</h2>
-            <span>学历要求：education</span><br>
-            <span>工作经验：experience</span><br>
-            <span>参考薪资：<span class="salary">salary</span></span>
-          </div>
-          <div class="recruits">
-            <h2 ref="position" @click="toRecruit()">Java</h2>
-            <span>学历要求：education</span><br>
-            <span>工作经验：experience</span><br>
-            <span>参考薪资：<span class="salary">salary</span></span>
-          </div>
-          <div class="recruits">
-            <h2 ref="position" @click="toRecruit()">Java</h2>
-            <span>学历要求：education</span><br>
-            <span>工作经验：experience</span><br>
-            <span>参考薪资：<span class="salary">salary</span></span>
-          </div>
-          <div class="recruits">
-            <h2 ref="position" @click="toRecruit()">Java</h2>
-            <span>学历要求：education</span><br>
-            <span>工作经验：experience</span><br>
-            <span>参考薪资：<span class="salary">salary</span></span>
-          </div>
-          <div class="recruits">
-            <h2 ref="position" @click="toRecruit()">Java</h2>
-            <span>学历要求：education</span><br>
-            <span>工作经验：experience</span><br>
-            <span>参考薪资：<span class="salary">salary</span></span>
-          </div>
-
-        </a>
       </div>
     </div>
 
@@ -103,19 +52,67 @@
         <img class="apps" src="../assets/images/apps.png" alt="">
       </router-link>
     </div>
+
+    <RecruitInfo v-if="dialogVisible" ref="RecruitInfo"></RecruitInfo>
   </div>
 </template>
 
 <script>
+import RecruitInfo from "./RecruitInfo";
 export default {
-  name: "Recruit"
+  name: "Recruit",
+  components:{
+    RecruitInfo
+  },
+  data() {
+    return {
+      dialogVisible:false,
+      input: '',
+      recruitsData: [],
+    }
+  },
+  created() {
+    this.getRecruits()
+  },
+  methods: {
+    getRecruits: function () {
+      this.$axios.post("/recruit/recruits"
+      ).then(response => {
+        console.log(response)
+        this.recruitsData = response.data
+      }).catch(error => {
+        console.log(error)
+      })
+    },
+    showInfo() {
+      this.dialogVisible = true;
+      this.$nextTick(() => {
+        this.$refs.RecruitInfo.init();
+      });
+    },
+    query: function () {
+      console.log(this.input)
+      this.$axios.post("/recruit/queryRecruit",
+        this.$qs.stringify({
+          action: 'query',
+          position: this.input
+        })
+      ).then(response=>{
+        console.log(response)
+        this.recruitsData = response.data
+        this.$router.push({path:"/Recruit"})
+      }).catch(error=>{
+        console.log(error)
+      })
+    },
+  }
 }
 </script>
 
 <style scoped>
 .index {
   width: 100%;
-  height: 1800px;
+  height: 2000px;
   /*background-color: #40E0D0;*/
   background-image: url("../assets/images/back.jpg");
 }
@@ -196,7 +193,7 @@ export default {
 
 .content {
   width: 100%;
-  height: 1600px;
+  height: 1800px;
 }
 
 .up {

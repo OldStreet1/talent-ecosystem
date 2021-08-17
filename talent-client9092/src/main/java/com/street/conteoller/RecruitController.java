@@ -36,4 +36,13 @@ public class RecruitController {
         return recruits;
     }
 
+    // 查询所有职位
+    @PostMapping("/recruits")
+    public List<Recruit> AllRecruit(){
+        System.err.println("4>>>>>>>>>>>>>>>查询所有职位");
+        List<Recruit> recruits = recruitService.AllRecruit();
+        System.out.println(recruits.size());
+        return recruits;
+    }
+
 }
