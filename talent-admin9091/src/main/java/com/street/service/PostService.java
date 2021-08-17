@@ -10,5 +10,5 @@ public interface PostService {
     List<Post> gwchaxun();
     List<Post> gwcharu();
     List<Post> gwxiugai();
-    List<Post> gwshanchu();
+    int gwshanchu(Post post);
 }

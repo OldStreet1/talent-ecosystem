@@ -24,8 +24,19 @@ public class EnterpriseController {
         List<Enterprise> epallchaxun = enterpriseService.epallchaxun();
 //        拿到第0个==第一行数据
         return epallchaxun;
-
     }
+    @ResponseBody
+    @RequestMapping("/entershanchu")
+    public String enterdalete(String enterprise_name){
+        System.out.println(">>>>>>删除按钮测试>>>>>");
+        Enterprise enterprise = new Enterprise();
+        System.out.println(enterprise_name);
+        enterprise.setEnterprise_name(enterprise_name);
+        int i = enterpriseService.qyyhshanchu(enterprise);
+        System.out.println("删了吗");
+        return "success";
+    }
+
 
 
 

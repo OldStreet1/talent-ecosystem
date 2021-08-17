@@ -6,12 +6,11 @@
         :data="this.tableData"
         border
         style="width: 100%">
-
       <el-table-column
           fixed
           prop="post_name"
           label="岗位名称"
-          width="150">
+          width="120">
       </el-table-column>
 
       <el-table-column
@@ -68,12 +67,11 @@
             <el-button type="success" icon="el-icon-check" circle></el-button>
             <el-button type="info" icon="el-icon-message" circle></el-button>
             <el-button type="warning" icon="el-icon-star-off" circle></el-button>
-            <el-button type="danger" icon="el-icon-delete" circle></el-button>
+            <el-button icon="el-icon-delete" type="danger" @click="deleteEnter(scope.row)"></el-button>
           </el-row>
         </template>
       </el-table-column>
     </el-table>
-
 <!--    <div class="block">-->
 <!--      <span class="demonstration"></span>-->
 <!--      <el-pagination-->
@@ -94,6 +92,31 @@
 export default {
   name: "Menu",
   methods: {
+    deleteEnter(row) {
+      const id=row.id || this.id
+      console.log(row.post_name)
+      var check = confirm("是否确定删除？");
+      if (check) {
+        this.$axios.post("post/postshanchu",
+            this.$qs.stringify({
+              post_name: row.post_name
+            })
+        ).then(response=>{
+          console.log(response)
+          if(response.data === 'success'){
+            this.$message({
+              type:'success',
+              message:'删除成功'
+            });
+          }
+        })
+      } else {
+        this.$message({
+          type:'info',
+          message:'已取消删除'
+        })
+      }
+    },
     //每页条码改变时触发，选择一页显示多少行
     handleSizeChange(val) {
       console.log(`每页 ${val} 条`);
@@ -133,6 +156,7 @@ export default {
     })
   },
 }
+
 
 </script>
 

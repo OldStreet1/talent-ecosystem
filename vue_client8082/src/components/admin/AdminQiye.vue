@@ -4,8 +4,7 @@
       <!--            表格弹出-->
       <el-table
           :data="this.tableData"
-          border
-          style="width: 200%">
+          border style="width: 200%">
         <el-table-column
             fixed
             prop="enterprise_name"
@@ -19,17 +18,17 @@
             width="150">
         </el-table-column>
 
-<!--        <el-table-column-->
-<!--            prop="admin_password"-->
-<!--            label="求职人员总数"-->
-<!--            width="120">-->
-<!--        </el-table-column>-->
+        <!--        <el-table-column-->
+        <!--            prop="admin_password"-->
+        <!--            label="求职人员总数"-->
+        <!--            width="120">-->
+        <!--        </el-table-column>-->
 
-<!--        <el-table-column-->
-<!--            prop="city"-->
-<!--            label="就业人数"-->
-<!--            width="120">-->
-<!--        </el-table-column>-->
+        <!--        <el-table-column-->
+        <!--            prop="city"-->
+        <!--            label="就业人数"-->
+        <!--            width="120">-->
+        <!--        </el-table-column>-->
 
         <el-table-column
             prop="enterprise_status"
@@ -37,11 +36,11 @@
             width="120">
         </el-table-column>
 
-<!--        <el-table-column-->
-<!--            prop="zip"-->
-<!--            label="营业执照下载"-->
-<!--            width="120">-->
-<!--        </el-table-column>-->
+        <!--        <el-table-column-->
+        <!--            prop="zip"-->
+        <!--            label="营业执照下载"-->
+        <!--            width="120">-->
+        <!--        </el-table-column>-->
 
         <el-table-column
             label="导入时间"
@@ -58,11 +57,11 @@
         <el-select
             v-model="value"
             :loading="loading"
-            :remote-method="remoteMethod"
             filterable
+            remote
+            :remote-method="remoteMethod"
             multiple
             placeholder="请输入关键词"
-            remote
             reserve-keyword>
           <el-option
               v-for="item in options"
@@ -79,35 +78,35 @@
           <template slot-scope="scope">
             <el-row>
               <!--              ,@click="open2"-->
-<!--              搜索-->
-              <el-select v-model="value"circle filterable placeholder="请输入搜索内容">
+              <!--              搜索-->
+              <el-select v-model="value" circle filterable placeholder="请输入搜索内容">
                 <el-option
                     v-for="item in options"
                     :key="item.value"
-                      :value="item.value">
+                    :value="item.value">
                 </el-option>
               </el-select>
 
-              <el-button circle circleicon="el-icon-edit" @click="enterxiugaitc()"></el-button>
+              <el-button circle circleicon="el-icon-edit" @click="seleceEnter(scope.row)"></el-button>
               <el-button circle icon="el-icon-check" type="success" @click="entershenhe()"></el-button>
-<!--              <el-button type="info" icon="el-icon-message" circle></el-button>-->
-<!--              <el-button type="warning" icon="el-icon-star-off" circle></el-button>-->
-              <el-button circle icon="el-icon-delete"type="danger" @click="enterdelete()" ></el-button>
+              <!--              <el-button type="info" icon="el-icon-message" circle></el-button>-->
+              <!--              <el-button type="warning" icon="el-icon-star-off" circle></el-button>-->
+              <el-button circle icon="el-icon-delete" type="danger" @click="deleteEnter(scope.row)"></el-button>
             </el-row>
           </template>
         </el-table-column>
       </el-table>
       <div class="block">
         <span class="demonstration"></span>
-<!--        <el-pagination-->
-<!--            @size-change="handleSizeChange"-->
-<!--            @current-change="handleCurrentChange"-->
-<!--            :current-page="currentPage4"-->
-<!--            :page-sizes="[100, 200, 300, 400]"-->
-<!--            :page-size="10"-->
-<!--            layout="total, sizes, prev, pager, next, jumper"-->
-<!--            :total="10">-->
-<!--        </el-pagination>-->
+        <!--        <el-pagination-->
+        <!--            @size-change="handleSizeChange"-->
+        <!--            @current-change="handleCurrentChange"-->
+        <!--            :current-page="currentPage4"-->
+        <!--            :page-sizes="[100, 200, 300, 400]"-->
+        <!--            :page-size="10"-->
+        <!--            layout="total, sizes, prev, pager, next, jumper"-->
+        <!--            :total="10">-->
+        <!--        </el-pagination>-->
       </div>
     </el-main>
 
@@ -118,13 +117,31 @@
 export default {
   name: "Menu",
   methods: {
-            // 企业的点击修改后弹出窗扣的绑定事件
-    enterxiugaitc() {
-
-    },
     // 企业绑定删除效果
-    enterdelete() {
-
+    deleteEnter(row) {
+      const id=row.id || this.id
+      console.log(row.enterprise_name)
+      var check = confirm("是否确定删除？");
+      if (check) {
+        this.$axios.post("enter/entershanchu",
+            this.$qs.stringify({
+              enterprise_name: row.enterprise_name
+            })
+        ).then(response=>{
+          console.log(response)
+          if(response.data === 'success'){
+            this.$message({
+              type:'success',
+              message:'删除成功'
+            });
+          }
+        })
+      } else {
+        this.$message({
+          type:'info',
+          message:'已取消删除'
+        })
+      }
     },
     // 企业绑定审核通过效果
     entershenhe() {
@@ -132,20 +149,9 @@ export default {
     },
   }, // 大括号
   data() {
-    // 传输的表格数据
-    return {
-      tableData: [{
-
-      }
-      ],
-      // 分页
-      currentPage1: 5,
-      currentPage2: 5,
-      currentPage3: 5,
-      currentPage4: 1,
-
-    };
-
+    return{
+      tableData:[]
+    }
   },
   mounted() {
     // controller跳转
@@ -155,8 +161,10 @@ export default {
       this.tableData = response.data
     }).catch(error => {
       console.log(error)
-    })
+    });
+
   },
+
 }
 
 </script>

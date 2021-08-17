@@ -15,7 +15,7 @@
     <!--                岗位表格删除-->
     <delete id="gwshanchu" parameterType="com.street.bean.Post">
         --         or 是同时判断并满足条件
-        delete from t_post where post_name = {#post_name};
+        delete from t_post where post_name = #{post_name};
     </delete>
     <!--            岗位表格修改-->
     <update id="gwxiugai" parameterType="com.street.bean.Post">

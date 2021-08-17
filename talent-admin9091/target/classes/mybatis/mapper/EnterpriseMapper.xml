@@ -18,7 +18,7 @@
     </insert>
     <!--    企业用户表 删除-->
     <delete id="qyyhshanchu" parameterType="com.street.bean.Enterprise">
-        delete from t_enterprise where enterprise_name = {#enterprise_name};
+        delete from t_enterprise where enterprise_name = #{enterprise_name};
     </delete>
 
     <!--        企业用户表 修改-->

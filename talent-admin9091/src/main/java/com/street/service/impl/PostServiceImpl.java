@@ -28,13 +28,15 @@ public class PostServiceImpl implements PostService {
         return null;
     }
 
+
     @Override
     public List<Post> gwxiugai() {
         return null;
     }
 
     @Override
-    public List<Post> gwshanchu() {
-        return null;
+    public int gwshanchu(Post post) {
+        int i =  postMapper.gwshanchu(post);
+        return i;
     }
 }

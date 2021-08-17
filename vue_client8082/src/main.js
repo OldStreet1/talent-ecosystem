@@ -10,7 +10,8 @@ import 'element-ui/lib/theme-chalk/index.css'
 import router from './router'
 // 导入axios
 import axios from 'axios'
-import AdminUser from "./components/admin/AdminUser";
+
+import qs from 'qs'
 // 程序主路口
 Vue.config.productionTip = true
 // 使用elementsui
@@ -20,6 +21,7 @@ Vue.prototype.$axios = axios
 // 定义基本路径
 axios.defaults.baseURL='api'
 
+Vue.prototype.$qs=qs
 new Vue({
   el: '#adminUser',
   router:router,

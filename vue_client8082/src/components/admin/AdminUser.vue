@@ -87,7 +87,8 @@ import Menu from './Menu'
 export default {
   methods:{
     adminchaxun(){
-    }
+    },
+
   },
 
   name: "AdminUser",

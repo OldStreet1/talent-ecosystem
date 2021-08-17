@@ -10,7 +10,7 @@ public interface EnterpriseMapper {
     List<Enterprise> epallchaxun();
     //    企业用户表 enterprise
     List<Enterprise> qyyhcharu();
-    List<Enterprise> qyyhshanchu();
+    int qyyhshanchu(Enterprise enterprise);
     List<Enterprise> qyyhxiugai();
     List<Enterprise> qyyhchaxun();
 }

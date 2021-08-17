@@ -25,8 +25,8 @@ public class EnterpriseServiceImpl implements EnterpriseService {
     }
 
     @Override
-    public List<Enterprise> qyyhshanchu() {
-        return null;
+    public int qyyhshanchu(Enterprise enterprise) {
+        return enterpriseMapper.qyyhshanchu(enterprise);
     }
 
     @Override
