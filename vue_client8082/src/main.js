@@ -14,7 +14,12 @@ import qs from 'qs';
 import VueCookies from 'vue-cookies'
 
 Vue.use(ElementUI);
-
+//导入百度地图
+import BaiduMap from 'vue-baidu-map'
+Vue.use(BaiduMap, {
+  // ak 是在百度地图开发者平台申请的密钥 详见 http://lbsyun.baidu.com/apiconsole/key */
+  ak: '9ygaVfsdOPiLV3aK1KQ0WOh5NPRMaIM1'
+})
 Vue.use(VueCookies)
 // 导入axios
 import axios from 'axios'

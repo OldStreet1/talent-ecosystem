@@ -25,7 +25,7 @@
 
     </div>
 
-    <div class="job-box" style="margin-top: 30px">
+    <div class="job-box" style="margin-top: 30px;text-align: left">
       <div class="home-inner" style="max-width: 1184px;max-width: 1184px;margin: 0 auto;">
         <div class="job-detail" style="float: left;width: 836px;margin-right: 0;">
           <div class="detail-content">
@@ -193,7 +193,7 @@ export default {
 <style scoped>
 .body {
   width: 100%;
-  height: 1000px;
+  height: 1500px;
   background-image: url("../../assets/images/back.jpg");
 }
 
@@ -288,6 +288,7 @@ export default {
   height: 165px;
   background-color: #2c3e50;
   position: absolute;
+  margin-top: 500px;
 }
 
 .footer h1 {
