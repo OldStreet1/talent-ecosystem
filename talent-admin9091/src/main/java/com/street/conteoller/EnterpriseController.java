@@ -33,7 +33,6 @@ public class EnterpriseController {
         return epallchaxun;
 
     }
-
     //获取聊天记录
     @PostMapping("/getchat")
     @ResponseBody
@@ -69,8 +68,6 @@ public class EnterpriseController {
 
         return "";
     }
-
-
 
 
 }

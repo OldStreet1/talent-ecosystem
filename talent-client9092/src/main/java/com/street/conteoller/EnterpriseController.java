@@ -31,7 +31,7 @@ public class EnterpriseController {
     @PostMapping("/login")
     public String EnterprideLogin(Enterprise enterprise, HttpServletRequest request){
         System.err.println("企业请求登陆");
-        if (enterprideServiceImpl.enterprideLogin(enterprise).isEmpty()) {
+        if (enterprideServiceImpl.enterprideLogin(enterprise).isEmpty()){
             return "errrr";
         }else {
             HttpSession session =request.getSession();
@@ -73,7 +73,7 @@ public class EnterpriseController {
 
     //企业信息
     @PostMapping("/data")
-    public List<Enterprise> EnterprideData(Enterprise enterprise, HttpServletRequest request) {
+    public List<Enterprise> EnterprideData(Enterprise enterprise , HttpServletRequest request){
         String enterprise_acc = String.valueOf(request.getSession().getAttribute("enterprise_acc"));
         System.out.println(enterprise_acc);
         List<Enterprise> enterpriseList = enterprideServiceImpl.queryEnterprideData(enterprise_acc);
@@ -95,7 +95,7 @@ public class EnterpriseController {
 
     // 热门企业查询
     @PostMapping("/hotEnterprise")
-    public List<Enterprise> HotEnterpriseQuery() {
+    public List<Enterprise> HotEnterpriseQuery(){
         System.err.println("2>>>>>>>>>>>>>>>热门企业查询");
         List<Enterprise> enterprises = enterprideServiceImpl.HotEnterprise();
         System.out.println(enterprises.size());

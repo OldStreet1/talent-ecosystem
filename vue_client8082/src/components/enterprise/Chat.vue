@@ -50,6 +50,9 @@ export default {
     // 初始化
     this.init();
   },
+  beforeDestroy() {
+    this.closeWebsocket()
+  },
   methods: {
     init: function () {
       if (typeof (WebSocket) === "undefined") {
@@ -74,7 +77,7 @@ export default {
     },
     getMessage: function (msg) {
       console.log(msg.data)
-      let msglist=msg.split("&&");
+      let msglist=msg.data.split("&&");
       let data = {
         chat_sender: msglist[0],
         chat_receiver: msglist[1],
@@ -128,6 +131,16 @@ export default {
       }).catch(err => {
         console.log(err)
       })
+    },
+//关闭websocket
+    closeWebsocket(){
+      if(this.ws){
+        this.ws.close();
+        let _this=this
+        this.ws.onclose = function(evt) {
+          console.log("websocket已关闭");
+        };
+      }
     },
 
     destroyed() {
@@ -194,6 +207,7 @@ export default {
     /* padding-left: 5px; */
     margin-top: 5px;
     /* border: 1px #1890ff solid; */
+    text-align: left;
   }
   .msg_left_up{
     height: 25px;

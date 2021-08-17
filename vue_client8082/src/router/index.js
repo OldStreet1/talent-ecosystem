@@ -16,6 +16,8 @@ export default new Router({
   routes: [
     {path: '/', name: 'Home', component: Home,},
     {path: '/Home', name: 'Home', component: Home},
+    {path:'/UResume',name:'UResume',component:()=>import ('../components/enterprise/UserResume')},
+
     {path:'/Recruit',name:'Recruit',component:()=>import ('../components/Recruit')},
     {path:'/Resume',name:'Resume',component:()=>import ('../components/Resume')},
     {path:'/Enterprise',name:'Enterprise',component:()=>import ('../components/Enterprise')},
@@ -27,7 +29,7 @@ export default new Router({
         {path:'/Chat',name:'Chat',component:()=>import ('../components/enterprise/Chat')},
         {path:'/BMap',name:'BMap',component:()=>import ('../components/enterprise/BMap')},
         {path:'/Recharge',name:'Recharge',component:()=>import ('../components/enterprise/Recharge')},
-
+        {path:'/look',name:'look',component:()=>import ('../components/enterprise/Resume_look')},
         {path:'/ChangePwd',name:'ChangePwd',component:()=>import ('../components/enterprise/ChangePwd')},
       ]
     },

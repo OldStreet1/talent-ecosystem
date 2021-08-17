@@ -48,7 +48,7 @@
                 <el-menu-item index="/AInfo">企业信息</el-menu-item>
                 <el-menu-item index="/BMap">查找地址</el-menu-item>
                 <el-menu-item index="1-4">投递简历</el-menu-item>
-                <el-menu-item index="1-5">查看已投简历</el-menu-item>
+                <el-menu-item index="/look">查看已投简历</el-menu-item>
               </el-submenu>
               <el-menu-item index="/Chat">
                 <i class="el-icon-chat-dot-round"></i>
